@@ -35,14 +35,14 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file(dynamicApplication.keystore)
+            storeFile file("debug.keystore")
             storePassword dynamicApplication.storePassword
             keyAlias dynamicApplication.keyAlias
             keyPassword dynamicApplication.keyPassword
         }
 
         release {
-            storeFile file(dynamicApplication.keystore)
+            storeFile file("debug.keystore")
             storePassword dynamicApplication.storePassword
             keyAlias dynamicApplication.keyAlias
             keyPassword dynamicApplication.keyPassword
