@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ApkModules>
+    <!--
+        0x00是共享资源
+        0x01是Android系统资源，
+        0x02是WebView资源(Android 5.0新增)
+        0x7f这个一般不动
+
+        0x10到0x7e的都可以用
+    -->
+    <Module packageName="com.mctrip.modules.hospital" resourceId="0x10" />
+    <Module packageName="com.mctrip.modules.mine" resourceId="0x11" />
+    <Module packageName="com.mctrip.modules.setting" resourceId="0x12" />
+
+    <Module packageName="com.mctrip.modules.device" resourceId="0x70" />
+    <Module packageName="com.mctrip.modules.device.android" resourceId="0x7d" />
+    <Module packageName="com.mctrip.modules.device.ios" resourceId="0x7e" />
+</ApkModules>

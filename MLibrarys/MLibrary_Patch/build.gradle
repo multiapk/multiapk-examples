@@ -1,0 +1,12 @@
+apply plugin: 'com.android.library'
+project.version = "0.0.1"
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion project.targetSdkVersion
+        buildConfigField("boolean", "solidMode", "$solidMode")
+    }
+}

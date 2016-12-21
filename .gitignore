@@ -1,0 +1,16 @@
+.idea
+.gradle
+local.properties
+
+*.iml
+*/*.iml
+*/*/*.iml
+
+build
+*/build
+*/*/build
+*/*/*/build
+*/*/*/*/build
+build-output
+
+MLibrarys/MRepo/uploadedArchives/com/mlibrary/dynamic/*/aapt*

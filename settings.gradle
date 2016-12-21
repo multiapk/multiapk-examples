@@ -1,0 +1,13 @@
+/** librarys */
+include ':MLibrarys:MLibrary_Patch'
+include ':MLibrarysTools:MDynamicLib'
+
+/** apps */
+include ':MApps:MCtripApp'
+include ':MApps:MCtripLibrarys:MCtripLibrary'
+include ':MApps:MCtripModules:MCtripMineModule'
+include ':MApps:MCtripModules:MCtripSettingModule'
+include ':MApps:MCtripModules:MCtripHospitalModule'
+include ':MApps:MCtripModules:MCtripDeviceModule:MCtripDeviceMainModule'
+include ':MApps:MCtripModules:MCtripDeviceModule:MCtripDeviceAndroidModule'
+include ':MApps:MCtripModules:MCtripDeviceModule:MCtripDeviceIosModule'

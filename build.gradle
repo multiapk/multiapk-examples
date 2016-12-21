@@ -1,0 +1,63 @@
+buildscript {
+    repositories {
+        maven {
+            url "MLibrarys/MRepo/uploadedArchives"
+        }
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://jcenter.bintray.com"
+        }
+        //maven { url "http://maven.dev.sh.ctripcorp.com:8081/nexus/content/groups/public" }
+        maven { url "http://mirrors.ibiblio.org/maven2" }     // 这是一个maven镜像，速度还行
+    }
+    dependencies {
+        classpath 'com.mlibrary:dynamic:0.0.1'
+        classpath 'com.android.tools.build:gradle:2.2.3'
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+
+    /*  详细打印
+    注: 某些输入文件使用或覆盖了已过时的 API。
+    注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+    注: 某些输入文件使用了未经检查或不安全的操作。
+    注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+    */
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+
+    tasks.withType(Javadoc) {
+        options.encoding = "UTF-8"
+    }
+}
+
+ext {
+    solidMode = true
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.2"
+    supportLibraryVersion = "25.1.0"
+
+    //noinspection OldTargetApi
+    targetSdkVersion = 22
+
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+    solidMode = false
+    solidModeConfigValue = properties.getProperty('solidMode')
+    if ('true'.equalsIgnoreCase(solidModeConfigValue))
+        solidMode = true
+    else if ('false'.equalsIgnoreCase(solidModeConfigValue))
+        solidMode = false
+
+    bintrayUser = properties.getProperty('bintray.user')
+    bintrayKey = properties.getProperty('bintray.apikey')
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="default_pressed">#2B000000</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="orange">#FFA500</color>
+    <color name="green">#00FF00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="gold">#FFD700</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="pink">#FFC0CB</color>
+    <color name="red">#FF0000</color>
+
+    <color name="gray">#808080</color>
+    <color name="lightgray">#D3D3D3</color>
+    <color name="darkgray">#A9A9A9</color>
+
+    <color name="blue">#0000FF</color>
+    <color name="lightblue">#ADD8E6</color>
+    <color name="darkblue">#00008B</color>
+
+    <!--5.0以上初始色-->
+    <!--Actionbar默认色-->
+    <color name="colorPrimary">#FF101010</color>
+    <!--文字默认色-->
+    <color name="textColorPrimary">#FFEFEFEF</color>
+    <!--RadioButton/SlideBar的颜色-->
+    <color name="colorAccent">@color/colorPrimary</color>
+    <!--状态栏颜色-->
+    <color name="statusBarColor">@color/colorPrimary</color>
+    <!--状态栏颜色上面的覆盖色-->
+    <color name="colorPrimaryDark">@color/colorPrimary</color>
+</resources>

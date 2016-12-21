@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.mlibrary.dynamic.library'
+
+dynamicLibrary {
+    packageName = "com.mctrip.modules.hospital"
+    moduleProguardRulesFilePath = "$rootDir/gradle/dynamic/sub-project-proguard-rules.pro"
+}
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion project.targetSdkVersion
+    }
+}
+
+dependencies {
+    compile project(":MApps:MCtripLibrarys:MCtripLibrary")
+}
