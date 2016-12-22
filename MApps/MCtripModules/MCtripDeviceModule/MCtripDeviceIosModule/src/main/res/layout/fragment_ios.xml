@@ -22,7 +22,7 @@
             android:id="@+id/buttonIos"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/default_ios"
+            android:drawableLeft="@drawable/ios"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
             android:padding="10dp"

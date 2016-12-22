@@ -10,6 +10,12 @@ sdk.dir=/Users/krmao/AndroidBundle/sdk
 ### root project build.gradle
 * MDynamicHome/build.gradle
     ```
+    jcenter()
+    dependencies {
+        classpath 'com.mlibrary:dynamic:0.0.1'
+    }
+    ```
+    ```
     ext {
         solidMode = true
         compileSdkVersion = 25
@@ -117,6 +123,8 @@ sdk.dir=/Users/krmao/AndroidBundle/sdk
     gradle dynamicRepackAll --info
     adb install -r build-outbut/mdynamic-release-final.apk
     ```
+---
+
 ### todo
 * hotfix
 * upload to Maven or JCenter

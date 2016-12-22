@@ -39,7 +39,7 @@ public final class Framework {
     static void startup(boolean needReInitBundle) throws BundleException {
         log.log("*------------------------------------*", Logger.LogLevel.DEBUG);
         //noinspection deprecation
-        log.log(" Ctrip Bundle on " + Build.MODEL + "|" + Build.CPU_ABI + "starting...", Logger.LogLevel.DEBUG);
+        log.log(" Ctrip Bundle on " + Build.MODEL + "|starting...", Logger.LogLevel.DEBUG);
         log.log("*------------------------------------*", Logger.LogLevel.DEBUG);
 
         long currentTimeMillis = System.currentTimeMillis();

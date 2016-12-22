@@ -22,7 +22,7 @@
             android:id="@+id/buttonAndroid"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/default_android_reverse"
+            android:drawableLeft="@drawable/android"
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
             android:padding="10dp"
