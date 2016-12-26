@@ -1,6 +1,9 @@
 # MDynamicLib
 gradle plugin for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK)
 
+---
+
+![home page](./gradle/docs/home.png)
 
 ### local.properties
 ```
