@@ -7,7 +7,7 @@ dynamicApplication {
     supportLibraryVersion = project.supportLibraryVersion
     packageName = "com.mctrip"
     moduleConfigFilePath = "$rootDir/gradle/dynamic/apk_module_config.xml"
-    keystore = "$rootDir:MApps:MCtripApp/debug.keystore"
+    keystore = "$rootDir/MApps/MCtripApp/debug.keystore"
     keyAlias = "androiddebugkey"
     keyPassword = "android"
     storePassword = "android"

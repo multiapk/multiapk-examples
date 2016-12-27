@@ -1,6 +1,7 @@
 package com.mlibrary.patch.framework;
 
 import android.os.Build;
+import android.os.Environment;
 
 import com.mlibrary.patch.log.Logger;
 import com.mlibrary.patch.log.LoggerFactory;
@@ -43,8 +44,17 @@ public final class Framework {
         log.log("*------------------------------------*", Logger.LogLevel.DEBUG);
 
         long currentTimeMillis = System.currentTimeMillis();
-        String baseDir = RuntimeArgs.androidApplication.getFilesDir().getAbsolutePath();
+        String baseDir = null;
+        //String baseDir = RuntimeArgs.androidApplication.getFilesDir().getAbsolutePath();
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            File externalFile = RuntimeArgs.androidApplication.getExternalFilesDir(null);
+            if (externalFile != null)
+                baseDir = externalFile.getAbsolutePath();
+        }
+        if (baseDir == null)
+            baseDir = RuntimeArgs.androidApplication.getFilesDir().getAbsolutePath();
         storageLocation = baseDir + File.separatorChar + "storage" + File.separatorChar;
+        log.w("storageLocation:" + storageLocation);
         if (needReInitBundle) {
             log.w("重新初始化,即将删除:" + storageLocation);
             File file = new File(storageLocation);
