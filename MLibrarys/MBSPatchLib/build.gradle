@@ -9,12 +9,12 @@ android {
         versionName = "0.0.1"
         minSdkVersion 14
         targetSdkVersion project.targetSdkVersion
-        buildConfigField("boolean", "solidMode", "$solidMode")
-        /*ndk {
+        //buildConfigField("boolean", "solidMode", "$solidMode")
+        ndk {
             moduleName "bspatch"
             ldLibs "log", "z", "m"
-            abiFilters "armeabi"*//*, "armeabi-v7a", "x86"*//*
-        }*/
+            abiFilters "armeabi"/*, "armeabi-v7a", "x86"*/
+        }
     }
 }
 
@@ -28,13 +28,13 @@ publish {
     repoName = "maven"
 
     groupId = "com.mlibrary"//compile 'com.mlibrary:mpulllib:0.1'
-    artifactId = "mlibrarypatch" //compile 'com.mlibrary:mpulllib:0.1'
+    artifactId = "mbspatchlib" //compile 'com.mlibrary:mpulllib:0.1'
     publishVersion = "0.0.1"  //compile 'com.mlibrary:mpulllib:0.1'
 
     userOrg = "krmao"           //krmao/maven/MPullLib
-    uploadName = "MLibraryPatch"     //krmao/maven/MPullLib
+    uploadName = "MBSPatchLib"     //krmao/maven/MPullLib
 
-    desc = "ctrip dynamicapk library"
+    desc = "bspatch util"
     website = "https://github.com/mlibrarys/MDynamicHome"
     //publications = ["maven"]
     licences = ["Apache-2.0"]

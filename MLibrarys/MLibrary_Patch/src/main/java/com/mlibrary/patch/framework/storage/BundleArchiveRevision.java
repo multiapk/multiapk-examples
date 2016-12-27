@@ -24,7 +24,6 @@ import java.util.zip.ZipFile;
 
 /**
  * Created by yb.wang on 14/12/31.
- * <p/>
  * Bundle 存储文件：bundle.zip，bundle.dex
  * 采用PathClassLoader 加载 dex文件，并opt释放优化后的dex
  */

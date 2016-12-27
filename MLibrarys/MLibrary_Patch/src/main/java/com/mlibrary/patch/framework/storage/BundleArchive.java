@@ -12,7 +12,6 @@ import java.util.TreeMap;
 
 /**
  * Created by yb.wang on 14/12/31.
- * <p/>
  * Bundle 目录结构：version_1,version_2
  */
 public class BundleArchive implements Archive {

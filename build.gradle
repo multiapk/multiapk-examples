@@ -17,6 +17,7 @@ buildscript {
     dependencies {
         classpath 'com.mlibrary:dynamic:0.0.1'
         classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.novoda:bintray-release:0.3.4'
     }
 }
 
