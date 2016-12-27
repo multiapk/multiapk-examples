@@ -3,7 +3,7 @@ gradle plugin for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK)
 
 ---
 
-![home page](./gradle/docs/home.png)
+![home page](http://odw6aoxik.bkt.clouddn.com/mdynamic-home.png-320x480)
 
 ### local.properties
 ```
