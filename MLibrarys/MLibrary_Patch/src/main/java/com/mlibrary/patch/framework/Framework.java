@@ -1,7 +1,6 @@
 package com.mlibrary.patch.framework;
 
 import android.os.Build;
-import android.os.Environment;
 
 import com.mlibrary.patch.log.Logger;
 import com.mlibrary.patch.log.LoggerFactory;
@@ -46,11 +45,9 @@ public final class Framework {
         long currentTimeMillis = System.currentTimeMillis();
         String baseDir = null;
         //String baseDir = RuntimeArgs.androidApplication.getFilesDir().getAbsolutePath();
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            File externalFile = RuntimeArgs.androidApplication.getExternalFilesDir(null);
-            if (externalFile != null)
-                baseDir = externalFile.getAbsolutePath();
-        }
+        File externalFile = RuntimeArgs.androidApplication.getExternalFilesDir(null);
+        if (externalFile != null)
+            baseDir = externalFile.getAbsolutePath();
         if (baseDir == null)
             baseDir = RuntimeArgs.androidApplication.getFilesDir().getAbsolutePath();
         storageLocation = baseDir + File.separatorChar + "storage" + File.separatorChar;
