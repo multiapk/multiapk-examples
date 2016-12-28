@@ -1,3 +1,6 @@
 [submodule "MLibrarys/MLibraryPatch"]
 	path = MLibrarys/MLibraryPatch
 	url = https://github.com/mlibrarys/MLibraryPatch
+[submodule "MLibrarys/MBSPatchLib"]
+	path = MLibrarys/MBSPatchLib
+	url = https://github.com/krmao/MBSPatchLib

@@ -14,7 +14,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportLibraryVersion"
     compile "com.android.support:cardview-v7:$supportLibraryVersion"
     //compile(name: 'MLibraryPatch-0.0.1', ext: 'aar')
-    //compile project(":MLibrarys:MLibraryPatch")
-    compile 'com.mlibrary:mlibrarypatch:0.0.1'
+    compile project(":MLibrarys:MLibraryPatch") //local
+    //compile 'com.mlibrary:mlibrarypatch:0.0.1' //jcenter
     compile 'com.mlibrary:mbspatchlib:0.0.1'
 }

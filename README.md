@@ -110,6 +110,13 @@ https://github.com/mlibrarys/MDynamicLib
 
 * common library (like ':MApps:MCtripLibrarys:MCtripLibrary')
     * all projects can share classes and resources
+
+
+```
+    defaultConfig {
+        buildConfigField("boolean", "solidMode", "$solidMode")//for custom application
+    }
+```
 ```
     dependencies {
         compile "com.android.support:multidex:1.0.1"
@@ -118,6 +125,26 @@ https://github.com/mlibrarys/MDynamicLib
         compile "com.android.support:cardview-v7:$supportLibraryVersion"
         compile 'com.mlibrary:mlibrarypatch:0.0.1'
     }
+```
+
+
+* application
+```
+    public class MApplication extends Application {
+        @Override
+        public void onCreate() {
+            if (!BuildConfig.solidMode)
+                MultiDex.install(this);
+            super.onCreate();
+            if (BuildConfig.solidMode)
+                MLibraryPatchUtil.init(this);
+        }
+    }
+```
+```
+    <application
+        android:name=".base.MBaseApplication"
+    </application>
 ```
 ### how to use
 * solidMode==false : just normal multidex project, no features about dynamicApk
