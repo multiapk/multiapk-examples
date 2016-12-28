@@ -1,6 +1,5 @@
 # MDynamicHome
-gradle plugin examples for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK)
-
+gradle plugin **MDynamicLib** examples
 ---
 
 ![home page](http://odw6aoxik.bkt.clouddn.com/mdynamic-home.png-320x480)
@@ -11,7 +10,7 @@ solidMode=false
 sdk.dir=/Users/krmao/AndroidBundle/sdk
 ```
 ### gradle plugin
-https://github.com/krmao/MDynamicLib
+https://github.com/mlibrarys/MDynamicLib
 
 ### root project build.gradle
 * MDynamicHome/build.gradle

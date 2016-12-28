@@ -1,0 +1,3 @@
+[submodule "MLibrarys/MLibraryPatch"]
+	path = MLibrarys/MLibraryPatch
+	url = https://github.com/mlibrarys/MLibraryPatch
