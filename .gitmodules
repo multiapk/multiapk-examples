@@ -4,3 +4,6 @@
 [submodule "MLibrarys/MBSPatchLib"]
 	path = MLibrarys/MBSPatchLib
 	url = https://github.com/krmao/MBSPatchLib
+[submodule "MLibrarys/MDynamicLib"]
+	path = MLibrarys/MDynamicLib
+	url = https://github.com/mlibrarys/MDynamicLib
