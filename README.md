@@ -1,5 +1,5 @@
-# MDynamicLib
-gradle plugin for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK)
+# MDynamicHome
+gradle plugin examples for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK)
 
 ---
 
@@ -10,6 +10,9 @@ gradle plugin for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK)
 solidMode=false
 sdk.dir=/Users/krmao/AndroidBundle/sdk
 ```
+### gradle plugin
+https://github.com/krmao/MDynamicLib
+
 ### root project build.gradle
 * MDynamicHome/build.gradle
 ```
@@ -114,9 +117,7 @@ sdk.dir=/Users/krmao/AndroidBundle/sdk
         compile "com.android.support:support-v4:$supportLibraryVersion"
         compile "com.android.support:appcompat-v7:$supportLibraryVersion"
         compile "com.android.support:cardview-v7:$supportLibraryVersion"
-        //compile(name: 'MLibrary_Patch-0.0.1', ext: 'aar')
-        //compile project(":MLibrarys:MLibrary_Patch")
-        compile 'com.mlibrary:mlibrarypatch:0.0.1' //import from jcenter
+        compile 'com.mlibrary:mlibrarypatch:0.0.1'
     }
 ```
 ### how to use
@@ -129,6 +130,7 @@ sdk.dir=/Users/krmao/AndroidBundle/sdk
 ```
 
 ###hot fix
+https://github.com/krmao/MBSPatchLib
 ```
     compile 'com.mlibrary:mbspatchlib:0.0.1'//bsdiff util ,add to common library,for bspatch
 ```

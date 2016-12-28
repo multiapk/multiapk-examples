@@ -1,7 +1,5 @@
 /** librarys */
-include ':MLibrarys:MLibrary_Patch'
-include ':MLibrarys:MBSPatchLib'
-//include ':MLibrarysTools:MDynamicLib'
+//include ':MLibrarys:MLibraryPatch'
 
 /** apps */
 include ':MApps:MCtripApp'

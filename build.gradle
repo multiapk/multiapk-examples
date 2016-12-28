@@ -1,23 +1,15 @@
 buildscript {
     repositories {
         /*maven {
-            url "http://dl.bintray.com/krmao/maven"
-        }*/
-        /*maven {
             url "MLibrarys/MRepo/uploadedArchives"
         }*/
         jcenter()
-        maven {
-            url "https://jcenter.bintray.com"
-        }
         mavenCentral()
-        //maven { url "http://maven.dev.sh.ctripcorp.com:8081/nexus/content/groups/public" }
-        //maven { url "http://mirrors.ibiblio.org/maven2" }     // 这是一个maven镜像，速度还行
     }
     dependencies {
         classpath 'com.mlibrary:dynamic:0.0.1'
         classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'com.novoda:bintray-release:0.3.4'
+        //classpath 'com.novoda:bintray-release:0.3.4'
     }
 }
 
