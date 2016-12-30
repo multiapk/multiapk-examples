@@ -16,5 +16,5 @@ dependencies {
     //compile(name: 'MLibraryPatch-0.0.1', ext: 'aar')
     compile project(":MLibrarys:MLibraryPatch") //local
     //compile 'com.mlibrary:mlibrarypatch:0.0.1' //jcenter
-    compile 'com.mlibrary:mbspatchlib:0.0.1'
+    //compile 'com.mlibrary:mbspatchlib:0.0.1'
 }
