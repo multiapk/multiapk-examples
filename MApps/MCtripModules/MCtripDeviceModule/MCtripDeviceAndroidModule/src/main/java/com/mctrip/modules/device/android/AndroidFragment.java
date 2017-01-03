@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mctrip.library.base.MFragment;
+import com.mlibrary.patch.framework.BundleHotPatch;
+
+import java.io.File;
 
 
 public class AndroidFragment extends MFragment {
@@ -22,7 +25,13 @@ public class AndroidFragment extends MFragment {
         buttonAndroid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mFragmentActivity, "this is android child module", Toast.LENGTH_SHORT).show();
+                try {
+                    BundleHotPatch.copyDownloadPatchToLocal("com.mctrip.modules.device.ios", new File("/storage/emulated/0/ios.patch"));
+                    Toast.makeText(mFragmentActivity, "合成成功", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(mFragmentActivity, "合成失败", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return contentView;
