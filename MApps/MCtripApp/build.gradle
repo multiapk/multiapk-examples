@@ -19,8 +19,8 @@ android {
     buildToolsVersion = project.buildToolsVersion
     defaultConfig {
         applicationId "com.mctrip"
-        versionCode 11
-        versionName "11"
+        versionCode 12
+        versionName "12"
         minSdkVersion 14
         targetSdkVersion project.targetSdkVersion
         multiDexEnabled !solidMode
