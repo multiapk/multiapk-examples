@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mctrip.library.base.MFragment;
-import com.mlibrary.patch.bundle.hotpatch.BundleHotPatch;
+import com.mlibrary.patch.hotpatch.Hotpatch;
 
 import java.io.File;
 
@@ -26,7 +26,7 @@ public class AndroidFragment extends MFragment {
             @Override
             public void onClick(View v) {
                 try {
-                    BundleHotPatch.copyDownloadPatchToLocal("com.mctrip.modules.device.ios", new File("/storage/emulated/0/ios.patch"));
+                    Hotpatch.instance.installPatch("com.mctrip.modules.device.ios", 1, new File("/storage/emulated/0/ios.patch"));
                     Toast.makeText(mFragmentActivity, "合成成功", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
