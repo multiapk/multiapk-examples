@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.mctrip.library.base.MFragment;
-import com.mlibrary.patch.framework.BundleHotPatch;
+import com.mlibrary.patch.bundle.hotpatch.BundleHotPatch;
 
 import java.io.File;
 
