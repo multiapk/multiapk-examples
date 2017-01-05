@@ -1,18 +1,27 @@
 # MDynamicHome
 gradle plugin **MDynamicLib** examples
----
 
 ![home page](http://odw6aoxik.bkt.clouddn.com/mdynamic-home.png-320x480)
 
+---
+
 ### local.properties
+
 ```
 solidMode=false
 sdk.dir=/Users/krmao/AndroidBundle/sdk
 ```
+
+---
+
 ### gradle plugin
+
 https://github.com/mlibrarys/MDynamicLib
 
+---
+
 ### root project build.gradle
+
 * MDynamicHome/build.gradle
 ```
     jcenter()
@@ -42,7 +51,10 @@ https://github.com/mlibrarys/MDynamicLib
 
 ```
 
+---
+
 ### application(com.android.application)
+
 * MDynamicHome/MApps/MCtripApp/build.gradle
 ```
     apply plugin: 'com.android.application'
@@ -75,7 +87,11 @@ https://github.com/mlibrarys/MDynamicLib
         }
     }
 ```
+
+---
+
 ### library(com.android.library)
+
 * childModule (like ':MApps:MCtripModules:MCtripMineModule')
 ```
     apply plugin: 'com.android.library'
@@ -146,6 +162,8 @@ https://github.com/mlibrarys/MDynamicLib
         android:name=".base.MBaseApplication"
     </application>
 ```
+
+---
 ### how to use
 * solidMode==false : just normal multidex project, no features about dynamicApk
 * solidMode==true  : have all features about dynamicApk,can load custom bundles(so/apk like 'com_mctrip_modules_mine.so') and hotfix
@@ -154,14 +172,74 @@ https://github.com/mlibrarys/MDynamicLib
     gradle dynamicRepackAll --info
     adb install -r build-outbut/mdynamic-release-final.apk
 ```
+---
 
 ###hot fix
-https://github.com/krmao/MBSPatchLib
+
+* hotpatch directory
 ```
-    compile 'com.mlibrary:mbspatchlib:0.0.1'//bsdiff util ,add to common library,for bspatch
+  /*
+   上传参数: bundleKey: versionCode_versionName
+
+   下发参数: {
+                bundleKey: versionCode_versionName,
+                patchList: [
+                    {
+                        patchUrl="https://www.ctrip.com/com.mctrip.modules.device.ios_1.patch",
+                        packageName:"com.mctrip.modules.device.ios"
+                        patchVersion:1
+                        patchMd5:""
+                        syntheticMd5:""
+                    },
+                    {
+                        patchUrl="https://www.ctrip.com/com.mctrip.modules.device.android_1.patch",
+                        packageName:"com.mctrip.modules.device.android"
+                        patchVersion:1
+                        patchMd5:""
+                        syntheticMd5:""
+                    },
+                ]
+            }
+   本地目录: /hotpatch
+            ........./app.version.1.1(bundleKey)/
+            ......................../com.mctrip.modules.device.ios/
+            ......................................./patch.version.1
+            ......................................................./com.mctrip.modules.device.ios.patch //下载的差分文件
+            ......................................................./com.mctrip.modules.device.ios.zip    //合成的目标文件
+            ......................................................./com.mctrip.modules.device.ios.dex   //加载一次后生成的dex文件，如果存在可以直接加载这个(optimize)
+            ......................................./patch.version.2
+            ......................................................./com.mctrip.modules.device.ios.patch
+            ......................................................./com.mctrip.modules.device.ios.zip
+            ........./app.version.2.2(bundleKey)/
+
+   */
 ```
+
+* need add library [MBSPatchLib](https://github.com/krmao/MBSPatchLib)
+
+
+1. get patchFile from "com_mctrip_modules_device_ios.so" version1 android version2
+```
+    //examples:
+    bsdiff original/com_mctrip_modules_device_ios.so patch/com_mctrip_modules_device_ios.so patch/ios.patch
+```
+2. and then download patch to sdcard and install by following code
+```
+    try {
+        Hotpatch.instance.installPatch("com.mctrip.modules.device.ios", 1, new File("/storage/emulated/0/ios.patch"));
+        Toast.makeText(mFragmentActivity, "合成成功", Toast.LENGTH_SHORT).show();
+    } catch (Exception e) {
+        e.printStackTrace();
+        Toast.makeText(mFragmentActivity, "合成失败", Toast.LENGTH_SHORT).show();
+    }
+```
+3. after application restart, the patch should have be apply
+
 ---
 
 ### todo
-* hotfix
-* upload to Maven or JCenter
+
+* optimize code
+
+---
+---
