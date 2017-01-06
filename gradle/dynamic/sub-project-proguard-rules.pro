@@ -132,18 +132,15 @@
 
 -keep class android.** { *; }
 
--keep class com.mctrip.modules.hospital.HospitalFragment { *; }
--keep class com.mctrip.modules.mine.MineFragment { *; }
--keep class com.mctrip.modules.setting.SettingFragment { *; }
--keep class com.mctrip.modules.device.DeviceFragment { *; }
--keep class com.mctrip.modules.device.android.AndroidFragment { *; }
--keep class com.mctrip.modules.device.ios.IosFragment { *; }
--dontwarn com.mctrip.modules.hospital.**
--dontwarn com.mctrip.modules.mine.**
--dontwarn com.mctrip.modules.setting.**
--dontwarn com.mctrip.modules.device.**
--dontwarn com.mctrip.modules.device.android.**
--dontwarn com.mctrip.modules.device.ios.**
+
+-keep class com.multiapk.modules.computer.ComputerFragment { *; }
+-keep class com.multiapk.modules.mobile.MobileFragment { *; }
+-keep class com.multiapk.modules.mobile.android.AndroidFragment { *; }
+-keep class com.multiapk.modules.mobile.ios.IosFragment { *; }
+-dontwarn com.multiapk.modules.computer.**
+-dontwarn com.multiapk.modules.mobile.**
+-dontwarn com.multiapk.modules.mobile.android.**
+-dontwarn com.multiapk.modules.mobile.ios.**
 
 -dontwarn com.yalantis.ucrop.**
 -keep class com.yalantis.ucrop.view.widget.HorizontalProgressWheelView

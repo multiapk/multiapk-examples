@@ -8,11 +8,8 @@
 
         0x10到0x7e的都可以用
     -->
-    <Module packageName="com.mctrip.modules.hospital" resourceId="0x10" />
-    <Module packageName="com.mctrip.modules.mine" resourceId="0x11" />
-    <Module packageName="com.mctrip.modules.setting" resourceId="0x12" />
-
-    <Module packageName="com.mctrip.modules.device" resourceId="0x70" />
-    <Module packageName="com.mctrip.modules.device.android" resourceId="0x7d" />
-    <Module packageName="com.mctrip.modules.device.ios" resourceId="0x7e" />
+    <Module packageName="com.multiapk.modules.computer" resourceId="0x20" />
+    <Module packageName="com.multiapk.modules.mobile" resourceId="0x30" />
+    <Module packageName="com.multiapk.modules.mobile.android" resourceId="0x40" />
+    <Module packageName="com.multiapk.modules.mobile.ios" resourceId="0x50" />
 </ApkModules>

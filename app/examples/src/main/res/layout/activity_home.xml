@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewComputerModule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:cardBackgroundColor="#2AA5F8"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="5dp"
+        tools:ignore="PxUsage">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/default_image"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:minHeight="60dp"
+            android:text="module->computer"
+            android:textColor="#333"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardViewMobileModule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:cardBackgroundColor="#2AA5F8"
+        app:cardElevation="2dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:contentPadding="5dp"
+        tools:ignore="PxUsage">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/default_image"
+            android:drawablePadding="15dp"
+            android:gravity="center_vertical"
+            android:minHeight="60dp"
+            android:text="module->mobile"
+            android:textColor="#333"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
+    </android.support.v7.widget.CardView>
+</LinearLayout>

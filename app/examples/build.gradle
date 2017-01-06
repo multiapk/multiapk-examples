@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.mlibrary.dynamic.application'
+
+dynamicApplication {
+    solidMode = project.solidMode
+    buildToolsVersion = project.buildToolsVersion
+    supportLibraryVersion = project.supportLibraryVersion
+    packageName = "com.multiapk"
+    moduleConfigFilePath = "$rootDir/gradle/dynamic/apk_module_config.xml"
+    keystore = "$rootDir/app/examples/debug.keystore"
+    keyAlias = "androiddebugkey"
+    keyPassword = "android"
+    storePassword = "android"
+}
+
+//noinspection GroovyMissingReturnStatement
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion = project.buildToolsVersion
+    defaultConfig {
+        //applicationId "com.multiapk"
+        versionCode 12
+        versionName "12"
+        minSdkVersion 14
+        targetSdkVersion project.targetSdkVersion
+        multiDexEnabled !solidMode
+        vectorDrawables.useSupportLibrary = true
+    }
+    /*dataBinding { enabled = false }*/
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+            storePassword dynamicApplication.storePassword
+            keyAlias dynamicApplication.keyAlias
+            keyPassword dynamicApplication.keyPassword
+        }
+
+        release {
+            storeFile file("debug.keystore")
+            storePassword dynamicApplication.storePassword
+            keyAlias dynamicApplication.keyAlias
+            keyPassword dynamicApplication.keyPassword
+        }
+    }
+    buildTypes {
+        debug {
+            debuggable true
+            jniDebuggable true
+            versionNameSuffix ""
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            debuggable solidMode
+            jniDebuggable solidMode
+            versionNameSuffix ""
+            minifyEnabled !solidMode
+            zipAlignEnabled !solidMode
+            shrinkResources !solidMode
+            proguardFiles "${rootDir}/gradle/global_proguard.pro", 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':app:libraries:library-common')
+
+    if (!solidMode) {//普通模式才需要依赖。solid模式编译时不依赖子bu。
+//        compile project(':app:modules:computer')
+        compile project(':app:modules:mobile')
+        compile project(':app:modules:mobile.android')
+        compile project(':app:modules:mobile.ios')
+    }
+}

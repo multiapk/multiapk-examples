@@ -1,13 +1,14 @@
-/** librarys */
-include ':MLibrarys:MLibraryPatch'
-include ':MLibrarys:MBSPatchLib'
+//plugin
+include ':plugin:multiapk.library'
 
-/** apps */
-include ':MApps:MCtripApp'
-include ':MApps:MCtripLibrarys:MCtripLibrary'
-include ':MApps:MCtripModules:MCtripMineModule'
-include ':MApps:MCtripModules:MCtripSettingModule'
-include ':MApps:MCtripModules:MCtripHospitalModule'
-include ':MApps:MCtripModules:MCtripDeviceModule:MCtripDeviceMainModule'
-include ':MApps:MCtripModules:MCtripDeviceModule:MCtripDeviceAndroidModule'
-include ':MApps:MCtripModules:MCtripDeviceModule:MCtripDeviceIosModule'
+//app
+include ':app:examples'
+
+//app common librarys
+include ':app:libraries:library-common'
+
+//modules
+include ':app:modules:computer'
+include ':app:modules:mobile'
+include ':app:modules:mobile.android'
+include ':app:modules:mobile.ios'
