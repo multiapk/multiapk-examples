@@ -5,7 +5,7 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion project.targetSdkVersion
-        buildConfigField("boolean", "solidMode", "true")
+        buildConfigField("boolean", "solidMode", "$solidMode")
     }
 }
 dependencies {

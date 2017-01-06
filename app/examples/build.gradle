@@ -76,7 +76,7 @@ dependencies {
     compile project(':app:libraries:library-common')
 
     if (!solidMode) {//普通模式才需要依赖。solid模式编译时不依赖子bu。
-//        compile project(':app:modules:computer')
+        compile project(':app:modules:computer')
         compile project(':app:modules:mobile')
         compile project(':app:modules:mobile.android')
         compile project(':app:modules:mobile.ios')
