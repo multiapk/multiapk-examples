@@ -3,7 +3,7 @@ package com.multiapk.library.base;
 import android.app.Application;
 import android.support.multidex.MultiDex;
 
-import com.mlibrary.patch.MDynamicLib;
+import com.mlibrary.multiapk.MultiApk;
 import com.multiapk.library.BuildConfig;
 
 public class MApplication extends Application {
@@ -12,7 +12,7 @@ public class MApplication extends Application {
         if (!BuildConfig.solidMode)
             MultiDex.install(this);
         else
-            MDynamicLib.init(this);
+            MultiApk.init(this);
         super.onCreate();
     }
 }

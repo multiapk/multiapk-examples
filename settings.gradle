@@ -2,13 +2,13 @@
 include ':plugin:multiapk.library'
 
 //app
-include ':app:examples'
+//include ':app:examples'
 
 //app common librarys
-include ':app:libraries:library-common'
+//include ':app:libraries:library-common'
 
 //modules
-include ':app:modules:computer'
-include ':app:modules:mobile'
-include ':app:modules:mobile.android'
-include ':app:modules:mobile.ios'
+//include ':app:modules:computer'
+//include ':app:modules:mobile'
+//include ':app:modules:mobile.android'
+//include ':app:modules:mobile.ios'

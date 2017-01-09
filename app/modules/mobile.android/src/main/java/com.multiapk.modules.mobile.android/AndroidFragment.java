@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.mlibrary.patch.hotpatch.Hotpatch;
+import com.mlibrary.multiapk.core.hotpatch.Hotpatch;
 import com.multiapk.library.base.MFragment;
 
 import java.io.File;
