@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.mlibrary.dynamic.library'
+apply plugin: 'com.mlibrary.multiapk.library'
 
-dynamicLibrary {
+multiApkLibrary {
     packageName = "com.multiapk.modules.mobile"
     moduleProguardRulesFilePath = "$rootDir/gradle/dynamic/sub-project-proguard-rules.pro"
 }

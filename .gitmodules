@@ -1,6 +1,0 @@
-[submodule "plugin/multiapk.library"]
-	path = plugin/multiapk.library
-	url = https://github.com/multiapk/multiapk.library.git
-[submodule "plugin/multiapk.plugin"]
-	path = plugin/multiapk.plugin
-	url = https://github.com/multiapk/multiapk.plugin.git

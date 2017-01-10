@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.mlibrary.dynamic.application'
+apply plugin: 'com.mlibrary.multiapk.application'
 
-dynamicApplication {
+multiApkApplication {
     solidMode = project.solidMode
     buildToolsVersion = project.buildToolsVersion
     supportLibraryVersion = project.supportLibraryVersion
@@ -36,16 +36,16 @@ android {
     signingConfigs {
         debug {
             storeFile file("debug.keystore")
-            storePassword dynamicApplication.storePassword
-            keyAlias dynamicApplication.keyAlias
-            keyPassword dynamicApplication.keyPassword
+            storePassword multiApkApplication.storePassword
+            keyAlias multiApkApplication.keyAlias
+            keyPassword multiApkApplication.keyPassword
         }
 
         release {
             storeFile file("debug.keystore")
-            storePassword dynamicApplication.storePassword
-            keyAlias dynamicApplication.keyAlias
-            keyPassword dynamicApplication.keyPassword
+            storePassword multiApkApplication.storePassword
+            keyAlias multiApkApplication.keyAlias
+            keyPassword multiApkApplication.keyPassword
         }
     }
     buildTypes {
