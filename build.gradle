@@ -16,6 +16,10 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
+        maven {
+            // All of React Native (JS, Android binaries) is installed from npm
+            url "$rootDir/gradle/node_modules/react-native/android"
+        }
     }
 
     /*  详细打印
@@ -37,9 +41,9 @@ allprojects {
 
 ext {
     solidMode = true
-    compileSdkVersion = 25
+    compileSdkVersion = 23
     buildToolsVersion = "25.0.2"
-    supportLibraryVersion = "25.1.0"
+    supportLibraryVersion = "23.0.1"
 
     //noinspection OldTargetApi
     targetSdkVersion = 22

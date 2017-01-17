@@ -6,7 +6,7 @@ multiApkApplication {
     buildToolsVersion = project.buildToolsVersion
     supportLibraryVersion = project.supportLibraryVersion
     packageName = "com.multiapk"
-    moduleConfigFilePath = "$rootDir/gradle/dynamic/apk_module_config.xml"
+    moduleConfigFilePath = "$rootDir/gradle/multiapk/apk_module_config.xml"
     keystore = "$rootDir/app/examples/debug.keystore"
     keyAlias = "androiddebugkey"
     keyPassword = "android"
@@ -21,7 +21,7 @@ android {
         //applicationId "com.multiapk"
         versionCode 12
         versionName "12"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion project.targetSdkVersion
         multiDexEnabled !solidMode
         vectorDrawables.useSupportLibrary = true
