@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "flow": "^0.2.3",
+    "flow-bin": "^0.37.4",
     "react": "^15.4.2",
     "react-native": "^0.40.0"
   },
