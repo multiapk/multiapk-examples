@@ -1,8 +1,8 @@
 buildscript {
     repositories {
-        maven {
+        /*maven {
             url "${rootDir}/extras/multiapk-plugin/uploadedArchives"
-        }
+        }*/
         jcenter()
         mavenCentral()
     }
