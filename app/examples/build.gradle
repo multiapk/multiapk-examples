@@ -25,6 +25,9 @@ android {
         targetSdkVersion project.targetSdkVersion
         multiDexEnabled !solidMode
         vectorDrawables.useSupportLibrary = true
+        ndk {
+            abiFilters "armeabi-v7a", "x86"
+        }
     }
     /*dataBinding { enabled = false }*/
 

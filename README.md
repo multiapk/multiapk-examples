@@ -243,3 +243,12 @@ https://github.com/mlibrarys/MDynamicLib
 
 ---
 ---
+
+### react-native
+```
+npm install --save react-native
+gradle installDebug
+react-native start
+adb reverse tcp:8081 tcp:8081
+
+```

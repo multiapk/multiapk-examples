@@ -13,5 +13,6 @@ build
 */*/*/*/build
 build-output
 
+node_modules
 gradle/node_modules
 gradle/wrapper

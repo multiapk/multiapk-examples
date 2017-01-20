@@ -13,8 +13,7 @@
   "scripts": {
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "bundle-android": "react-native bundle --platform android --dev false --entry-file app/modules/node/index.android.js --bundle-output app/modules/computer/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
-    "start": "node gradle/node_modules/react-native/local-cli/cli.js start"
+    "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "repository": {
     "type": "git",
