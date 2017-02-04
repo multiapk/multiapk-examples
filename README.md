@@ -248,7 +248,20 @@ https://github.com/mlibrarys/MDynamicLib
 ```
 npm install --save react-native
 gradle installDebug
+
+#确保手机与电脑接入同一个 wifi
+#开启服务端
 react-native start
+
+#摇晃手机 DEV Settings 设置 Debug server host
+192.168.2.31:8081
+
+
+#5.0以上版本USB调试
 adb reverse tcp:8081 tcp:8081
+
+
+#查看端口占用
+lsof -i:8081
 
 ```
