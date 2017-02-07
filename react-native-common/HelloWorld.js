@@ -131,7 +131,7 @@ export default class HelloWorld extends React.Component {
                 />
 
                 <View style={{
-                    flex: 3,
+                    flex: 1,
                     backgroundColor: 'steelblue',
                     justifyContent: 'center',
                     flexDirection: 'row'
@@ -204,48 +204,54 @@ export default class HelloWorld extends React.Component {
 
                     />
                 </View>
+                <View style={{
+                    flex: 0,
+                    backgroundColor: 'black',
+                    }}>
+                    <ScrollView
+                        bouncesZoom={false}
+                        alwaysBounceHorizontal={true}
+                        style={{flex:0,backgroundColor:"#ff0000"}}
+                        horizontal={true}>
 
-                <ScrollView
-                    alwaysBounceHorizontal={true}
-                    style={{flex:0,height:100,padding: 10,backgroundColor:"#ff0000"}}
-                    horizontal={true}>
-
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-                    />
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
-                    />
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-                    />
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
-                    />
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-                    />
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
-                    />
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
-                    />
-                    <Image
-                        style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
-                        source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
-                    />
-                </ScrollView>
-                <Test style={{
-                    flex: 0
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                        />
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
+                        />
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                        />
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
+                        />
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                        />
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
+                        />
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+                        />
+                        <Image
+                            style={{width: 100, height: 100, resizeMode: 'cover' ,backgroundColor:'gray'}}
+                            source={{uri: 'https://odw6aoxik.bkt.clouddn.com/avatar_cartoon_1.jpg'}}
+                        />
+                    </ScrollView>
+                </View>
+                <Test style={{flex:0
                 }} name="test" mao="kangren"/>
+
+                <Text style={{position:'absolute',marginTop:100,marginLeft:100,width:100,height:100,color:'red',backgroundColor:'yellow',justifyContent:"center",alignItems:"center"}}>100x100</Text>
             </View>
         )
     }
