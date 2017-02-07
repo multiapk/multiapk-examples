@@ -8,6 +8,7 @@ import {
     Text,
     TextInput,
     ScrollView,
+    StatusBar,
     Image,
     View
 } from 'react-native';
@@ -69,6 +70,10 @@ class HelloWorld extends React.Component {
                 justifyContent: 'center',
                 flexDirection: 'column'
             }}>
+                <StatusBar backgroundColor='#ff0000'
+                           translucent={true}
+                           hidden={true}
+                           animated={true}/>
                 <ScrollView style={{flex: 3}}>
                     <Text style={{
                         color: 'black',
