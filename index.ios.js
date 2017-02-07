@@ -8,5 +8,4 @@ import {
 
 import HelloWorld from "./react-native-common/HelloWorld";
 
-
 AppRegistry.registerComponent('HelloWorld', () => HelloWorld);
