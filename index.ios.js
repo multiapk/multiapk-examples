@@ -84,6 +84,7 @@ class HelloWorld extends React.Component {
                     }}>
                         《念奴娇·赤壁怀古》
                     </Text>
+
                     <Text style={{
                         color: 'darkorange',
                         backgroundColor: 'powderblue',
@@ -93,7 +94,7 @@ class HelloWorld extends React.Component {
                         textAlign: 'left',
                         paddingLeft: 10,
                         paddingRight: 10,
-                        paddingBottom: 10,
+                        paddingBottom: 10
                     }}>
                         大江东去，浪淘尽，千古风流人物。故垒西边，人道是，三国周郎赤壁。乱石穿空，惊涛拍岸，卷起千堆雪。江山如画，一时多少豪杰。
                         遥想公瑾当年，小乔初嫁了（liǎo），雄姿英（yīng)发。羽扇纶(guān)巾，谈笑间，樯橹灰飞烟灭。故国神游，多情应笑我，早生华（huā）发。人生如梦，一尊还酹（lèi)江月。
@@ -108,7 +109,7 @@ class HelloWorld extends React.Component {
                         textAlign: 'left',
                         paddingLeft: 10,
                         paddingRight: 10,
-                        paddingBottom: 10,
+                        paddingBottom: 10
                     }}>
                         赏析{'\n'}
                         此词怀古抒情，写自己消磨壮心殆尽，转而以旷达之心关注历史和人生。上阕以描写赤壁矶风起浪涌的自然风景为主，意境开阔博大，感慨隐约深沉。起笔凌云健举，包举有力。将浩荡江流与千古人事并收笔下。
