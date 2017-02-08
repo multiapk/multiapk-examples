@@ -17,6 +17,11 @@ import {
     View
 } from 'react-native';
 
+import TitleBar from "./TitleBar";
+import Banner from "./Banner";
+import SiftListViewNew from "./widget/menu/SiftListViewNew";
+import SiftListControl from "./widget/menu/SiftListControl";
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -33,7 +38,7 @@ const styles = StyleSheet.create({
                 marginTop: 0,
             },
         })
-    }
+    },
 });
 
 class Test extends React.Component {
@@ -108,6 +113,14 @@ export default class HelloWorld extends React.Component {
     }
 
     render() {
+        const {items, subItemStyle} = {
+            items: [{
+                title: '交易方向1',
+                tag: 0,
+                icon: require('./images/btn_down.svg'),
+                list: [],
+            }]
+        };
         return (
             <View style={styles.container}>
                 <Navigator
@@ -129,6 +142,9 @@ export default class HelloWorld extends React.Component {
                         </View>
                     }
                 />
+                <TitleBar/>
+
+                <SiftListControl/>
 
                 <View style={{
                     flex: 1,
@@ -251,7 +267,10 @@ export default class HelloWorld extends React.Component {
                 <Test style={{flex:0
                 }} name="test" mao="kangren"/>
 
-                <Text style={{position:'absolute',marginTop:100,marginLeft:100,width:100,height:100,color:'red',backgroundColor:'yellow',justifyContent:"center",alignItems:"center"}}>100x100</Text>
+                <Banner style={{flex:0}}/>
+
+                <Text
+                    style={{borderRadius:10,borderWidth:1,borderColor:"red",position:'absolute',marginTop:300,marginLeft:155,width:100,height:100,color:'red',backgroundColor:'#00000077',justifyContent:"center",alignItems:"center"}}>100x100</Text>
             </View>
         )
     }
