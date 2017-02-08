@@ -68,7 +68,8 @@ export default class SiftListControl extends React.Component {
                     items.map((item, i) => {
                         return (
                             <SiftListViewNew
-                                style={{backgroundColor:'white',width:100}}
+                                textStyle={{flex:1}}
+                                style={{backgroundColor:'white',width:104}}
                                 item={item}
                                 key={i}
                                 selectedCallBack={this._selectedIndex}>
