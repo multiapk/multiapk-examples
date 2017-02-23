@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -13,13 +13,14 @@ android {
         ndk {
             moduleName "bspatch"
             ldLibs "log", "z", "m"
-            abiFilters "armeabi"/*, "armeabi-v7a", "x86"*/
+            abiFilters "armeabi", "armeabi-v7a", "x86"
         }
     }
 }
 
 //https://github.com/novoda/bintray-release/wiki
 //gradle  bintrayUpload
+/*
 publish {
     bintrayUser = bintrayUser
     bintrayKey = bintrayKey
@@ -38,4 +39,4 @@ publish {
     website = "https://github.com/krmao/MBSPatchLib"
     //publications = ["maven"]
     licences = ["Apache-2.0"]
-}
+}*/
