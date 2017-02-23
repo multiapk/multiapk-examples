@@ -231,3 +231,7 @@
 -keep class com.multiapk.modules.mobile.ios.IosFragment { *; }
 -keep public class com.multiapk.library.** { *;}
 -dontwarn com.multiapk.library.**
+
+-keep public class com.facebook.react.** {
+  public protected *;
+}

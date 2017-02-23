@@ -46,7 +46,7 @@ ext {
     supportLibraryVersion = "23.0.1"
 
     //noinspection OldTargetApi
-    targetSdkVersion = 22
+    targetSdkVersion = 23
 
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())

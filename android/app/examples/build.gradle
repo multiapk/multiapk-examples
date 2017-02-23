@@ -11,6 +11,7 @@ multiApkApplication {
     keyAlias = "androiddebugkey"
     keyPassword = "android"
     storePassword = "android"
+    targetSdkVersion = project.targetSdkVersion
 }
 
 //noinspection GroovyMissingReturnStatement
@@ -26,7 +27,7 @@ android {
         multiDexEnabled !solidMode
         vectorDrawables.useSupportLibrary = true
         ndk {
-            abiFilters "armeabi-v7a", "x86"
+            abiFilters "armeabi", "armeabi-v7a", "x86"
         }
     }
     /*dataBinding { enabled = false }*/

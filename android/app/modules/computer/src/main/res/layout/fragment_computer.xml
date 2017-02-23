@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    app:cardBackgroundColor="@color/gold"
+    app:cardBackgroundColor="@color/orange"
     app:cardElevation="2dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
@@ -16,17 +16,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textComputer"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:background="@drawable/default_image"
-            android:gravity="center_vertical"
-            android:padding="50dp"
-            android:paddingLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="module-computer"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/textComputer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawableLeft="@drawable/default_image"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:text="点击跳转\nreact-native"
             android:textColor="#333"
             android:textSize="24dp"
             android:textStyle="bold"

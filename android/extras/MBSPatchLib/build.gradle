@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+    defaultConfig {
+        versionCode = 2
+        versionName = "0.0.2"
+        minSdkVersion 14
+        targetSdkVersion project.targetSdkVersion
+        //buildConfigField("boolean", "solidMode", "$solidMode")
+        ndk {
+            moduleName "bspatch"
+            ldLibs "log", "z", "m"
+            abiFilters "armeabi"/*, "armeabi-v7a", "x86"*/
+        }
+    }
+}
+
+//https://github.com/novoda/bintray-release/wiki
+//gradle  bintrayUpload
+publish {
+    bintrayUser = bintrayUser
+    bintrayKey = bintrayKey
+    dryRun = false
+    autoPublish = true //上传成功后自动发布
+    repoName = "maven"
+
+    groupId = "com.mlibrary"//compile 'com.mlibrary:mpulllib:0.1'
+    artifactId = "mbspatchlib" //compile 'com.mlibrary:mpulllib:0.1'
+    publishVersion = "0.0.2"  //compile 'com.mlibrary:mpulllib:0.1'
+
+    userOrg = "krmao"           //krmao/maven/MPullLib
+    uploadName = "MBSPatchLib"     //krmao/maven/MPullLib
+
+    desc = "bspatch util for android"
+    website = "https://github.com/krmao/MBSPatchLib"
+    //publications = ["maven"]
+    licences = ["Apache-2.0"]
+}

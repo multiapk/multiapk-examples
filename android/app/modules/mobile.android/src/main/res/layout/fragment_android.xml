@@ -18,6 +18,15 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="module-android"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
+
         <Button
             android:id="@+id/buttonAndroid"
             android:layout_width="300dp"
@@ -26,9 +35,9 @@
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
             android:padding="10dp"
-            android:text="android_99"
+            android:text="点击合并差分包\n/sdcard/ios.patch"
             android:textColor="#333"
-            android:textSize="24dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry,SpUsage" />
     </LinearLayout>
