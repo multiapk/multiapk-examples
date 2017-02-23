@@ -264,4 +264,6 @@ adb reverse tcp:8081 tcp:8081
 #查看端口占用
 lsof -i:8081
 
+#release
+react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/modules/computer/src/main/assets/index.android.bundle --assets-dest android/app/modules/computer/src/main/res/
 ```
