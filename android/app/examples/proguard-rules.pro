@@ -226,6 +226,7 @@
 -keep public class java.nio.* { *; }
 
 -keep class com.multiapk.modules.computer.ComputerFragment { *; }
+-keep class com.multiapk.modules.computer.MyReactActivity { *; }
 -keep class com.multiapk.modules.mobile.MobileFragment { *; }
 -keep class com.multiapk.modules.mobile.android.AndroidFragment { *; }
 -keep class com.multiapk.modules.mobile.ios.IosFragment { *; }
