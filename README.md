@@ -246,6 +246,7 @@ https://github.com/mlibrarys/MDynamicLib
 
 ### react-native
 ```
+[环境配置](http://reactnative.cn/docs/0.43/getting-started.html#content)
 npm install --save react-native
 gradle installDebug
 
