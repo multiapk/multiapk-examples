@@ -43,7 +43,7 @@ ext {
     solidMode = true
     compileSdkVersion = 23
     buildToolsVersion = "25.0.2"
-    supportLibraryVersion = "23.0.1"
+    supportLibraryVersion = "23.2.1"
 
     //noinspection OldTargetApi
     targetSdkVersion = 23

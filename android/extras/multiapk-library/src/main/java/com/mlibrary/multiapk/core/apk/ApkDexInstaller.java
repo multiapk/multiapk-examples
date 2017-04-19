@@ -27,6 +27,12 @@ public class ApkDexInstaller {
     public static void installBundleDexs(ClassLoader loader, File dexDir, List<File> files, boolean isHotFix)
             throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, InstantiationException,
             InvocationTargetException, NoSuchMethodException, IOException {
+        Log.w(TAG, "installBundleDexs:" + (loader == null ? "loader==null" : "loader==" + loader.toString()) + loader
+                + "\ndexDir=" + dexDir
+                + "\nfiles=" + files
+                + "\nisHotFix=" + isHotFix
+                + "\nBuild.VERSION.SDK_INT=" + Build.VERSION.SDK_INT
+        );
         if (!files.isEmpty()) {
             if (Build.VERSION.SDK_INT >= 23) {
                 V23.install(loader, files, dexDir, isHotFix);
@@ -49,20 +55,22 @@ public class ApkDexInstaller {
      * @throws NoSuchFieldException if the field cannot be located
      */
     private static Field findField(Object instance, String name) throws NoSuchFieldException {
+        Log.w(TAG, "findField:" + instance.toString() + " , " + instance.getClass().getName() + " , " + name);
         for (Class<?> clazz = instance.getClass(); clazz != null; clazz = clazz.getSuperclass()) {
+            Log.w(TAG, "clazz:" + clazz.getName());
             try {
                 Field field = clazz.getDeclaredField(name);
+                Log.d(TAG, "field:" + field.getName());
 
                 if (!field.isAccessible()) {
                     field.setAccessible(true);
                 }
 
                 return field;
-            } catch (NoSuchFieldException e) {
-                e.printStackTrace();
+            } catch (NoSuchFieldException ignore) {
             }
         }
-
+        Log.e(TAG, "抛出异常: Field" + name + " not found in " + instance.getClass());
         throw new NoSuchFieldException("Field " + name + " not found in " + instance.getClass());
     }
 
@@ -161,7 +169,9 @@ public class ApkDexInstaller {
              * dalvik.system.DexPathList pathList field to append additional DEX
              * file entries.
              */
+            Log.w(TAG, "V19.install findField pathList start ");
             Field pathListField = findField(loader, "pathList");
+            Log.w(TAG, "V19.install findField pathList end " + (pathListField == null ? "null" : pathListField.toString()));
             Object dexPathList = pathListField.get(loader);
             ArrayList<IOException> suppressedExceptions = new ArrayList<IOException>();
             expandFieldArray(dexPathList, "dexElements", makeDexElements(dexPathList,

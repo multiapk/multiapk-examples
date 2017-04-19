@@ -2,13 +2,13 @@ buildscript {
     repositories {
         jcenter()
     }
-    dependencies {
+    /*dependencies {
         classpath 'com.novoda:bintray-release:0.3.4'
-    }
+    }*/
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -34,6 +34,7 @@ dependencies {
 
 //https://github.com/novoda/bintray-release/wiki
 //gradle  bintrayUpload
+/*
 publish {
     bintrayUser = bintrayUser
     bintrayKey = bintrayKey
@@ -48,4 +49,4 @@ publish {
     desc = "apply to multiapk.plugin https://github.com/multiapk/multiapk-plugin"
     website = "https://github.com/multiapk/multiapk-library"
     licences = ["Apache-2.0"]
-}
+}*/
