@@ -11,6 +11,9 @@ multiApkApplication {
     keyAlias = "androiddebugkey"
     keyPassword = "android"
     storePassword = "android"
+//    aaptMacPath="/Volumes/android/android_source/WORKING_DIRECTORY/out/host/darwin-x86/bin/aapt"
+    aaptMacPath="/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
+//    aaptMacPath="/Users/krmao/Desktop/aapt"
     targetSdkVersion = project.targetSdkVersion
 }
 

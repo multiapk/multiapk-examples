@@ -31,6 +31,9 @@ public class ApplicationExtension {
     public String storePassword;
 
     public String aapt;
+    public String aaptMacPath;
+    public String aaptWinPath;
+    public String aaptUnixPath;
     public String dex;
     public String androidJar;
     public String apacheJar = null;
@@ -98,13 +101,13 @@ public class ApplicationExtension {
             aaptOutDir.mkdirs()
         applicationProject.logger.info("$applicationProject.path:apply dynamicApplication:aaptDir:$aaptOutDir")
         if (Os.isFamily(Os.FAMILY_WINDOWS)) {
-            applicationExtension.aapt = "$aaptOutDir.path/aapt_win.exe"
+            applicationExtension.aapt = TextUtil.isEmpty(applicationExtension.aaptWinPath) ? "$aaptOutDir.path/aapt_win.exe" : applicationExtension.aaptWinPath
             applicationExtension.dex = "$applicationExtension.sdkDir/build-tools/$applicationExtension.buildToolsVersion/dx.bat"
         } else if (Os.isFamily(Os.FAMILY_MAC)) {
-            applicationExtension.aapt = "$aaptOutDir.path/aapt_mac"
+            applicationExtension.aapt = TextUtil.isEmpty(applicationExtension.aaptMacPath) ? "$aaptOutDir.path/aapt_mac" : applicationExtension.aaptMacPath
             applicationExtension.dex = "$applicationExtension.sdkDir/build-tools/$applicationExtension.buildToolsVersion/dx"
         } else if (Os.isFamily(Os.FAMILY_UNIX)) {
-            applicationExtension.aapt = "$aaptOutDir.path/aapt_linux"
+            applicationExtension.aapt = TextUtil.isEmpty(applicationExtension.aaptUnixPath) ? "$aaptOutDir.path/aapt_linux" : applicationExtension.aaptUnixPath
             applicationExtension.dex = "$applicationExtension.sdkDir/build-tools/$applicationExtension.buildToolsVersion/dx"
         }
         applicationExtension.androidJar = "$applicationExtension.sdkDir/platforms/android-$applicationExtension.targetSdkVersion/android.jar"

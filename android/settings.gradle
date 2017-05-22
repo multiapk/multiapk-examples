@@ -1,5 +1,5 @@
 //plugin
-//include ':extras:multiapk-plugin'
+include ':extras:multiapk-plugin'
 include ':extras:multiapk-library'
 include ':extras:MBSPatchLib'
 //
