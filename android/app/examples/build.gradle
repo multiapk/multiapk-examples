@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.mlibrary.multiapk.application'
+//apply plugin: 'org.greenrobot.greendao'
 
 multiApkApplication {
     solidMode = project.solidMode
@@ -12,13 +13,19 @@ multiApkApplication {
     keyPassword = "android"
     storePassword = "android"
 //    aaptMacPath="/Volumes/android/android_source/WORKING_DIRECTORY/out/host/darwin-x86/bin/aapt"
-    aaptMacPath="/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
+    aaptMacPath = "/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
 //    aaptMacPath="/Users/krmao/Desktop/aapt"
     targetSdkVersion = project.targetSdkVersion
 }
 
 //noinspection GroovyMissingReturnStatement
 android {
+
+    /*greendao {
+        schemaVersion 1
+        targetGenDir 'src/main/java'
+    }*/
+
     compileSdkVersion project.compileSdkVersion
     buildToolsVersion = project.buildToolsVersion
     defaultConfig {

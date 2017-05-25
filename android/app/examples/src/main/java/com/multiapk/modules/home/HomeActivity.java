@@ -5,13 +5,32 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.google.common.collect.Lists;
 import com.multiapk.R;
 import com.multiapk.library.base.MCommonActivity;
 import com.multiapk.library.base.MFragmentActivity;
 
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Function3;
+import io.reactivex.functions.IntFunction;
+import io.reactivex.functions.Predicate;
+import io.reactivex.schedulers.Schedulers;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -38,6 +57,49 @@ public class HomeActivity extends MFragmentActivity implements EasyPermissions.P
 
         EasyPermissions.requestPermissions(this, "我们需要相机和录音权限1", RC_CAMERA_AND_LOCATION, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO);
         Log.d("krmao", "requestPermissions 执行请求权限 CAMERA + RECORD_AUDIO");
+
+        test();
+    }
+
+    private void test() {
+        List<Integer> dataList = Lists.newArrayList(1, 3, 2, 4);
+
+
+        Subscriber<Integer> observer = new Subscriber<Integer>() {
+
+            @Override
+            public void onSubscribe(Subscription s) {
+                Log.v("maomao", "Observer.onSubscribe:" + s.toString());
+                s.request(8);
+            }
+
+            @Override
+            public void onNext(@NonNull Integer o) {
+                Log.d("maomao", "Observer.onNext:" + o);
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+                Log.e("maomao", "Observer.onError:", e);
+            }
+
+            @Override
+            public void onComplete() {
+                Log.w("maomao", "Observer.onComplete");
+            }
+        };
+
+        Flowable.just(1, 2, 3, 4, 5, 6, 7, 8).filter(new Predicate<Integer>() {
+            @Override
+            public boolean test(@NonNull Integer integer) throws Exception {
+                return integer % 2 == 0;
+            }
+        }).map(new Function<Integer, Integer>() {
+            @Override
+            public Integer apply(@NonNull Integer integer) throws Exception {
+                return integer * 10;
+            }
+        }).subscribe(observer);
     }
 
     @Override
