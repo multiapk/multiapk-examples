@@ -9,17 +9,16 @@ import com.jakewharton.rxbinding2.view.RxView;
 import com.multiapk.R;
 import com.multiapk.library.base.MCommonActivity;
 import com.multiapk.library.base.MFragmentActivity;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Consumer;
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.AppSettingsDialog;
-import pub.devrel.easypermissions.EasyPermissions;
 
-public class HomeActivity extends MFragmentActivity implements EasyPermissions.PermissionCallbacks {
+public class HomeActivity extends MFragmentActivity /*implements EasyPermissions.PermissionCallbacks */ {
+
+    private RxPermissions rxPermissions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +39,40 @@ public class HomeActivity extends MFragmentActivity implements EasyPermissions.P
             }
         });
 
-        EasyPermissions.requestPermissions(this, "我们需要相机和录音权限1", RC_CAMERA_AND_LOCATION, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO);
-        Log.d("krmao", "requestPermissions 执行请求权限 CAMERA + RECORD_AUDIO");
+
+        rxPermissions = new RxPermissions(this);
+        rxPermissions.request(Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS)
+                .subscribe(granted -> {
+                    if (granted) {
+                        // All permissions were granted//
+                        Log.d("krmao", "All permissions were granted");
+                    } else {
+                        //One or more permissions was denied//
+                        Log.d("krmao", "One or more permissions was denied");
+                    }
+                });
+        rxPermissions.setLogging(true);
+        rxPermissions.requestEach(Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE)
+                .subscribe(permission -> { // will emit 2 Permission objects
+                    if (permission.granted) {
+                        // `permission.name` is granted !
+                        Log.d("krmao", "permission.name` is granted");
+                    } else if (permission.shouldShowRequestPermissionRationale) {
+                        // Denied permission without ask never again
+                        Log.d("krmao", "Denied permission without ask never again");
+                        //rxPermissions.shouldShowRequestPermissionRationale(HomeActivity.this, Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE);
+                    } else {
+                        // Denied permission with ask never again
+                        // Need to go to the settings
+                        Log.d("krmao", "Need to go to the settings");
+                    }
+                });
+
+        //EasyPermissions.requestPermissions(this, "我们需要相机和录音权限1", RC_CAMERA_AND_LOCATION, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO);
+        //Log.d("krmao", "requestPermissions 执行请求权限 CAMERA + RECORD_AUDIO");
     }
 
-    @Override
+    /*@Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // Forward results to EasyPermissions
@@ -85,5 +113,5 @@ public class HomeActivity extends MFragmentActivity implements EasyPermissions.P
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
             new AppSettingsDialog.Builder(this).build().show();
         }
-    }
+    }*/
 }
