@@ -16,7 +16,7 @@ import io.reactivex.functions.Predicate;
 
 public class HomeActivityUnitTest {
 
-    public List<Integer> dataList = null;
+    private List<Integer> dataList = null;
 
     @Before
     public void init() {

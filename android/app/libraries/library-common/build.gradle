@@ -34,7 +34,9 @@ dependencies {
 
     /******* 网络请求库 ****************************************************************************/
     compile "com.squareup.retrofit2:retrofit:2.3.0"
-    //compile "com.squareup.okhttp3:okhttp:3.8.0"
+    //new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
+    //compile "com.squareup.okhttp3:okhttp:3.8.0" //com.facebook.fresco:imagepipeline-okhttp3
 
     /******* 数据库管理 ****************************************************************************/
     compile "org.greenrobot:greendao:3.2.2"
@@ -46,14 +48,14 @@ dependencies {
 
     compile "com.jakewharton.rxbinding2:rxbinding:2.0.0"
     //compile "com.jakewharton.rxbinding2:rxbinding-design:2.0.0"
-    //compile "com.jakewharton.rxbinding2:rxbinding-support-v4:2.0.0" //rxbinding-support-v4-kotlin
-    //compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0"
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:2.0.0" //rxbinding-support-v4-kotlin
+    compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0"
     //compile "com.jakewharton.rxbinding2:rxbinding-leanback-v17:2.0.0"
-    //compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0"
+    compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:2.0.0"
 
     /******* 其它常用库 ****************************************************************************/
     compile("com.facebook.react:react-native:0.40.0") {
-        exclude module: 'okhttp-ws' //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class
+        exclude module: "okhttp-ws" //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class
     }
     //compile "com.mlibrary:multiapk-library:0.0.1"
     compile project(":extras:multiapk-library")
