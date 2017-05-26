@@ -13,24 +13,12 @@ import com.multiapk.library.base.MFragmentActivity;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.functions.Function3;
-import io.reactivex.functions.IntFunction;
 import io.reactivex.functions.Predicate;
-import io.reactivex.schedulers.Schedulers;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -63,7 +51,6 @@ public class HomeActivity extends MFragmentActivity implements EasyPermissions.P
 
     private void test() {
         List<Integer> dataList = Lists.newArrayList(1, 3, 2, 4);
-
 
         Subscriber<Integer> observer = new Subscriber<Integer>() {
 

@@ -6,7 +6,7 @@ android {
     buildToolsVersion project.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion project.targetSdkVersion
         buildConfigField("boolean", "solidMode", "$solidMode")
     }

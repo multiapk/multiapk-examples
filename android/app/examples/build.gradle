@@ -29,16 +29,22 @@ android {
     compileSdkVersion project.compileSdkVersion
     buildToolsVersion = project.buildToolsVersion
     defaultConfig {
-        //applicationId "com.multiapk"
+        applicationId "com.multiapk"
         versionCode 12
         versionName "12"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion project.targetSdkVersion
         multiDexEnabled !solidMode
         vectorDrawables.useSupportLibrary = true
         ndk {
             abiFilters "armeabi", "armeabi-v7a", "x86"
         }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = false //单元测试找不到方法使用默认值开关，打开的话就看不到错误了
     }
     /*dataBinding { enabled = false }*/
 
@@ -94,5 +100,22 @@ dependencies {
         compile project(':app:modules:mobile')
         compile project(':app:modules:mobile.android')
         compile project(':app:modules:mobile.ios')
+
+        /******* 单元测试库 ****************************************************************************/
+        // Required for local unit tests (JUnit 4 framework)
+        testCompile 'junit:junit:4.12'
+        // http://site.mockito.org/
+        // testCompile "org.mockito:mockito-core:2.+"
+
+        // Required for instrumented tests
+        androidTestCompile 'com.android.support:support-annotations:25.3.1'
+        androidTestCompile 'com.android.support.test:runner:0.5'
+
+        // Set this dependency to use JUnit 4 rules
+        //androidTestCompile 'com.android.support.test:rules:0.4'
+        // Set this dependency to build and run Espresso tests
+        //androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
+        // Set this dependency to build and run UI Automator tests
+        //androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
     }
 }
