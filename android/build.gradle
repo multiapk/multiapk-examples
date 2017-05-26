@@ -13,6 +13,8 @@ buildscript {
     }
 }
 
+apply plugin: 'android-reporting'
+
 allprojects {
     repositories {
         mavenCentral()

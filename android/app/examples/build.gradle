@@ -1,6 +1,6 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.mlibrary.multiapk.application'
-//apply plugin: 'org.greenrobot.greendao'
+apply plugin: "com.android.application"
+apply plugin: "com.mlibrary.multiapk.application"
+//apply plugin: "org.greenrobot.greendao"
 
 multiApkApplication {
     solidMode = project.solidMode
@@ -23,11 +23,12 @@ android {
 
     /*greendao {
         schemaVersion 1
-        targetGenDir 'src/main/java'
+        targetGenDir "src/main/java"
     }*/
 
     compileSdkVersion project.compileSdkVersion
     buildToolsVersion = project.buildToolsVersion
+
     defaultConfig {
         applicationId "com.multiapk"
         versionCode 12
@@ -43,15 +44,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    testOptions {
-        unitTests.returnDefaultValues = false //单元测试找不到方法使用默认值开关，打开的话就看不到错误了
-    }
     /*dataBinding { enabled = false }*/
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
 
     signingConfigs {
         debug {
@@ -68,6 +61,7 @@ android {
             keyPassword multiApkApplication.keyPassword
         }
     }
+
     buildTypes {
         debug {
             debuggable true
@@ -85,37 +79,74 @@ android {
             minifyEnabled !solidMode
             zipAlignEnabled !solidMode
             shrinkResources !solidMode
-            proguardFiles "${rootDir}/gradle/global_proguard.pro", 'proguard-rules.pro'
+            proguardFiles "${rootDir}/gradle/global_proguard.pro", "proguard-rules.pro"
             signingConfig signingConfigs.release
+        }
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = false //单元测试找不到方法使用默认值开关，打开的话就看不到错误了
+        resultsDir = "${buildDir}/test-reports"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+    lintOptions {
+        textReport true
+        textOutput 'stdout'
+        fatal 'UnusedResources'
+        warning 'ResourceType' //TODO remove eventually with ButterKnife 8.0 release
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force "com.google.code.findbugs:jsr305:1.3.9"
+            force "com.android.support:support-annotations:$supportLibraryVersion"
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile project(':app:libraries:library-common')
+    compile fileTree(dir: "libs", include: ["*.jar"])
+    compile project(":app:libraries:library-common")
 
     if (!solidMode) {//普通模式才需要依赖。solid模式编译时不依赖子bu。
-        compile project(':app:modules:computer')
-        compile project(':app:modules:mobile')
-        compile project(':app:modules:mobile.android')
-        compile project(':app:modules:mobile.ios')
+        compile project(":app:modules:computer")
+        compile project(":app:modules:mobile")
+        compile project(":app:modules:mobile.android")
+        compile project(":app:modules:mobile.ios")
 
         /******* 单元测试库 ****************************************************************************/
         // Required for local unit tests (JUnit 4 framework)
-        testCompile 'junit:junit:4.12'
+        testCompile "junit:junit:4.12"
         // http://site.mockito.org/
         // testCompile "org.mockito:mockito-core:2.+"
 
         // Required for instrumented tests
-        androidTestCompile 'com.android.support:support-annotations:25.3.1'
-        androidTestCompile 'com.android.support.test:runner:0.5'
+        androidTestCompile "com.android.support:support-annotations:$supportLibraryVersion"
 
-        // Set this dependency to use JUnit 4 rules
-        //androidTestCompile 'com.android.support.test:rules:0.4'
-        // Set this dependency to build and run Espresso tests
-        //androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.1'
         // Set this dependency to build and run UI Automator tests
-        //androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+        androidTestCompile "com.android.support.test.uiautomator:uiautomator-v18:2.1.2"
+
+        // Android JUnit Runner
+        androidTestCompile "com.android.support.test:runner:0.5"
+        // JUnit4 Rules
+        androidTestCompile "com.android.support.test:rules:0.5"
+        // Espresso core
+        androidTestCompile("com.android.support.test.espresso:espresso-core:2.2.2", {
+            exclude group: "com.google.code.findbugs"
+            exclude group: "com.android.support", module: "support-annotations"
+        })
+        // Espresso-web for WebView support
+        // androidTestCompile "com.android.support.test.espresso:espresso-web:2.2.2"
+        // Espresso-idling-resource for synchronization with background jobs
+        // androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:2.2.2"
     }
 }

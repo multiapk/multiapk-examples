@@ -14,7 +14,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
 
-public class HomeActivityTest {
+public class HomeActivityUnitTest {
 
     public List<Integer> dataList = null;
 
