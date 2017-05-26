@@ -193,6 +193,15 @@ dependencies {
         compile project(":app:modules:mobile.android")
         compile project(":app:modules:mobile.ios")
 
+        // provided "com.google.auto.value:auto-value:1.2"
+        // apt "com.google.auto.value:auto-value:1.2"
+        // https://bitbucket.org/hvisser/android-apt/wiki/Migration
+        annotationProcessor 'org.androidannotations:androidannotations:4.1.0'
+        annotationProcessor 'com.google.auto.value:auto-value:1.2'
+        annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
+        // Optionally for TypeAdapter support
+        // compile 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.5'
+
         // Dependencies for local unit tests
         testCompile "junit:junit:$rootProject.ext.junitVersion"
         testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
@@ -205,15 +214,18 @@ dependencies {
         // Dependencies for Android unit tests
         androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
         androidTestCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
-        androidTestCompile 'com.google.dexmaker:dexmaker:1.2'
-        androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+        androidTestCompile "com.google.dexmaker:dexmaker:$rootProject.ext.dexmakerVersion"
+        androidTestCompile "com.google.dexmaker:dexmaker-mockito:$rootProject.ext.dexmakerVersion"
+
+        // Set this dependency to build and run UI Automator tests
+        androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
 
         // Espresso UI Testing
         androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
         androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
         androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
         androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
-        /*androidTestCompile("com.android.support.test.espresso:espresso-core:2.2.2", {
+        /*androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
             exclude group: "com.google.code.findbugs"
             exclude group: "com.android.support", module: "support-annotations"
         })*/

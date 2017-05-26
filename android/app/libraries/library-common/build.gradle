@@ -2,13 +2,13 @@ apply plugin: "com.android.library"
 
 android {
 
-    compileSdkVersion project.compileSdkVersion
-    buildToolsVersion project.buildToolsVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 18
-        targetSdkVersion project.targetSdkVersion
-        buildConfigField("boolean", "solidMode", "$solidMode")
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        buildConfigField("boolean", "solidMode", "$rootProject.ext.solidMode")
     }
 
     lintOptions { abortOnError false }
@@ -18,7 +18,7 @@ android {
 dependencies {
 
     /******* 官方支持库 ****************************************************************************/
-    compile "com.android.support:multidex:1.0.1"
+    compile "com.android.support:multidex:$rootProject.ext.multidex"
 
     compile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
@@ -31,27 +31,24 @@ dependencies {
     //compile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
 
     /******* 应用权限库 ****************************************************************************/
-    //compile "pub.devrel:easypermissions:0.4.0"
-    compile "com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar"
+    compile "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.ext.rxpermissionsVersion"
 
     /******* 网络图片库 ****************************************************************************/
     compile "com.facebook.fresco:fresco:$rootProject.ext.frescoVersion"
-    compile("com.facebook.fresco:imagepipeline-okhttp3:$rootProject.ext.frescoVersion")
+    compile "com.facebook.fresco:imagepipeline-okhttp3:$rootProject.ext.frescoVersion"
 
     /******* 网络请求库 ****************************************************************************/
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
-    //new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0"
-    //compile "com.squareup.okhttp3:okhttp:3.8.0" //com.facebook.fresco:imagepipeline-okhttp3
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofit2rxjava2Version"
 
     /******* 数据库管理 ****************************************************************************/
-    //compile "org.greenrobot:greendao:3.2.2"
-    compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.sqlbriteVersion"
+    //compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.sqlbriteVersion" // wait for support rxjava2
 
     /******* 必备工具库 ****************************************************************************/
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"  //1.5MB
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"    //1.3MB [EventBus]
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion" //8KB
+    compile "com.github.akarnokd:rxjava2-interop:0.10.0"
     compile "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxlifecycleVersion"
     compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.rxlifecycleVersion"
     compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxlifecycleVersion"
@@ -64,7 +61,7 @@ dependencies {
     //compile "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$rootProject.ext.rxbindingVersion" //for TV
 
     /******* 其它常用库 ****************************************************************************/
-    compile("com.facebook.react:react-native:0.40.0") {
+    compile("com.facebook.react:react-native:$rootProject.ext.reactnativeVersion") {
         exclude module: "okhttp-ws" //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class
     }
     //compile "com.mlibrary:multiapk-library:0.0.1"
