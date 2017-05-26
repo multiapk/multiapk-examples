@@ -1,6 +1,5 @@
 package com.multiapk.modules.home;
 
-import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -8,7 +7,6 @@ import com.jakewharton.rxbinding2.view.RxView;
 import com.multiapk.R;
 import com.multiapk.library.base.MCommonActivity;
 import com.multiapk.library.base.MFragmentActivity;
-import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +26,8 @@ public class HomeActivity extends MFragmentActivity {
             }
         });
 
-        findViewById(R.id.cardViewMobileModule).setOnClickListener(view -> MCommonActivity.start(HomeActivity.this, "com.multiapk.modules.mobile.MobileFragment"));
+        new AutoValue_HomeModel("");
+        /*findViewById(R.id.cardViewMobileModule).setOnClickListener(view -> MCommonActivity.start(HomeActivity.this, "com.multiapk.modules.mobile.MobileFragment"));
 
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions.request(Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS)
@@ -56,6 +55,6 @@ public class HomeActivity extends MFragmentActivity {
                         // Need to go to the settings
                         Log.d("krmao", "Need to go to the settings");
                     }
-                });
+                });*/
     }
 }
