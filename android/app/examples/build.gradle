@@ -10,12 +10,12 @@ multiApkApplication {
     supportLibraryVersion = rootProject.ext.supportLibraryVersion
     packageName = "com.multiapk"
     moduleConfigFilePath = "$rootDir/gradle/multiapk/apk_module_config.xml"
-    keystore = "$rootDir/app/examples/debug.keystore"
+    keystore = "$projectDir/debug.keystore"
     keyAlias = "androiddebugkey"
     keyPassword = "android"
     storePassword = "android"
 //    aaptMacPath="/Volumes/android/android_source/WORKING_DIRECTORY/out/host/darwin-x86/bin/aapt"
-    aaptMacPath = "/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
+//    aaptMacPath = "/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
 //    aaptMacPath="/Users/krmao/Desktop/aapt"
     targetSdkVersion = rootProject.ext.targetSdkVersion
 }
@@ -97,8 +97,8 @@ android {
             shrinkResources false
             signingConfig signingConfigs.debug
 
-            proguardFiles "${rootDir}/gradle/global_proguard.pro", "proguard-rules.pro"
-            testProguardFiles "${rootDir}/gradle/global_proguard.pro", "proguardTest-rules.pro"
+            proguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguard-rules.pro"
+            testProguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguardTest-rules.pro"
         }
         release {
             debuggable false
@@ -109,8 +109,8 @@ android {
             shrinkResources true
             signingConfig signingConfigs.release
 
-            proguardFiles "${rootDir}/gradle/global_proguard.pro", "proguard-rules.pro"
-            testProguardFiles "${rootDir}/gradle/global_proguard.pro", "proguardTest-rules.pro"
+            proguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguard-rules.pro"
+            testProguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguardTest-rules.pro"
         }
     }
 
@@ -177,7 +177,8 @@ android {
         variant.outputs.each { output ->
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                def fileName = "${outputFile.name}_${flavorName}_${buildType}.apk"
+                //def fileName = "${outputFile.name}_${flavorName}_${buildType}.apk"
+                def fileName = "${project.name}-release.apk"
                 output.outputFile = new File(outputFile.parent, fileName)
             }
         }
@@ -188,18 +189,18 @@ dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile project(":app:libraries:library-common")
 
+    // compile time start ----------------------------------------------------------------------
+    // https://bitbucket.org/hvisser/android-apt/wiki/Migration
+    provided "com.google.auto.value:auto-value:1.4.1"
+    annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
+    // compile time end   ----------------------------------------------------------------------
+
+
     if (!solidMode) {//普通模式才需要依赖。solid模式编译时不依赖子bu。
         compile project(":app:modules:computer")
         compile project(":app:modules:mobile")
         compile project(":app:modules:mobile.android")
         compile project(":app:modules:mobile.ios")
-
-        // compile time start ----------------------------------------------------------------------
-        // https://bitbucket.org/hvisser/android-apt/wiki/Migration
-        provided "com.google.auto.value:auto-value:1.4.1"
-        annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
-        annotationProcessor 'org.androidannotations:androidannotations:4.1.0'
-        // compile time end   ----------------------------------------------------------------------
 
         // Dependencies for local unit tests
         testCompile "junit:junit:$rootProject.ext.junitVersion"
@@ -232,7 +233,6 @@ dependencies {
         // Resolve conflicts between main and test APK:
         androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
         androidTestCompile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
-        androidTestCompile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
         androidTestCompile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
         androidTestCompile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
         androidTestCompile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"

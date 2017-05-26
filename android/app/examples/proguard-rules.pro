@@ -233,6 +233,13 @@
 -keep public class com.multiapk.library.** { *;}
 -dontwarn com.multiapk.library.**
 
+-keep public class com.facebook.** { *;}
+-dontwarn com.facebook.**
+-keep public class com.google.** { *;}
+-dontwarn com.google.**
+-keep public class rx.** { *;}
+-dontwarn rx.**
+
 -keep public class com.facebook.react.** {
   public protected *;
 }
