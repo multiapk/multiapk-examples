@@ -240,6 +240,26 @@
 -keep public class rx.** { *;}
 -dontwarn rx.**
 
+-keep public class io.reactivex.** { *;}
+-dontwarn io.reactivex.**
+-dontnote io.reactivex.**
+
+-keep public class okhttp3.** { *;}
+-dontwarn okhttp3.**
+-dontnote okhttp3.**
+
+-keep public class com.multiapk.** { *;}
+-dontwarn com.multiapk.**
+-dontnote com.multiapk.**
+
+-keep public class org.apache.** { *;}
+-dontwarn org.apache.**
+-dontnote org.apache.**
+
+-keep public class sun.** { *;}
+-dontwarn sun.**
+-dontnote sun.**
+
 -keep public class com.facebook.react.** {
   public protected *;
 }

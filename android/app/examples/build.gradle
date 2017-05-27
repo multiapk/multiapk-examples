@@ -14,6 +14,7 @@ multiApkApplication {
     keyAlias = "androiddebugkey"
     keyPassword = "android"
     storePassword = "android"
+    javaCompileVersion = "1.7"
 //    aaptMacPath="/Volumes/android/android_source/WORKING_DIRECTORY/out/host/darwin-x86/bin/aapt"
 //    aaptMacPath = "/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
 //    aaptMacPath="/Users/krmao/Desktop/aapt"
@@ -132,8 +133,17 @@ android {
     }
 
     packagingOptions {
-        exclude 'LICENSE.txt'
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/NOTICE.TXT'
+        exclude 'META-INF/LICENSE.TXT'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
         exclude 'META-INF/rxjava.properties'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
     }
 
     lintOptions {
@@ -141,6 +151,19 @@ android {
         textOutput 'stdout'
         fatal 'UnusedResources'
         warning 'ResourceType' //TODO remove eventually with ButterKnife 8.0 release
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+        lintConfig file("$rootDir/lint.xml")
+        showAll true
+        absolutePaths true
+        textReport true
+        textOutput file("$buildDir/outputs/lint/${project.name}_lint-report.txt")
+        xmlReport true
+        xmlOutput file("$buildDir/outputs/lint/${project.name}_lint-report.xml")
+        htmlReport true
+        htmlOutput file("$buildDir/outputs/lint/${project.name}_lint-report.html")
     }
 
     configurations.all {
@@ -191,8 +214,9 @@ dependencies {
 
     // compile time start ----------------------------------------------------------------------
     // https://bitbucket.org/hvisser/android-apt/wiki/Migration
-    provided "com.google.auto.value:auto-value:1.4.1"
+    annotationProcessor 'org.androidannotations:androidannotations:4.1.0'
     annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
+    provided "com.google.auto.value:auto-value:1.4.1"
     // compile time end   ----------------------------------------------------------------------
 
 

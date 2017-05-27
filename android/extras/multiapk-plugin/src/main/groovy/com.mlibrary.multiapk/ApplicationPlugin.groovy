@@ -231,7 +231,8 @@ public class ApplicationPlugin implements Plugin<Project> {
             project.logger.info("$project.path:apply multiApkApplication:dynamicResign:doFirst")
 
             workingDir ApplicationExtension.instance.buildOutputPath
-            executable "${System.env.'JAVA_HOME'}/bin/jarsigner"
+            //executable "${System.env.'JAVA_HOME'}/bin/jarsigner"
+            executable System.getenv('JAVA_HOME') + "/bin/jarsigner"
 
             def argv = []
             argv << '-verbose'
