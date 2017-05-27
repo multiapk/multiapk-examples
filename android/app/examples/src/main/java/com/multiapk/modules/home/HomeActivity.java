@@ -4,6 +4,7 @@ import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.view.RxView;
 import com.multiapk.R;
@@ -26,11 +27,12 @@ public class HomeActivity extends MFragmentActivity {
             @Override
             public void accept(@NonNull Object o) throws Exception {
                 Log.d("krmao", "accept");
+                Toast.makeText(HomeActivity.this,new AutoValue_HomeModel("address-shanghai", "name-mkrcpp", "area-5000").toString(),Toast.LENGTH_SHORT).show();
                 MCommonActivity.start(HomeActivity.this, "com.multiapk.modules.computer.ComputerFragment");
             }
         });
 
-        new AutoValue_HomeModel("address", "name", "area");
+        Log.e("krmao", new AutoValue_HomeModel("address-soho", "name-krmao", "area-180").toString());
         findViewById(R.id.cardViewMobileModule).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
