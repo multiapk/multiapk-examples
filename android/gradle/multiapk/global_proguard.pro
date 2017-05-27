@@ -36,7 +36,8 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 
 -printseeds
-#-printmapping build/outputs/mapping/testmap.txt
+-printconfiguration proguardConfiguration.txt
+-printmapping proguardMapping.txt
 
 #保护属性 start
 -keepparameternames
@@ -46,17 +47,22 @@
 
 #保护指定的类和类的成员的名称 start
 #假如指定的类成员存在的话
-#-keep class !android.support.v4.widget.**,* {
-#    native <methods>;
-#    public <init>(android.content.Context, android.util.AttributeSet);
-#    public <init>(android.content.Context, android.util.AttributeSet, int);
-#    void set*(...);
-#    *** get*();
-#}
+-keep class !android.support.v4.widget.**,* {
+    native <methods>;
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+    void set*(...);
+    *** get*();
+}
 
-#-keepclassmembers class * extends android.app.Activity {
-#   public void *(android.view.View);
-#}
+# Keep native methods
+-keepclassmembers class * {
+    native <methods>;
+}
+
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
 #保护指定的类和类的成员的名称 end
 
 #保护指定类成员的名称 start
@@ -113,6 +119,9 @@
 -keep class * implements java.lang.Comparable {
     int compareTo(***);
 }
+-keepclassmembers class * implements java.lang.annotation.Annotation {
+    ** *();
+}
 #system end
 
 #
@@ -131,6 +140,8 @@
 -keepclassmembers class * {
     private static synthetic java.lang.Object $deserializeLambda$(java.lang.invoke.SerializedLambda);
 }
+-dontnote java.lang.invoke.SerializedLambda
+
 -keepclassmembernames class * {
     private static synthetic *** lambda$*(...);
 }
@@ -158,6 +169,8 @@
 
 -keep public class com.google.vending.licensing.ILicensingService
 -keep public class com.android.vending.licensing.ILicensingService
+-dontnote com.google.vending.licensing.ILicensingService
+-dontnote com.android.vending.licensing.ILicensingService
 
 #databinding start
 #https://android.googlesource.com/platform/frameworks/data-binding/+/studio-master-dev/proguard.cfg
@@ -170,18 +183,3 @@
 
 #-libraryjars  <java.home>/lib/rt.jar
 #-libraryjars  <java.home>/lib/jce.jar
-
--dontwarn android.databinding.**
-#databinding end
--dontwarn okio.**
--dontwarn retrofit.**
--dontnote android.support.**
--dontnote android.**
--dontnote javax.**
--dontnote java.**
--dontnote org.w3c.**
--dontnote com.android.**
--dontnote com.google.**
--dontnote com.facebook.**
--dontnote com.mlibrary.**
--dontnote fqcn.of.javascript.interface.for.webview

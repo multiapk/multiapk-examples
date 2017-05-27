@@ -1,191 +1,40 @@
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in D:/ProgramFiles/Android-Bundle/sdk/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the proguardFiles
-# directive in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+#各模块入口类
+-keep class com.multiapk.modules.computer.ComputerFragment { *; }
+-keep class com.multiapk.modules.computer.MyReactActivity { *; }
+-keep class com.multiapk.modules.mobile.MobileFragment { *; }
+-keep class com.multiapk.modules.mobile.android.AndroidFragment { *; }
+-keep class com.multiapk.modules.mobile.ios.IosFragment { *; }
 
-# Add any project specific keep options here:
+#代码
+-keep class *Model { *; }
+-keep class *RequestModel { *; }
+-keep class *ResponseModel { *; }
+-keep class *Entity { *; }
+-keep class *Table { *; }
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
+# Remove logging calls
+#-assumenosideeffects class android.util.Log {
+#    public static boolean isLoggable(java.lang.String, int);
+#    public static int v(...);
+#    public static int i(...);
+#    public static int w(...);
+#    public static int d(...);
+#    public static int e(...);
 #}
-# To enable ProGuard in your project, edit project.properties
-# to define the proguard.config property as described in that file.
-#
-# Add project specific ProGuard rules here.
-# By default, the flags in this file are appended to flags specified
-# in ${sdk.dir}/tools/proguard/proguard-android.txt
-# You can edit the include path and order by changing the ProGuard
-# include property in project.properties.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
 
-# Add any project specific keep options here:
+#第三方依赖库
+#com.android.support.**
+-keep class com.android.support { *; }
+-dontwarn android.support.**
+-dontnote android.support.**
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
-#
-#-keepclassmembers class * implements java.lang.annotation.Annotation {
-#    ** *();
-#}
-#
-#-keepclassmembers class * implements android.os.Parcelable {
-#    static ** CREATOR;
-#}
-#
-#-keepclasseswithmembernames class * {
-#    native <methods>;
-#    public <init>(android.content.Context, android.util.AttributeSet);
-#    public <init>(android.content.Context, android.util.AttributeSet, int);
-#    public void set*(...);
-#}
-#
-## GreenDao
-#-keepclassmembers class * extends de.greenrobot.dao.AbstractDao {
-#    public static java.lang.String TABLENAME;
-#}
-#-keep class **$Properties
-#
-#-keep class com.google.gson.** { *; }
-#-keep class com.google.inject.** { *; }
-#-keep class org.apache.http.** { *; }
-#-keep class org.apache.james.mime4j.** { *; }
-#-keep class javax.inject.** { *; }
-#-keep class android.support.v4.** { *; }
-#
-## Square
-#-keep class com.squareup.okhttp.** { *; }
-#-keep interface com.squareup.okhttp.** { *; }
-#-dontwarn com.squareup.okhttp.**
-#
-#-keep class retrofit.** { *; }
-#-keep @interface retrofit.** { *; }
-#-dontwarn retrofit.**
-#-dontwarn rx.*
-#-keepattributes Signature
-#-keep class sun.misc.Unsafe { *; }
-#-keepclasseswithmembers class * {
-#    @retrofit.http.* <methods>;
-#}
-#
-#-keep class okio.** { *; }
-#-dontwarn okio.**
-#
-#-keep public class com.android.ctrip.gs.ui.map.core.GSGoogleJSMapActivity$MapDataDAO {*;}
-#-keepclassmembers class * implements com.android.ctrip.gs.ui.map.core.GSGoogleJSMapActivity$MapDataDAO {
-#    *;
-#}
-#
-#-keep public class com.android.ctrip.gs.ui.common.GSWebFragment$H5Plugin {*;}
-#-keepclassmembers class * implements com.android.ctrip.gs.ui.common.GSWebFragment$H5Plugin {
-#    *;
-#}
-#-keepclassmembers  class com.android.ctrip.gs.ui.common.GSWebFragment$H5Plugin{
-#   public *;
-#}
-#-keep public class com.android.ctrip.gs.ui.common.GSWebFragment$H5PluginLog {*;}
-#-keepclassmembers class * implements com.android.ctrip.gs.ui.common.GSWebFragment$H5PluginLog {
-#    *;
-#}
-#-keepclassmembers  class com.android.ctrip.gs.ui.common.GSWebFragment$H5PluginLog{
-#   public *;
-#}
-#-keep public class ctrip.android.view.push.**
-#{
-#	*;
-#}
-#
-#-keep public class com.android.ctrip.gs.model.api.model.** { *; }
-#-keep public class com.android.ctrip.gs.ui.util.GSImageHelper { *; }
-#-keep public class com.android.ctrip.gs.ui.dest.poi.GSTTDPoiType { *; }
-#
-## GAODE
-#-keep class com.amap.**{*;}
-#
-## UMeng
-#-dontshrink
-#-dontoptimize
-#-dontwarn com.google.android.maps.**
-#-dontwarn com.amap.**
-#-dontwarn android.webkit.WebView
-#-dontwarn com.umeng.**
-#-dontwarn com.tencent.weibo.sdk.**
-#-dontwarn com.facebook.**
-#-libraryjars libs/SocialSDK_QQZone_2.jar
-#-keep enum com.facebook.**
-#-keepattributes Exceptions,InnerClasses,Signature
-#-keepattributes *Annotation*
-#-keepattributes SourceFile,LineNumberTable
-#-keep public interface com.facebook.**
-#-keep public interface com.tencent.**
-#-keep public interface com.umeng.socialize.**
-#-keep public interface com.umeng.socialize.sensor.**
-#-keep public interface com.umeng.scrshot.**
-#-keep public class com.umeng.socialize.* {*;}
-#-keep public class javax.**
-#-keep public class android.webkit.**
-#-keep class com.facebook.**
-#-keep class com.umeng.scrshot.**
-#-keep public class com.tencent.** {*;}
-#-keep class com.umeng.socialize.sensor.**
-#-keep class com.tencent.mm.sdk.modelmsg.WXMediaMessage {*;}
-#-keep class com.tencent.mm.sdk.modelmsg.** implements com.tencent.mm.sdk.modelmsg.WXMediaMessage$IMediaObject {*;}
-#-keep class im.yixin.sdk.api.YXMessage {*;}
-#-keep class im.yixin.sdk.api.** implements im.yixin.sdk.api.YXMessage$YXMessageData{*;}
-#-keep public class com.android.ctrip.gs.R$*{
-#    public static final int *;
-#}
-#
-#-keepclassmembers class * {
-#   public <init>(org.json.JSONObject);
-#}
-#
-#-keepclassmembers enum * {
-#    public static **[] values();
-#    public static ** valueOf(java.lang.String);
-#}
-#
-#-keep public class com.umeng.fb.ui.ThreadView { }
+#com.tbruyelle.rxpermissions2.**
+#-keep class com.tbruyelle.rxpermissions2 { *; }
+#-dontnote class com.tbruyelle.rxpermissions2.**
+#-dontwarn class com.tbruyelle.rxpermissions2.**
 
--keep class com.baidu.** {*;}
--keep class vi.com.** {*;}
--dontwarn com.baidu.**
--keep class com.mlibrary.**{*;}
-# Square
--keep class com.squareup.okhttp.** { *; }
--keep interface com.squareup.okhttp.** { *; }
--dontwarn com.squareup.okhttp.**
--dontwarn com.xiaomi.**
-
--keep class retrofit.** { *; }
--keep @interface retrofit.** { *; }
--dontwarn retrofit.**
--dontwarn rx.*
--keepattributes Signature
--keep class sun.misc.Unsafe { *; }
--keepclasseswithmembers class * {
-    @retrofit.http.* <methods>;
-}
-
--keep class okio.** { *; }
--dontwarn okio.**
--dontwarn retrofit2.Platform$Java8
-
-# Fresco
-# Keep our interfaces so they can be used by other ProGuard rules.
-# See http://sourceforge.net/p/proguard/bugs/466/
+#com.facebook.** [fresco,react]
+#fresco start --------------------------------------------------------------------------------------
 -keep,allowobfuscation @interface com.facebook.common.internal.DoNotStrip
 
 # Do not strip any method/class that is annotated with @DoNotStrip
@@ -204,62 +53,32 @@
 -dontwarn okhttp3.**
 -dontwarn javax.annotation.**
 -dontwarn com.android.volley.toolbox.**
-
-#[start] retrofit2
--dontwarn retrofit2.**
--dontnote retrofit2.**
--keep class retrofit2.** { *; }
--keepattributes Signature
--keepattributes Exceptions
-#[end] retrofit
--dontshrink
-
-# OkHttp3
--dontwarn com.squareup.okhttp3.**
--keep class com.squareup.okhttp3.** { *;}
--dontwarn okio.**
-
-# Okio
--dontwarn com.squareup.**
--dontwarn okio.**
--keep public class org.codehaus.* { *; }
--keep public class java.nio.* { *; }
-
--keep class com.multiapk.modules.computer.ComputerFragment { *; }
--keep class com.multiapk.modules.computer.MyReactActivity { *; }
--keep class com.multiapk.modules.mobile.MobileFragment { *; }
--keep class com.multiapk.modules.mobile.android.AndroidFragment { *; }
--keep class com.multiapk.modules.mobile.ios.IosFragment { *; }
--keep public class com.multiapk.library.** { *;}
--dontwarn com.multiapk.library.**
-
--keep public class com.facebook.** { *;}
+-dontnote com.facebook.**
 -dontwarn com.facebook.**
--keep public class com.google.** { *;}
--dontwarn com.google.**
--keep public class rx.** { *;}
--dontwarn rx.**
+-dontwarn com.facebook.infer.**
+#fresco end   --------------------------------------------------------------------------------------
 
--keep public class io.reactivex.** { *;}
--dontwarn io.reactivex.**
--dontnote io.reactivex.**
+#com.squareup.** [retrofit2]
+-dontnote okio.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn retrofit2.Platform$Java8
 
--keep public class okhttp3.** { *;}
--dontwarn okhttp3.**
+#okhttp3.**
 -dontnote okhttp3.**
 
--keep public class com.multiapk.** { *;}
--dontwarn com.multiapk.**
--dontnote com.multiapk.**
+#com.mlibrary.multiapk.**
+-dontnote com.mlibrary.multiapk.**
 
--keep public class org.apache.** { *;}
--dontwarn org.apache.**
--dontnote org.apache.**
+#org.apache.http.**
+-dontnote org.apache.http.**
+#android.net.**
+-dontnote android.net.**
 
--keep public class sun.** { *;}
--dontwarn sun.**
--dontnote sun.**
+#io.reactivex.rxjava2.**
+-dontnote io.reactivex.**
+#com.trello.rxlifecycle2.**
+#com.jakewharton.rxbinding2.**
 
--keep public class com.facebook.react.** {
-  public protected *;
-}
+-dontnote fqcn.of.**
+-dontnote com.jakewharton.**
