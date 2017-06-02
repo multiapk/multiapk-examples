@@ -46,6 +46,7 @@ dependencies {
     /******* 必备工具库 ****************************************************************************/
     //compile "com.google.guava:guava:$rootProject.ext.guavaVersion"  //1.5MB
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"    //1.3MB [EventBus]
+    compile "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlinVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion" //8KB
     compile "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxlifecycleVersion"
     compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.rxlifecycleVersion"

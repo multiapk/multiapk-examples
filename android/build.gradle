@@ -147,6 +147,7 @@ ext {// Sdk and tools
     rulesVersion = '0.5'
     espressoVersion = '2.2.2'
     rxjavaVersion = '2.1.0'
+    rxkotlinVersion = '2.0.3'
     rxandroidVersion = '2.0.1'
     rxpermissionsVersion = '0.9.4@aar'
     rxlifecycleVersion = '2.0.1'
