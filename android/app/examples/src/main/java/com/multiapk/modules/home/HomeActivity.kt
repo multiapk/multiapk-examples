@@ -1,32 +1,28 @@
 package com.multiapk.modules.home
 
 import android.Manifest
-import android.app.Activity
 import android.os.Bundle
-import android.support.annotation.NonNull
 import android.util.Log
 import com.multiapk.R
-import com.multiapk.library.base.MCommonActivity
-import com.multiapk.library.base.MFragmentActivity
+import com.multiapk.library.base.CMCommonActivity
+import com.multiapk.library.base.CMAppCompatActivity
+import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
-import com.tbruyelle.rxpermissions2.*
-import io.reactivex.functions.Consumer
-import android.support.v7.widget.CardView
 
-class MainKotlinActivity : MFragmentActivity() {
+class HomeActivity : CMAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         cardViewComputerModule.setOnClickListener {
             longToast("电脑模块")
-            MCommonActivity.start(this, "com.multiapk.modules.computer.ComputerFragment")
+            CMCommonActivity.start(this, "com.multiapk.modules.computer.ComputerFragment")
         }
         cardViewMobileModule.setOnClickListener {
             toast("手机模块")
-            MCommonActivity.start(this, "com.multiapk.modules.mobile.MobileFragment")
+            CMCommonActivity.start(this, "com.multiapk.modules.mobile.MobileFragment")
         }
 
         val rxPermissions = RxPermissions(this)

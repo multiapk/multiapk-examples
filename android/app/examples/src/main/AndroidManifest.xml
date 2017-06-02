@@ -31,7 +31,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".base.MBaseApplication"
+        android:name=".base.CMBaseApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -39,7 +39,7 @@
         android:supportsRtl="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".modules.home.MainKotlinActivity"
+            android:name=".modules.home.HomeActivity"
             android:configChanges="locale|fontScale|orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".library.base.MCommonActivity"
+            android:name=".library.base.CMCommonActivity"
             android:configChanges="locale|fontScale|orientation|keyboardHidden|screenSize"
             android:launchMode="standard"
             android:screenOrientation="portrait"
