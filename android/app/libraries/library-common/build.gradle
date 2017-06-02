@@ -51,11 +51,11 @@ dependencies {
     compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.rxlifecycleVersion"
     compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxlifecycleVersion"
 
-    compile "com.jakewharton.rxbinding2:rxbinding:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-design:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rootProject.ext.rxbindingVersion"
     //compile "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$rootProject.ext.rxbindingVersion" //for TV
 
     /******* 其它常用库 ****************************************************************************/

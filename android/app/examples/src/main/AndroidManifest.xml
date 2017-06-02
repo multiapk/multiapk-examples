@@ -39,7 +39,7 @@
         android:supportsRtl="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".modules.home.HomeActivity"
+            android:name=".modules.home.MainKotlinActivity"
             android:configChanges="locale|fontScale|orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize">

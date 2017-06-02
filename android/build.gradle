@@ -1,7 +1,11 @@
 buildscript {
+
+    ext.kotlinVersion = '1.1.2'
+    ext.ankoVersion = '0.8.2'
+
     repositories {
         maven { url "${rootDir}/extras/multiapk-plugin/uploadedArchives" }
-        maven { url 'https://maven.google.com' }
+        //maven { url 'https://maven.google.com' }
         jcenter()
         mavenCentral()
     }
@@ -18,6 +22,8 @@ buildscript {
         classpath 'com.meituan.android.walle:plugin:1.1.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         //classpath 'com.squareup.sqldelight:gradle-plugin:0.6.1' // wait for support rxjava2
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
     }
 }
 
@@ -31,7 +37,7 @@ allprojects {
         maven {
             // All of React Native (JS, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
-            'https://maven.google.com'
+            //'https://maven.google.com'
         }
     }
 

@@ -142,6 +142,7 @@
 }
 -dontnote java.lang.invoke.SerializedLambda
 
+
 -keepclassmembernames class * {
     private static synthetic *** lambda$*(...);
 }

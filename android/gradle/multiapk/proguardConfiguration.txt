@@ -535,6 +535,6 @@
 }
 
 # view AndroidManifest.xml #generated:50
--keep class com.multiapk.modules.home.HomeActivity {
+-keep class com.multiapk.modules.home.MainKotlinActivity {
     <init>(...);
 }

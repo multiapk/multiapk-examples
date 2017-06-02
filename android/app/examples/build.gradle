@@ -3,6 +3,8 @@ apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: "com.mlibrary.multiapk.application"
 apply plugin: 'com.antfortune.freeline'
 apply plugin: 'walle'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 multiApkApplication {
     solidMode = rootProject.ext.solidMode
@@ -234,6 +236,8 @@ android {
 dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile project(":app:libraries:library-common")
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlinVersion"
+    compile "org.jetbrains.anko:anko-common:$rootProject.ext.ankoVersion"
 
     // compile time start ----------------------------------------------------------------------
     // https://bitbucket.org/hvisser/android-apt/wiki/Migration
