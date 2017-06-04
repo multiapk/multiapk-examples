@@ -16,7 +16,7 @@ class ComputerFragment : CMFragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val contentView = inflater!!.inflate(R.layout.fragment_computer, null)
         RxView.clicks(contentView).subscribe {
-            context?.toast("电脑模块")
+            context?.toast("电脑模块" + Thread.currentThread().name)
             startActivity(Intent(context, MyReactActivity::class.java))
         }
         return contentView

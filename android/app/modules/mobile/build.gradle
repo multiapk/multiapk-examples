@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.mlibrary.multiapk.library'
 
 multiApkLibrary {
@@ -22,8 +23,4 @@ android {
 
 dependencies {
     compile project(':app:libraries:library-common')
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
 }

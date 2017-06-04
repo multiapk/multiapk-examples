@@ -202,9 +202,6 @@ android {
         mock {
             applicationIdSuffix = ".mock"
         }
-        prod {
-
-        }
     }
 
     // Remove mockRelease as it's not needed.
@@ -226,7 +223,7 @@ android {
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 //def fileName = "${outputFile.name}_${flavorName}_${buildType}.apk"
-                def fileName = "${project.name}-release.apk"
+                def fileName = "${project.name}-${buildType}.apk"
                 output.outputFile = new File(outputFile.parent, fileName)
             }
         }
@@ -289,7 +286,6 @@ dependencies {
         androidTestCompile "com.android.support:animated-vector-drawable:$rootProject.ext.supportLibraryVersion"
         //androidTestCompile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
     }
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
     mavenCentral()
