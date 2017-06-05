@@ -2,6 +2,7 @@ package com.multiapk.modules.home
 
 import android.Manifest
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.util.Log
 import com.multiapk.R
 import com.multiapk.base.DefaultApplication
@@ -23,6 +24,13 @@ class HomeActivity : DefaultBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        toolbar.title = "这里是Title"
+        toolbar.subtitle = "这里是子标题"
+        toolbar.setLogo(R.drawable.ic_launcher)
+        setSupportActionBar(toolbar)
+
         cardViewComputerModule.setOnClickListener {
             longToast("电脑模块")
             DefaultActivity.start(this, "com.multiapk.modules.computer.ComputerFragment")
@@ -70,7 +78,7 @@ class HomeActivity : DefaultBaseActivity() {
 
         testDB()
         val daoSession = (application as DefaultApplication).getDaoSession()
-        val noteDao = daoSession?.getNoteDao()
+        val noteDao = daoSession?.noteDao
 
         noteDao?.loadAll()?.toFlowable()?.subscribeOn(Schedulers.io())?.subscribe { note ->
             Log.w("krmao", "db:note: " + (note as Note?).toString())
@@ -79,13 +87,13 @@ class HomeActivity : DefaultBaseActivity() {
 
     fun testDB() {
         val daoSession = (application as DefaultApplication).getDaoSession()
-        val noteDao = daoSession?.getNoteDao()
+        val noteDao = daoSession?.noteDao
 
         val note = Note()
-        note.setText("test")
-        note.setComment("aa")
-        note.setDate(Date())
-        note.setType(NoteType.TEXT)
+        note.text = "test"
+        note.comment = "aa"
+        note.date = Date()
+        note.type = NoteType.TEXT
         noteDao?.insert(note)
         Log.d("DaoExample", "Inserted new note, ID: " + note.id)
     }
