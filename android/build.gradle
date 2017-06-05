@@ -1,10 +1,11 @@
 buildscript {
     ext.kotlinVersion = '1.1.2-3'
     ext.ankoVersion = '0.8.2'
+    ext.greendaoVersion = '3.2.0'
 
     repositories {
         maven { url "${rootDir}/extras/multiapk-plugin/uploadedArchives" }
-        //maven { url 'https://maven.google.com' }
+        maven { url "https://maven.google.com" }
         jcenter()
         mavenCentral()
     }
@@ -20,10 +21,12 @@ buildscript {
         classpath 'com.antfortune.freeline:gradle:0.8.1'
         classpath 'com.meituan.android.walle:plugin:1.1.1'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
-        //classpath 'com.squareup.sqldelight:gradle-plugin:0.6.1' // wait for support rxjava2
 
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+
+        classpath "org.greenrobot:greendao-gradle-plugin:$rootProject.ext.greendaoVersion"
+        //classpath 'com.squareup.sqldelight:gradle-plugin:0.6.1' // wait for support rxjava2
     }
 }
 
@@ -34,10 +37,9 @@ allprojects {
     repositories {
         mavenCentral()
         jcenter()
-        maven {
-            // All of React Native (JS, Android binaries) is installed from npm
+        maven { url "https://maven.google.com" }
+        maven { // All of React Native (JS, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
-            //'https://maven.google.com'
         }
     }
 
@@ -53,12 +55,7 @@ allprojects {
 }
 
 task clean(type: Delete) {
-    println("$rootDir/build")
-    delete "$rootDir/build"
-    println(buildDir)
-    delete "$buildDir"
-    println(rootProject.buildDir)
-    delete rootProject.buildDir
+    delete buildDir
 }
 
 /**
@@ -136,6 +133,7 @@ ext {// Sdk and tools
 
     // App dependencies
     supportLibraryVersion = "25.3.1"
+    constraintLayoutVersion = "1.0.2"
     multidex = '1.0.1'
     guavaVersion = '22.0-android'
     junitVersion = '4.12'
@@ -157,6 +155,7 @@ ext {// Sdk and tools
     retrofitVersion = '2.3.0'
     retrofit2rxjava2Version = '1.0.0'
     reactnativeVersion = '0.40.0'
+    leakcanaryVersion = '1.5.1'
 
     //others
     Properties properties = new Properties()

@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.mlibrary.multiapk.library'
+
+multiApkLibrary {
+    packageName = "com.multiapk.modules.mobile.ios"
+    moduleProguardRulesFilePath = "$rootDir/gradle/multiapk/sub-project-proguard-rules.pro"
+    parentModuleName = ":app:modules:mobile"
+}
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    buildToolsVersion project.buildToolsVersion
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion project.targetSdkVersion
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':arsenal:modules:module-mobile')
+}

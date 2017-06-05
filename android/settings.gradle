@@ -4,13 +4,13 @@ include ':extras:multiapk-library'
 include ':extras:MBSPatchLib'
 //
 ////app
-include ':app:examples'
+include ':arsenal:apps:app-beautylife'
 //
-//app common librarys
-include ':app:libraries:library-common'
+//app common libraries
+include ':arsenal:libraries:library-base'
 
 //modules
-include ':app:modules:computer'
-include ':app:modules:mobile'
-include ':app:modules:mobile.android'
-include ':app:modules:mobile.ios'
+include ':arsenal:modules:module-computer'
+include ':arsenal:modules:module-mobile'
+include ':arsenal:modules:module-mobile-android'
+include ':arsenal:modules:module-mobile-ios'
