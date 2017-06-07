@@ -2,6 +2,9 @@ buildscript {
     ext.kotlinVersion = '1.1.2-3'
     ext.ankoVersion = '0.8.2'
     ext.greendaoVersion = '3.2.0'
+    //ext.freelineVersion = '0.8.7'
+    ext.walleVersion = '1.1.1'
+    ext.androidaptVersion = '1.8'
 
     repositories {
         maven { url "${rootDir}/extras/multiapk-plugin/uploadedArchives" }
@@ -18,9 +21,9 @@ buildscript {
         //classpath 'com.android.tools.build:gradle:3.0.0-alpha1'
 
         classpath 'com.mlibrary:multiapk-plugin:0.0.1'
-        classpath 'com.antfortune.freeline:gradle:0.8.1'
-        classpath 'com.meituan.android.walle:plugin:1.1.1'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        //classpath "com.antfortune.freeline:gradle:$freelineVersion"
+        classpath "com.meituan.android.walle:plugin:$walleVersion"
+        classpath "com.neenbedankt.gradle.plugins:android-apt:$androidaptVersion"
 
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"

@@ -21,15 +21,14 @@
     <color name="lightblue">#ADD8E6</color>
     <color name="darkblue">#00008B</color>
 
-    <!--5.0以上初始色-->
     <!--Actionbar默认色-->
-    <color name="colorPrimary">#FF101010</color>
+    <color name="colorPrimary">@color/background_material_dark</color>
     <!--文字默认色-->
-    <color name="textColorPrimary">#FFEFEFEF</color>
+    <color name="textColorPrimary">@color/foreground_material_dark</color>
     <!--RadioButton/SlideBar的颜色-->
-    <color name="colorAccent">@color/colorPrimary</color>
+    <color name="colorAccent">@color/background_material_dark</color>
     <!--状态栏颜色-->
-    <color name="statusBarColor">@color/colorPrimary</color>
+    <color name="statusBarColor">@color/background_material_dark</color>
     <!--状态栏颜色上面的覆盖色-->
-    <color name="colorPrimaryDark">@color/colorPrimary</color>
+    <color name="colorPrimaryDark">@color/background_material_dark</color>
 </resources>

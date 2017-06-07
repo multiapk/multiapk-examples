@@ -2,6 +2,7 @@ package org.smartrobot.base
 
 import android.app.Application
 import android.support.multidex.MultiDex
+import android.support.v7.app.AppCompatDelegate
 import com.mlibrary.multiapk.MultiApk
 import com.multiapk.library.BuildConfig
 import org.greenrobot.greendao.database.Database
@@ -17,6 +18,8 @@ open class DefaultBaseApplication : Application() {
         else
             MultiApk.init(this)
         super.onCreate()
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);//selector vector support
 
         initDatabase()
     }

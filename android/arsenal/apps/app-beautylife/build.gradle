@@ -1,7 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: "com.mlibrary.multiapk.application"
-apply plugin: 'com.antfortune.freeline'
 apply plugin: 'walle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -22,11 +21,6 @@ multiApkApplication {
 //    aaptMacPath = "/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
 //    aaptMacPath="/Users/krmao/Desktop/aapt"
     targetSdkVersion = rootProject.ext.targetSdkVersion
-}
-
-freeline {
-    hack true
-    productFlavor 'ctrip'
 }
 
 walle {
@@ -52,6 +46,8 @@ android {
         versionName "12"
 
         multiDexEnabled !solidMode
+
+        //Gradle Plugin 2.0以上,AppCompat23.2以上,Android 5.0之前使用Vector
         vectorDrawables.useSupportLibrary = true
 
         ndk {

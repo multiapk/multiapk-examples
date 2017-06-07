@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText,AppCompatResource">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/abc_ic_search_api_material"
+        android:title="搜索"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_notification"
+        android:icon="@drawable/abc_ic_voice_search_api_material"
+        android:title="通知"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/abc_ic_ab_back_material"
+        android:orderInCategory="100"
+        android:title="工具"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_about"
+        android:orderInCategory="101"
+        android:title="设置"
+        app:showAsAction="never" />
+</menu>
