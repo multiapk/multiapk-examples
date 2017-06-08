@@ -238,6 +238,7 @@ dependencies {
         compile project(":arsenal:modules:module-mobile")
         compile project(":arsenal:modules:module-mobile-android")
         compile project(":arsenal:modules:module-mobile-ios")
+        compile project(":arsenal:modules:module-order")
 
         // Dependencies for local unit tests
         testCompile "junit:junit:$rootProject.ext.junitVersion"

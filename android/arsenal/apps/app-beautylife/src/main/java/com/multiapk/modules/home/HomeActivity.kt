@@ -13,16 +13,12 @@ import com.multiapk.R
 import com.multiapk.base.DefaultApplication
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.toFlowable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import org.multiapk.library.base.DefaultActivity
 import org.multiapk.library.base.DefaultBaseActivity
-import org.smartrobot.database.model.Note
-import org.smartrobot.database.model.NoteType
-import java.util.*
+import org.smartrobot.database.model.Order
 import java.util.concurrent.TimeUnit
 
 class HomeActivity : DefaultBaseActivity() {
@@ -35,6 +31,9 @@ class HomeActivity : DefaultBaseActivity() {
         toolbar.inflateMenu(R.menu.home_menu);
         toolbar.setOnMenuItemClickListener {
             Snackbar.make(toolbar, "您点击了:" + it?.title, Snackbar.LENGTH_SHORT).setDuration(3000).show()
+            if (it.itemId == R.id.action_order) {
+                DefaultActivity.start(this, "com.multiapk.modules.order.OrderFragment")
+            }
             true
         }
         val searchItem = toolbar.menu.findItem(R.id.action_search)
@@ -107,24 +106,16 @@ class HomeActivity : DefaultBaseActivity() {
         })
 
         testDB()
-        val daoSession = (application as DefaultApplication).getDaoSession()
-        val noteDao = daoSession?.noteDao
-
-        noteDao?.loadAll()?.toFlowable()?.subscribeOn(Schedulers.io())?.subscribe { note ->
-            Log.w("krmao", "db:note: " + (note as Note?).toString())
-        }
     }
 
     fun testDB() {
         val daoSession = (application as DefaultApplication).getDaoSession()
-        val noteDao = daoSession?.noteDao
+        val orderDao = daoSession.orderDao
 
-        val note = Note()
-        note.text = "test"
-        note.comment = "aa"
-        note.date = Date()
-        note.type = NoteType.TEXT
-        noteDao?.insert(note)
-        Log.d("DaoExample", "Inserted new note, ID: " + note.id)
+        orderDao?.insert(Order())
+        orderDao?.insert(Order())
+        orderDao?.insert(Order())
+        orderDao?.insert(Order())
+        orderDao?.insert(Order())
     }
 }

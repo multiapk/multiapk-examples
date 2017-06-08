@@ -12,4 +12,5 @@
     <Module packageName="com.multiapk.modules.mobile" resourceId="0x30" />
     <Module packageName="com.multiapk.modules.mobile.android" resourceId="0x40" />
     <Module packageName="com.multiapk.modules.mobile.ios" resourceId="0x50" />
+    <Module packageName="com.multiapk.modules.mobile.order" resourceId="0x60" />
 </ApkModules>

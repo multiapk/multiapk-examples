@@ -1,5 +1,6 @@
 #各模块入口类
 -keep class com.multiapk.modules.computer.ComputerFragment { *; }
+-keep class com.multiapk.modules.order.OrderFragment { *; }
 -keep class com.multiapk.modules.computer.MyReactActivity { *; }
 -keep class com.multiapk.modules.mobile.MobileFragment { *; }
 -keep class com.multiapk.modules.mobile.android.AndroidFragment { *; }

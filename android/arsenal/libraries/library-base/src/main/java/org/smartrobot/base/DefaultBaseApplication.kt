@@ -12,20 +12,26 @@ import org.smartrobot.database.dao.DaoSession
 
 open class DefaultBaseApplication : Application() {
 
+    companion object {
+        lateinit var instance: DefaultBaseApplication
+    }
+
     override fun onCreate() {
         if (!BuildConfig.solidMode)
             MultiDex.install(this)
         else
             MultiApk.init(this)
         super.onCreate()
+        instance = this
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);//selector vector support
 
         initDatabase()
     }
 
-    private var daoSession: DaoSession? = null
+    private lateinit var daoSession: DaoSession
     private val DATABASE_NAME = "smart-robot"
+
 
     fun initDatabase() {
         val helper = object : DaoMaster.OpenHelper(this, DATABASE_NAME) {
@@ -36,7 +42,7 @@ open class DefaultBaseApplication : Application() {
         daoSession = DaoMaster(helper.writableDb).newSession()
     }
 
-    fun getDaoSession(): DaoSession? {
+    fun getDaoSession(): DaoSession {
         return daoSession
     }
 }
