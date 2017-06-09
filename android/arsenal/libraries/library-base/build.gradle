@@ -60,9 +60,9 @@ dependencies {
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"    //1.3MB [EventBus]
     compile "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlinVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion" //8KB
-    compile "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxlifecycleVersion"
-    compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.rxlifecycleVersion"
-    compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxlifecycleVersion"
+    //compile "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxlifecycleVersion"
+    //compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.rxlifecycleVersion"
+    //compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxlifecycleVersion"
 
     compile "com.jakewharton.rxbinding2:rxbinding-kotlin:$rootProject.ext.rxbindingVersion"
     compile "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rootProject.ext.rxbindingVersion"
@@ -72,7 +72,7 @@ dependencies {
     //compile "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$rootProject.ext.rxbindingVersion" //for TV
 
     /******* 其它常用库 ****************************************************************************/
-    compile 'com.jude:swipebackhelper:3.1.2'//滑动退出页面
+    compile 'com.jude:swipebackhelper:3.1.2'
 
     compile("com.facebook.react:react-native:$rootProject.ext.reactnativeVersion") {
         exclude module: "okhttp-ws" //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class

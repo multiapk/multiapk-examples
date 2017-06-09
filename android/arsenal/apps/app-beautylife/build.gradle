@@ -227,9 +227,9 @@ dependencies {
 
     // compile time start ----------------------------------------------------------------------
     // https://bitbucket.org/hvisser/android-apt/wiki/Migration
-    annotationProcessor 'org.androidannotations:androidannotations:4.1.0'
-    annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
-    provided "com.google.auto.value:auto-value:1.4.1"
+    //annotationProcessor 'org.androidannotations:androidannotations:4.1.0'
+    //annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
+    //provided "com.google.auto.value:auto-value:1.4.1"
     // compile time end   ----------------------------------------------------------------------
 
 
