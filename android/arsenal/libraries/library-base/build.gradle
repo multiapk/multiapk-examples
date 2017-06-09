@@ -72,6 +72,8 @@ dependencies {
     //compile "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$rootProject.ext.rxbindingVersion" //for TV
 
     /******* 其它常用库 ****************************************************************************/
+    compile 'com.jude:swipebackhelper:3.1.2'//滑动退出页面
+
     compile("com.facebook.react:react-native:$rootProject.ext.reactnativeVersion") {
         exclude module: "okhttp-ws" //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class
     }

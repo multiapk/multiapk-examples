@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Base.AppTheme" />
+    <style name="ActivityThemeTranslucent" parent="Base.AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/SlideRightAnimation</item>
+    </style>
+
+    <style name="AppTheme" parent="Base.AppTheme">
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
 
     <style name="AppTheme.OverlapSystemBar" parent="Base.AppTheme" />
 

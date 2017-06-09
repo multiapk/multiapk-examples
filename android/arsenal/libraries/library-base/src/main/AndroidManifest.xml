@@ -1,3 +1,4 @@
-<manifest package="com.multiapk.library">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+    package="com.multiapk.library">
 
 </manifest>

@@ -9,6 +9,7 @@ import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import com.jakewharton.rxbinding2.view.RxView
+import com.jude.swipbackhelper.SwipeBackHelper
 import com.multiapk.R
 import com.multiapk.base.DefaultApplication
 import com.tbruyelle.rxpermissions2.RxPermissions
@@ -16,8 +17,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
-import org.multiapk.library.base.DefaultActivity
-import org.multiapk.library.base.DefaultBaseActivity
+import org.smartrobot.base.DefaultActivity
+import org.smartrobot.base.DefaultBaseActivity
 import org.smartrobot.database.model.Order
 import java.util.concurrent.TimeUnit
 
@@ -26,9 +27,10 @@ class HomeActivity : DefaultBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        SwipeBackHelper.getCurrentPage(this).setSwipeBackEnable(false)
 
         val toolbar = findViewById(R.id.toolbar) as Toolbar
-        toolbar.inflateMenu(R.menu.home_menu);
+        toolbar.inflateMenu(R.menu.home_menu)
         toolbar.setOnMenuItemClickListener {
             Snackbar.make(toolbar, "您点击了:" + it?.title, Snackbar.LENGTH_SHORT).setDuration(3000).show()
             if (it.itemId == R.id.action_order) {

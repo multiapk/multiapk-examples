@@ -1,4 +1,4 @@
-package org.multiapk.library.base
+package org.smartrobot.base
 
 import android.app.Activity
 import android.content.Context
@@ -30,13 +30,13 @@ open class DefaultActivity : DefaultBaseActivity() {
         }
     }
 
-    public override fun onCreate(bundle: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         try {
             val args = intent.extras
             val themResId = args.getInt(KEY_THEME, 0)
             if (themResId > 0)
                 setTheme(themResId)
-            super.onCreate(bundle)
+            super.onCreate(savedInstanceState)
 
             setContentView(FrameLayout(this))
 
