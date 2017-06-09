@@ -2,6 +2,8 @@ package com.multiapk.modules.order
 
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import org.smartrobot.util.rx.RxBus
+import org.smartrobot.util.rx.RxTestEvent
 import java.util.concurrent.TimeUnit
 
 class OrderPresenter(private val view: OrderContract.View) : OrderContract.Presenter {
@@ -10,11 +12,12 @@ class OrderPresenter(private val view: OrderContract.View) : OrderContract.Prese
 
     override fun loadData(forceUpdate: Boolean) {
         view.showLoading()
-        subscriptions.add(dataSource.getOrders().delay(5, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe { result ->
+        subscriptions.add(dataSource.getOrders().delay(700, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe { result ->
             view.hideLoading()
             view.showToast("数据获取结束:${Thread.currentThread().name}")
             view.showData(result)
             view.showToast("数据刷新完毕:${Thread.currentThread().name}")
+            RxBus.instance.post(RxTestEvent("在订单页面设置"))
         })
     }
 

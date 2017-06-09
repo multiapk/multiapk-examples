@@ -14,16 +14,19 @@ import com.multiapk.R
 import com.multiapk.base.DefaultApplication
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseActivity
 import org.smartrobot.database.model.Order
+import org.smartrobot.util.rx.RxBus
+import org.smartrobot.util.rx.RxTestEvent
 import java.util.concurrent.TimeUnit
 
 class HomeActivity : DefaultBaseActivity() {
-
+    private val subscriptions: CompositeDisposable = CompositeDisposable()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
@@ -32,7 +35,7 @@ class HomeActivity : DefaultBaseActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         toolbar.inflateMenu(R.menu.home_menu)
         toolbar.setOnMenuItemClickListener {
-            Snackbar.make(toolbar, "您点击了:" + it?.title, Snackbar.LENGTH_SHORT).setDuration(3000).show()
+            Snackbar.make(toolbar, "您点击了:" + it?.title, Snackbar.LENGTH_SHORT).show()
             if (it.itemId == R.id.action_order) {
                 DefaultActivity.start(this, "com.multiapk.modules.order.OrderFragment")
             }
@@ -45,13 +48,13 @@ class HomeActivity : DefaultBaseActivity() {
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.i("krmao", "onQueryTextSubmit:" + query)
-                Snackbar.make(searchView, "您提交了:" + query, Snackbar.LENGTH_SHORT).setDuration(3000).show()
+                Snackbar.make(searchView, "您提交了:" + query, Snackbar.LENGTH_SHORT).show()
                 return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 Log.w("krmao", "onQueryTextChange:" + newText)
-                Snackbar.make(searchView, "文字更改:" + newText, Snackbar.LENGTH_SHORT).setDuration(3000).show()
+                Snackbar.make(searchView, "文字更改:" + newText, Snackbar.LENGTH_SHORT).show()
                 return true
             }
         })
@@ -68,7 +71,8 @@ class HomeActivity : DefaultBaseActivity() {
         RxView.clicks(button).debounce(200, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
             Snackbar.make(button, "hello michael", Snackbar.LENGTH_SHORT).setAction("undo", {
                 toast("you clicked undo")
-            }).setActionTextColor(R.color.material_blue_grey_800).setDuration(3000).show()
+            }).setActionTextColor(R.color.material_blue_grey_800).show()
+            RxBus.instance.post(RxTestEvent("点击首页按钮"))
         }
 
         val rxPermissions = RxPermissions(this)
@@ -108,6 +112,11 @@ class HomeActivity : DefaultBaseActivity() {
         })
 
         testDB()
+
+        subscriptions.add(RxBus.instance.toObservable(RxTestEvent::class.java).subscribe { event ->
+            Snackbar.make(button, event.content + ":thread=" + Thread.currentThread().name, Snackbar.LENGTH_SHORT).show()
+            collapsingToolbarLayout.title = event.content
+        })
     }
 
     fun testDB() {
@@ -119,5 +128,10 @@ class HomeActivity : DefaultBaseActivity() {
         orderDao?.insert(Order())
         orderDao?.insert(Order())
         orderDao?.insert(Order())
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        subscriptions.dispose()
     }
 }
