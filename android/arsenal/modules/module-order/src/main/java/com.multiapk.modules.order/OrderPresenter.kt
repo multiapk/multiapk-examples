@@ -20,7 +20,7 @@ class OrderPresenter(private val view: OrderContract.View) : OrderContract.Prese
 
     override fun subscribe() {
         subscriptions.clear()
-        loadData(true)
+        loadData(false)
     }
 
     override fun unSubscribe() {

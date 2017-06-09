@@ -1,4 +1,4 @@
-package org.multiapk.library.util.rx
+package org.smartrobot.util.rx
 
 import io.reactivex.Observable
 import io.reactivex.subjects.PublishSubject
