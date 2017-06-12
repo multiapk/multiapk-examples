@@ -13,7 +13,7 @@ import org.smartrobot.database.dao.DaoSession
 open class DefaultBaseApplication : Application() {
 
     companion object {
-        lateinit var instance: DefaultBaseApplication
+        lateinit var INSTANCE: DefaultBaseApplication
     }
 
     override fun onCreate() {
@@ -22,7 +22,7 @@ open class DefaultBaseApplication : Application() {
         else
             MultiApk.init(this)
         super.onCreate()
-        instance = this
+        INSTANCE = this
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);//selector vector support
 
@@ -31,7 +31,6 @@ open class DefaultBaseApplication : Application() {
 
     private lateinit var daoSession: DaoSession
     private val DATABASE_NAME = "smart-robot"
-
 
     fun initDatabase() {
         val helper = object : DaoMaster.OpenHelper(this, DATABASE_NAME) {

@@ -8,9 +8,9 @@ import org.smartrobot.database.dao.OrderDao
 import org.smartrobot.database.model.Order
 
 
-class OrderDataSource : OrderContract.DataSource {
+open class OrderRepository : OrderContract.DataSource {
 
-    val orderDao: OrderDao = DefaultBaseApplication.instance.getDaoSession().orderDao
+    val orderDao: OrderDao = DefaultBaseApplication.INSTANCE.getDaoSession().orderDao
 
     override fun getOrders(): Flowable<List<Order>> {
         return Flowable.fromCallable {

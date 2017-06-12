@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.widget.Toast
 import com.jakewharton.rxbinding2.view.RxView
 import com.jude.swipbackhelper.SwipeBackHelper
 import com.multiapk.R
@@ -18,12 +19,16 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
+import org.smartrobot.api.DefaultApiManager
+import org.smartrobot.api.DefaultRetrofitSchedulers
+import org.smartrobot.api.DefaultRetrofitSubscriber
 import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseActivity
 import org.smartrobot.database.model.Order
 import org.smartrobot.util.rx.RxBus
 import org.smartrobot.util.rx.RxTestEvent
 import java.util.concurrent.TimeUnit
+
 
 class HomeActivity : DefaultBaseActivity() {
     private val subscriptions: CompositeDisposable = CompositeDisposable()
@@ -73,6 +78,18 @@ class HomeActivity : DefaultBaseActivity() {
                 toast("you clicked undo")
             }).setActionTextColor(R.color.material_blue_grey_800).show()
             RxBus.instance.post(RxTestEvent("点击首页按钮"))
+
+            subscriptions.add(DefaultApiManager.getService().getData("www").compose(DefaultRetrofitSchedulers.compose<Any>()).subscribeWith(
+                    object : DefaultRetrofitSubscriber<Any>() {
+                        override fun onSuccess(result: Any) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                        override fun onFailure(msg: String) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+                    }
+            ))
         }
 
         val rxPermissions = RxPermissions(this)
@@ -118,6 +135,16 @@ class HomeActivity : DefaultBaseActivity() {
             collapsingToolbarLayout.title = event.content
         })
     }
+
+
+    fun handleResponse(androidList: List<Any>) {
+
+    }
+
+    fun handleError(error: Throwable) {
+        Toast.makeText(this, "Error " + error.localizedMessage, Toast.LENGTH_SHORT).show()
+    }
+
 
     fun testDB() {
         val daoSession = (application as DefaultApplication).getDaoSession()

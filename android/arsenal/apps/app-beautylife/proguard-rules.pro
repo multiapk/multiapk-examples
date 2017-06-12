@@ -77,6 +77,9 @@ public static java.lang.String TABLENAME;
 -dontwarn retrofit2.Platform$Java8
 
 #okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault
 -dontnote okhttp3.**
 
 #com.mlibrary.multiapk.**

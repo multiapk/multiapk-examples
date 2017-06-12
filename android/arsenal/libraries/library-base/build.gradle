@@ -48,14 +48,17 @@ dependencies {
     compile "com.facebook.fresco:imagepipeline-okhttp3:$rootProject.ext.frescoVersion"
 
     /******* 网络请求库 ****************************************************************************/
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3Version"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofit2rxjava2Version"
+    compile "org.ligboy.retrofit2:converter-fastjson-android:$rootProject.ext.converterfastjsonandroidVersion"
 
     /******* 数据库管理 ****************************************************************************/
     compile "org.greenrobot:greendao:$rootProject.ext.greendaoVersion"
     //compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.sqlbriteVersion" // wait for support rxjava2
 
     /******* 必备工具库 ****************************************************************************/
+    compile "com.alibaba:fastjson:$rootProject.ext.fastjsonVersion"
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"  //1.5MB
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"    //1.3MB [EventBus]
     compile "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlinVersion"

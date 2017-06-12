@@ -155,10 +155,13 @@ ext {// Sdk and tools
     rxbindingVersion = '2.0.0'
     sqlbriteVersion = '1.1.1'
     frescoVersion = '1.3.0'
+    okhttp3Version = '3.8.0'
     retrofitVersion = '2.3.0'
     retrofit2rxjava2Version = '1.0.0'
+    converterfastjsonandroidVersion = '2.1.0'
     reactnativeVersion = '0.40.0'
     leakcanaryVersion = '1.5.1'
+    fastjsonVersion = '1.1.58.android'
 
     //others
     Properties properties = new Properties()

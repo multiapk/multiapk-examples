@@ -7,7 +7,7 @@ import org.smartrobot.util.rx.RxTestEvent
 import java.util.concurrent.TimeUnit
 
 class OrderPresenter(private val view: OrderContract.View) : OrderContract.Presenter {
-    private val dataSource: OrderContract.DataSource = OrderDataSource()
+    private val dataSource: OrderContract.DataSource = OrderRepository()
     private val subscriptions: CompositeDisposable = CompositeDisposable()
 
     override fun loadData(forceUpdate: Boolean) {
@@ -30,4 +30,3 @@ class OrderPresenter(private val view: OrderContract.View) : OrderContract.Prese
         subscriptions.clear()
     }
 }
-
