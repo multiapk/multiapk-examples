@@ -4,10 +4,11 @@ import android.app.Application
 import android.support.multidex.MultiDex
 import android.support.v7.app.AppCompatDelegate
 import com.mlibrary.multiapk.MultiApk
-import com.multiapk.library.BuildConfig
 import org.greenrobot.greendao.database.Database
+import org.smartrobot.BuildConfig
 import org.smartrobot.database.dao.DaoMaster
 import org.smartrobot.database.dao.DaoSession
+import org.smartrobot.util.DefaultLogUtil
 
 
 open class DefaultBaseApplication : Application() {
@@ -25,7 +26,11 @@ open class DefaultBaseApplication : Application() {
         INSTANCE = this
 
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);//selector vector support
-
+        // Simply add the handler, and that's it! No need to add any code
+        // to every activity. Everything is contained in MActivityLifecycleCallbacks
+        // with just a few lines of code. Now *that's* nice.
+        registerActivityLifecycleCallbacks(DefaultActivityLifecycleCallbacks())
+        DefaultLogUtil.setDebugAble(BuildConfig.solidMode)
         initDatabase()
     }
 

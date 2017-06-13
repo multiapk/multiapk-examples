@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#efefef"
+    android:orientation="vertical">
+
+    <com.mlibrary.widget.titlebar.DefaultTitleBar
+        android:id="@+id/DefaultTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_titlebar_height"
+        android:background="@drawable/default_b_e2_white_normal_shape"
+        app:left0Background="@drawable/default_menu_back_left_black"
+        app:left0BgViewPadding="7dp"
+        app:left0BgWidth="@dimen/default_titlebar_height"
+        app:left0Visible="visible"
+        app:titleSize="18dp"
+        app:titleText=""
+        app:titleTxtColor="@color/black" />
+
+    <com.mlibrary.widget.loading.DefaultFrameLoadingLayout
+        android:id="@+id/mFrameLayoutLoading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <WebView
+            android:id="@+id/mWebView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.mlibrary.widget.loading.DefaultFrameLoadingLayout>
+</LinearLayout>

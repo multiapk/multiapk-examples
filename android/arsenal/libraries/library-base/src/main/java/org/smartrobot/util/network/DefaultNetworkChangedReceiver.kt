@@ -6,7 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
-import org.smartrobot.util.MLogUtil
+import org.smartrobot.util.DefaultLogUtil
 
 class DefaultNetworkChangedReceiver : BroadcastReceiver() {
     private val TAG = javaClass.simpleName
@@ -20,21 +20,21 @@ class DefaultNetworkChangedReceiver : BroadcastReceiver() {
             val wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
             when (wifiState) {
                 WifiManager.WIFI_STATE_DISABLED -> if (mLastNetworkType == null)
-                    MLogUtil.w(TAG, "首次启动，多多关照....")
+                    DefaultLogUtil.w(TAG, "首次启动，多多关照....")
                 else
-                    MLogUtil.e(TAG, ">>>>--------start-------->>>>")
+                    DefaultLogUtil.e(TAG, ">>>>--------start-------->>>>")
                 WifiManager.WIFI_STATE_DISABLING -> {
                 }
                 WifiManager.WIFI_STATE_ENABLED -> if (mLastNetworkType == null)
-                    MLogUtil.w(TAG, "首次启动，多多关照....")
+                    DefaultLogUtil.w(TAG, "首次启动，多多关照....")
                 else
-                    MLogUtil.e(TAG, ">>>>--------start-------->>>>")
+                    DefaultLogUtil.e(TAG, ">>>>--------start-------->>>>")
                 WifiManager.WIFI_STATE_ENABLING -> {
                 }
                 WifiManager.WIFI_STATE_UNKNOWN -> if (mLastNetworkType == null)
-                    MLogUtil.w(TAG, "首次启动，多多关照....")
+                    DefaultLogUtil.w(TAG, "首次启动，多多关照....")
                 else
-                    MLogUtil.e(TAG, ">>>>--------start-------->>>>")
+                    DefaultLogUtil.e(TAG, ">>>>--------start-------->>>>")
             }
         }
         // 这个监听wifi的连接状态即是否连上了一个有效无线路由，当上边广播的状态是WifiManager.WIFI_STATE_DISABLING，和WIFI_STATE_DISABLED的时候，根本不会接到这个广播。
@@ -45,7 +45,7 @@ class DefaultNetworkChangedReceiver : BroadcastReceiver() {
                 ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo gprs = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
                 NetworkInfo wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-                MLogUtil.w(TAG, "网络状态变化广播  WIFI: " + wifi.isConnected() + "- GPRS: " + gprs.isConnected() + "- 当前状态: " + MNetworkUtil.getNetType(manager));
+                DefaultLogUtil.w(TAG, "网络状态变化广播  WIFI: " + wifi.isConnected() + "- GPRS: " + gprs.isConnected() + "- 当前状态: " + MNetworkUtil.getNetType(manager));
             }
         }*/
         // 这个监听网络连接的设置，包括wifi和移动数据的打开和关闭。.
@@ -59,9 +59,9 @@ class DefaultNetworkChangedReceiver : BroadcastReceiver() {
             if (mLastNetworkType != null) {//第一次
                 if (mLastNetworkType != currentNetworkType) {
                     // todo others
-                    MLogUtil.w(TAG, "呼叫下载处理逻辑")
+                    DefaultLogUtil.w(TAG, "呼叫下载处理逻辑")
                     //
-                    MLogUtil.e(TAG, "<<<<--------end--------<<<<")
+                    DefaultLogUtil.e(TAG, "<<<<--------end--------<<<<")
                     mLastNetworkType = currentNetworkType
                 }
             } else
