@@ -101,8 +101,8 @@
     @android.webkit.JavascriptInterface <methods>;
 }
 -keepattributes JavascriptInterface
--keep public class com.mlibrary.**{*;}
--dontwarn com.mlibrary.**
+-keep public class org.smartrobot.**{*;}
+-dontwarn org.smartrobot.**
 
 # Square
 -keep class com.squareup.okhttp.** { *; }

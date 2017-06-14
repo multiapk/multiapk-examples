@@ -1,10 +1,10 @@
 package com.multiapk.modules.order
 
+import business.smartrobot.database.model.Order
 import io.reactivex.Flowable
 import org.smartrobot.base.mvp.DefaultBaseDataSource
 import org.smartrobot.base.mvp.DefaultBasePresenter
 import org.smartrobot.base.mvp.DefaultBaseView
-import org.smartrobot.database.model.Order
 
 interface OrderContract {
 

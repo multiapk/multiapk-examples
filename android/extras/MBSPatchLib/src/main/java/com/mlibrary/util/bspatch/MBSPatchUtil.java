@@ -1,4 +1,4 @@
-package com.mlibrary.util.bspatch;
+package org.smartrobot.util.bspatch;
 
 public class MBSPatchUtil {
     /**

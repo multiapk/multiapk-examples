@@ -1,7 +1,6 @@
 apply plugin: "com.android.library"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'org.greenrobot.greendao'
 
 android {
 
@@ -14,11 +13,6 @@ android {
         buildConfigField("boolean", "solidMode", "$rootProject.ext.solidMode")
     }
 
-    greendao {
-        schemaVersion 1
-        daoPackage 'org.smartrobot.database.dao'
-        targetGenDir 'src/main/java'
-    }
 }
 
 dependencies {
@@ -80,7 +74,11 @@ dependencies {
     compile("com.facebook.react:react-native:$rootProject.ext.reactnativeVersion") {
         exclude module: "okhttp-ws" //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class
     }
-    //compile "com.mlibrary:multiapk-library:0.0.1"
+    //compile "org.smartrobot:multiapk-library:0.0.1"
     compile project(":extras:multiapk-library")
 
+    // LeakCanary
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
 }

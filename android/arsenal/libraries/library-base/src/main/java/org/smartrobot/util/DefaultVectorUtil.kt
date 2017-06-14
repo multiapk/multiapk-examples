@@ -7,10 +7,10 @@ import org.smartrobot.base.DefaultBaseApplication
 
 object DefaultVectorUtil {
     fun getVectorDrawableCompat(vectorResId: Int): Drawable {
-        return AppCompatDrawableManager.get().getDrawable(DefaultBaseApplication.INSTANCE, vectorResId)
+        return AppCompatDrawableManager.get().getDrawable(DefaultBaseApplication.instance, vectorResId)
     }
 
     fun getAnimatedVectorDrawableCompat(animatedVectorResId: Int): AnimatedVectorDrawableCompat? {
-        return AnimatedVectorDrawableCompat.create(DefaultBaseApplication.INSTANCE, animatedVectorResId)
+        return AnimatedVectorDrawableCompat.create(DefaultBaseApplication.instance, animatedVectorResId)
     }
 }

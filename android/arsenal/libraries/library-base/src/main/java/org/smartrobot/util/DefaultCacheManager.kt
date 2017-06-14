@@ -68,14 +68,13 @@ class DefaultCacheManager private constructor() {
             get() = SingleTon.instance
 
         // 荣耀6 会有很多警告
-        // logDir = DefaultBaseApplication.INSTANCE.getExternalFilesDir("cache");
         val packageDir: File
             get() {
                 var cacheDir: File? = null
                 if (DefaultSystemUtil.isSdCardExist) {
-                    cacheDir = File(Environment.getExternalStorageDirectory().absolutePath + "/Android/data/" + DefaultBaseApplication.Companion.INSTANCE.packageName)
+                    cacheDir = File(Environment.getExternalStorageDirectory().absolutePath + "/Android/data/" + DefaultBaseApplication.instance.packageName)
                 } else {
-                    cacheDir = File(DefaultBaseApplication.Companion.INSTANCE.filesDir.absolutePath)
+                    cacheDir = File(DefaultBaseApplication.instance.filesDir.absolutePath)
                 }
 
                 if (!cacheDir.exists())

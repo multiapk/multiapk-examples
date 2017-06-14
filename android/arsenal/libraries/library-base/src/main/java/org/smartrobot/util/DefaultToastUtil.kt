@@ -25,7 +25,7 @@ class DefaultToastUtil private constructor() {
         private var toast: Toast? = null
 
         fun show(strId: Int) {
-            show(DefaultBaseApplication.INSTANCE.resources.getString(strId))
+            show(DefaultBaseApplication.instance.resources.getString(strId))
         }
 
         fun show(msg: String, defaultStr: String) {
@@ -36,7 +36,7 @@ class DefaultToastUtil private constructor() {
         fun show(msg: String) {
             if (!TextUtils.isEmpty(msg)) {
                 if (toast == null) {
-                    toast = Toast.makeText(DefaultBaseApplication.INSTANCE, msg, Toast.LENGTH_SHORT)
+                    toast = Toast.makeText(DefaultBaseApplication.instance, msg, Toast.LENGTH_SHORT)
                     toast!!.view = toast!!.view
                     toast!!.duration = Toast.LENGTH_SHORT
                 } else {
@@ -48,7 +48,7 @@ class DefaultToastUtil private constructor() {
 
         fun showDefault(msg: String) {
             if (!TextUtils.isEmpty(msg))
-                Toast.makeText(DefaultBaseApplication.INSTANCE, msg, Toast.LENGTH_SHORT).show()
+                Toast.makeText(DefaultBaseApplication.instance, msg, Toast.LENGTH_SHORT).show()
         }
 
         private var mToastCount = 5
@@ -56,7 +56,7 @@ class DefaultToastUtil private constructor() {
         fun showMore(message: String) {
             if (TextUtils.isEmpty(message))
                 return
-            val toast = Toast(DefaultBaseApplication.INSTANCE)
+            val toast = Toast(DefaultBaseApplication.instance)
             val viewHolder = toastLayout
             if (viewHolder != null) {
                 viewHolder.textView.text = message
@@ -87,12 +87,12 @@ class DefaultToastUtil private constructor() {
 
         private val toastLayout: ViewHolder?
             get() {
-                val contentLayout = LinearLayout(DefaultBaseApplication.INSTANCE)
+                val contentLayout = LinearLayout(DefaultBaseApplication.instance)
                 contentLayout.setBackgroundResource(R.drawable.default_toast)
-                val textView = TextView(DefaultBaseApplication.INSTANCE)
+                val textView = TextView(DefaultBaseApplication.instance)
                 textView.setShadowLayer(2.75f, 1f, 1f, Color.parseColor("#BB000000"))
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
-                textView.setTextColor(DefaultBaseApplication.INSTANCE.resources.getColor(android.R.color.background_light))
+                textView.setTextColor(DefaultBaseApplication.instance.resources.getColor(android.R.color.background_light))
                 textView.setPadding(dp5, dp5, dp5, dp5)
                 contentLayout.addView(textView)
                 return ViewHolder(contentLayout, textView)

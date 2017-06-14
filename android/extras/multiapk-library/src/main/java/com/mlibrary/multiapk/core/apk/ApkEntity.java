@@ -1,11 +1,11 @@
-package com.mlibrary.multiapk.core.apk;
+package org.smartrobot.multiapk.core.apk;
 
 import android.text.TextUtils;
 
-import com.mlibrary.multiapk.base.runtime.RuntimeArgs;
-import com.mlibrary.multiapk.base.util.FileUtil;
-import com.mlibrary.multiapk.base.util.LogUtil;
-import com.mlibrary.multiapk.core.hotpatch.Hotpatch;
+import org.smartrobot.multiapk.base.runtime.RuntimeArgs;
+import org.smartrobot.multiapk.base.util.FileUtil;
+import org.smartrobot.multiapk.base.util.LogUtil;
+import org.smartrobot.multiapk.core.hotpatch.Hotpatch;
 
 import java.io.File;
 import java.io.FilenameFilter;

@@ -8,24 +8,25 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.NotificationCompat
 
 import org.smartrobot.base.DefaultActivity
 
 
 object DefaultNotificationUtil {
-    fun showNotify(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: Notification.Builder) {
+    fun showNotify(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: NotificationCompat.Builder) {
         showNotify(context, notificationId, notificationFlags, notificationBuilder, null)
     }
 
-    fun showNotifyToActivity(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: Notification.Builder, intent: Intent) {
+    fun showNotifyToActivity(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: NotificationCompat.Builder, intent: Intent) {
         showNotify(context, notificationId, notificationFlags, notificationBuilder, PendingIntent.getActivity(context, notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT))
     }
 
-    fun showNotifyToActivity(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: Notification.Builder, intent: Intent, pendingIntentFlags: Int) {
+    fun showNotifyToActivity(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: NotificationCompat.Builder, intent: Intent, pendingIntentFlags: Int) {
         showNotify(context, notificationId, notificationFlags, notificationBuilder, PendingIntent.getActivity(context, notificationId, intent, pendingIntentFlags))
     }
 
-    fun showNotifyToActivity(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: Notification.Builder, toActivity: Class<out Activity>, bundle: Bundle?, pendingIntentFlags: Int) {
+    fun showNotifyToActivity(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: NotificationCompat.Builder, toActivity: Class<out Activity>, bundle: Bundle?, pendingIntentFlags: Int) {
         val intent = Intent(context, toActivity)
         if (bundle != null)
             intent.putExtras(bundle)
@@ -33,7 +34,7 @@ object DefaultNotificationUtil {
         showNotify(context, notificationId, notificationFlags, notificationBuilder, PendingIntent.getActivity(context, notificationId, intent, pendingIntentFlags))
     }
 
-    fun showNotifyToFragment(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: Notification.Builder, fragmentClass: Class<out Fragment>, bundle: Bundle?) {
+    fun showNotifyToFragment(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: NotificationCompat.Builder, fragmentClass: Class<out Fragment>, bundle: Bundle?) {
         val intent = DefaultActivity.getNewTaskIntent(context, notificationId, fragmentClass, bundle)
         if (bundle != null)
             intent.putExtras(bundle)
@@ -41,7 +42,7 @@ object DefaultNotificationUtil {
         showNotify(context, notificationId, notificationFlags, notificationBuilder, PendingIntent.getActivity(context, notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT))
     }
 
-    fun showNotifyToFragment(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: Notification.Builder, fragmentClass: Class<out Fragment>, bundle: Bundle?, pendingIntentFlags: Int) {
+    fun showNotifyToFragment(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: NotificationCompat.Builder, fragmentClass: Class<out Fragment>, bundle: Bundle?, pendingIntentFlags: Int) {
         val intent = DefaultActivity.getNewTaskIntent(context, notificationId, fragmentClass, bundle)
         if (bundle != null)
             intent.putExtras(bundle)
@@ -49,7 +50,7 @@ object DefaultNotificationUtil {
         showNotify(context, notificationId, notificationFlags, notificationBuilder, PendingIntent.getActivity(context, notificationId, intent, pendingIntentFlags))
     }
 
-    fun showNotify(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: Notification.Builder, pendingIntent: PendingIntent?) {
+    fun showNotify(context: Context, notificationId: Int, notificationFlags: Int, notificationBuilder: NotificationCompat.Builder, pendingIntent: PendingIntent?) {
         if (pendingIntent != null)
             notificationBuilder.setContentIntent(pendingIntent)
         // 通过通知管理器来发起通知。如果id不同，则每click，在status那里增加一个提示

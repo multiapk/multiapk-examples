@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import com.jakewharton.rxbinding2.view.RxView
-import com.mlibrary.multiapk.core.hotpatch.Hotpatch
+import org.smartrobot.multiapk.core.hotpatch.Hotpatch
 import org.smartrobot.base.DefaultBaseFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import org.jetbrains.anko.toast

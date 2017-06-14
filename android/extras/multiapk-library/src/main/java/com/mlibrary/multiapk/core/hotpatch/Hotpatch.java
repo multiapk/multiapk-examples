@@ -1,13 +1,13 @@
-package com.mlibrary.multiapk.core.hotpatch;
+package org.smartrobot.multiapk.core.hotpatch;
 
 import android.text.TextUtils;
 
-import com.mlibrary.multiapk.MultiApk;
-import com.mlibrary.multiapk.base.runtime.RuntimeArgs;
-import com.mlibrary.multiapk.base.util.FileUtil;
-import com.mlibrary.multiapk.base.util.LogUtil;
-import com.mlibrary.multiapk.core.apk.ApkManager;
-import com.mlibrary.util.bspatch.MBSPatchUtil;
+import org.smartrobot.multiapk.MultiApk;
+import org.smartrobot.multiapk.base.runtime.RuntimeArgs;
+import org.smartrobot.multiapk.base.util.FileUtil;
+import org.smartrobot.multiapk.base.util.LogUtil;
+import org.smartrobot.multiapk.core.apk.ApkManager;
+import org.smartrobot.util.bspatch.MBSPatchUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;

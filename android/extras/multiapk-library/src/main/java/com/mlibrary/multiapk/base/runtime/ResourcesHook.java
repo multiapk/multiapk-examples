@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.base.runtime;
+package org.smartrobot.multiapk.base.runtime;
 
 import android.app.Application;
 import android.content.res.AssetManager;
@@ -6,9 +6,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-import com.mlibrary.multiapk.base.hack.AndroidHack;
-import com.mlibrary.multiapk.base.hack.SysHacks;
-import com.mlibrary.multiapk.base.util.LogUtil;
+import org.smartrobot.multiapk.base.hack.AndroidHack;
+import org.smartrobot.multiapk.base.hack.SysHacks;
+import org.smartrobot.multiapk.base.util.LogUtil;
 
 import java.lang.reflect.Constructor;
 import java.util.Arrays;

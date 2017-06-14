@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.base.util;
+package org.smartrobot.multiapk.base.util;
 
 import android.text.TextUtils;
 import android.util.Log;

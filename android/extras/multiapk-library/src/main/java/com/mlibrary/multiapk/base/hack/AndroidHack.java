@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.base.hack;
+package org.smartrobot.multiapk.base.hack;
 
 import android.app.Application;
 import android.app.Instrumentation;

@@ -8,6 +8,7 @@ include ':arsenal:apps:app-beautylife'
 //
 //app common libraries
 include ':arsenal:libraries:library-base'
+include ':arsenal:libraries:library-business'
 
 //modules
 include ':arsenal:modules:module-computer'

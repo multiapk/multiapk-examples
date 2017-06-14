@@ -2,7 +2,7 @@ bsdiff util, and bspatch for android.
 ---
 ###hot to use
 ```
-    compile 'com.mlibrary:mbspatchlib:0.0.1'
+    compile 'org.smartrobot:mbspatchlib:0.0.1'
 ```
 
 ###exambles

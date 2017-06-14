@@ -5,8 +5,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.widget.FrameLayout
-import org.smartrobot.util.DefaultLogUtil
 
 open class DefaultActivity : DefaultBaseActivity() {
 
@@ -24,11 +24,11 @@ open class DefaultActivity : DefaultBaseActivity() {
         }
 
         fun startNewTask(fragmentClass: Class<*>, args: Bundle?) {
-            DefaultBaseApplication.INSTANCE.startActivity(getNewTaskIntent(DefaultBaseApplication.INSTANCE, 0, fragmentClass, args))
+            DefaultBaseApplication.instance.startActivity(getNewTaskIntent(DefaultBaseApplication.instance, 0, fragmentClass, args))
         }
 
         fun startSingleTask(from: Activity, fragmentClass: Class<*>, args: Bundle) {
-            DefaultBaseApplication.INSTANCE.startActivity(getSingleTaskIntent(from, 0, fragmentClass, args))
+            DefaultBaseApplication.instance.startActivity(getSingleTaskIntent(from, 0, fragmentClass, args))
         }
 
         fun start(activity: Activity, fragmentClass: Class<*>, args: Bundle?, themResId: Int) {
@@ -130,7 +130,6 @@ open class DefaultActivity : DefaultBaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         try {
             val args = intent.extras
             //设置主题
@@ -146,7 +145,7 @@ open class DefaultActivity : DefaultBaseActivity() {
             fragment.arguments = args.getBundle(KEY_FRAGMENT_ARGS)
             supportFragmentManager.beginTransaction().add(android.R.id.content, fragment, fragmentClassName).commitAllowingStateLoss()
         } catch (e: Exception) {
-            DefaultLogUtil.e(DefaultActivity::javaClass.name, "Has error in new instance of fragment", e)
+            Log.e(DefaultActivity::javaClass.name, "Has error in new instance of fragment", e)
         }
     }
 }

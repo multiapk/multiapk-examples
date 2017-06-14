@@ -1,19 +1,19 @@
-package com.mlibrary.multiapk.core.apk;
+package org.smartrobot.multiapk.core.apk;
 
 import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
-import com.mlibrary.multiapk.MultiApk;
-import com.mlibrary.multiapk.base.hack.AndroidHack;
-import com.mlibrary.multiapk.base.hack.SysHacks;
-import com.mlibrary.multiapk.base.runtime.InstrumentationHook;
-import com.mlibrary.multiapk.base.runtime.ResourcesHook;
-import com.mlibrary.multiapk.base.runtime.RuntimeArgs;
-import com.mlibrary.multiapk.base.util.FileUtil;
-import com.mlibrary.multiapk.base.util.LogUtil;
-import com.mlibrary.multiapk.base.util.PreferencesUtil;
+import org.smartrobot.multiapk.MultiApk;
+import org.smartrobot.multiapk.base.hack.AndroidHack;
+import org.smartrobot.multiapk.base.hack.SysHacks;
+import org.smartrobot.multiapk.base.runtime.InstrumentationHook;
+import org.smartrobot.multiapk.base.runtime.ResourcesHook;
+import org.smartrobot.multiapk.base.runtime.RuntimeArgs;
+import org.smartrobot.multiapk.base.util.FileUtil;
+import org.smartrobot.multiapk.base.util.LogUtil;
+import org.smartrobot.multiapk.base.util.PreferencesUtil;
 
 import java.io.File;
 import java.util.ArrayList;

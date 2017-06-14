@@ -224,6 +224,7 @@ android {
 dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile project(':arsenal:libraries:library-base')
+    compile project(':arsenal:libraries:library-business')
 
     // compile time start ----------------------------------------------------------------------
     // https://bitbucket.org/hvisser/android-apt/wiki/Migration
@@ -277,10 +278,5 @@ dependencies {
         androidTestCompile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
         androidTestCompile "com.android.support:animated-vector-drawable:$rootProject.ext.supportLibraryVersion"
         //androidTestCompile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
-
-        // LeakCanary
-        debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVersion"
-        releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
-        testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
     }
 }

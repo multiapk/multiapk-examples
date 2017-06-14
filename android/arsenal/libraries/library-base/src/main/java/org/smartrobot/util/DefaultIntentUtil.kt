@@ -129,7 +129,7 @@ object DefaultIntentUtil {
     }
 
     fun goToAppDetails(context: Context) {
-        goToDefault(context, getInstalledAppDetailsIntent(DefaultBaseApplication.INSTANCE.packageName))
+        goToDefault(context, getInstalledAppDetailsIntent(DefaultBaseApplication.instance.packageName))
     }
 
     fun getInstalledAppDetailsIntent(packageName: String): Intent {
@@ -227,7 +227,7 @@ object DefaultIntentUtil {
         if (intent != null) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             try {
-                DefaultBaseApplication.INSTANCE.startActivity(intent)
+                DefaultBaseApplication.instance.startActivity(intent)
             } catch (e: Exception) {
                 e.printStackTrace()
             }

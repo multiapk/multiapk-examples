@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.util;
+package org.smartrobot.multiapk.util;
 
 public class TextUtil {
     public static boolean isEmpty(CharSequence str) {

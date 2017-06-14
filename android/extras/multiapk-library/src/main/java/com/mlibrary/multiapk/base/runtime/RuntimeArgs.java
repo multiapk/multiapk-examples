@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.base.runtime;
+package org.smartrobot.multiapk.base.runtime;
 
 import android.annotation.SuppressLint;
 import android.app.Application;

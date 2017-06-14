@@ -12,7 +12,7 @@ class DefaultActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks
     private int started;
     private int stopped;*/
 
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle) {}
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
 
     override fun onActivityDestroyed(activity: Activity) {}
 
@@ -25,7 +25,7 @@ class DefaultActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks
         android.util.Log.w("test", "application is in foreground: " + (resumed > paused))
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {}
 
     override fun onActivityStarted(activity: Activity) {
         ++started

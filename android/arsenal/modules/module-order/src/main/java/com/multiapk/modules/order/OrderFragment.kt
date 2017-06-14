@@ -10,10 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import business.smartrobot.database.model.Order
 import kotlinx.android.synthetic.main.fragment_order.*
 import org.jetbrains.annotations.NotNull
 import org.smartrobot.base.DefaultBaseFragment
-import org.smartrobot.database.model.Order
 
 class OrderFragment : DefaultBaseFragment(), OrderContract.View {
 

@@ -28,9 +28,9 @@ publish {
     autoPublish = true //上传成功后自动发布
     repoName = "maven"
 
-    groupId = "com.mlibrary"//compile 'com.mlibrary:mpulllib:0.1'
-    artifactId = "mbspatchlib" //compile 'com.mlibrary:mpulllib:0.1'
-    publishVersion = "0.0.2"  //compile 'com.mlibrary:mpulllib:0.1'
+    groupId = "org.smartrobot"//compile 'org.smartrobot:mpulllib:0.1'
+    artifactId = "mbspatchlib" //compile 'org.smartrobot:mpulllib:0.1'
+    publishVersion = "0.0.2"  //compile 'org.smartrobot:mpulllib:0.1'
 
     userOrg = "krmao"           //krmao/maven/MPullLib
     uploadName = "MBSPatchLib"     //krmao/maven/MPullLib

@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.base.hack;
+package org.smartrobot.multiapk.base.hack;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

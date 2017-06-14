@@ -19,8 +19,8 @@ import com.facebook.imagepipeline.image.CloseableImage
 import com.facebook.imagepipeline.request.ImageRequest
 import com.facebook.imagepipeline.request.ImageRequestBuilder
 import org.smartrobot.BuildConfig
-import org.smartrobot.api.DefaultOkHttpClient
 import org.smartrobot.base.DefaultBaseApplication
+import org.smartrobot.util.http.DefaultOkHttpClient
 import java.io.File
 
 //http://www.fresco-cn.org/
@@ -112,15 +112,15 @@ object DefaultFrescoUtil {
     }
 
     fun fetchDecodedImage(imageRequest: ImageRequest, baseDataSubscriber: BaseDataSubscriber<CloseableReference<CloseableImage>>) {
-        Fresco.getImagePipeline().fetchDecodedImage(imageRequest, DefaultBaseApplication.INSTANCE).subscribe(baseDataSubscriber, CallerThreadExecutor.getInstance())
+        Fresco.getImagePipeline().fetchDecodedImage(imageRequest, DefaultBaseApplication.instance).subscribe(baseDataSubscriber, CallerThreadExecutor.getInstance())
     }
 
     fun fetchImageFromBitmapCache(imageRequest: ImageRequest, baseDataSubscriber: BaseDataSubscriber<CloseableReference<CloseableImage>>) {
-        Fresco.getImagePipeline().fetchImageFromBitmapCache(imageRequest, DefaultBaseApplication.INSTANCE).subscribe(baseDataSubscriber, CallerThreadExecutor.getInstance())
+        Fresco.getImagePipeline().fetchImageFromBitmapCache(imageRequest, DefaultBaseApplication.instance).subscribe(baseDataSubscriber, CallerThreadExecutor.getInstance())
     }
 
     fun fetchEncodedImage(imageRequest: ImageRequest, baseDataSubscriber: BaseDataSubscriber<CloseableReference<PooledByteBuffer>>) {
-        Fresco.getImagePipeline().fetchEncodedImage(imageRequest, DefaultBaseApplication.INSTANCE).subscribe(baseDataSubscriber, CallerThreadExecutor.getInstance())
+        Fresco.getImagePipeline().fetchEncodedImage(imageRequest, DefaultBaseApplication.instance).subscribe(baseDataSubscriber, CallerThreadExecutor.getInstance())
     }
 
     /*fun isImageDownloaded(loadUri: Uri?): Boolean {

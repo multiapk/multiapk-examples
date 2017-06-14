@@ -8,7 +8,7 @@ import android.widget.ListView
 /**
  * 可以嵌入到 ScrollView
  */
-class DefaultListView : ListView {
+open class DefaultListView : ListView {
 
     constructor(context: Context) : super(context) {}
 

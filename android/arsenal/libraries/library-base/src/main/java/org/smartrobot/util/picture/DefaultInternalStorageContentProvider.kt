@@ -70,7 +70,7 @@ class DefaultInternalStorageContentProvider : ContentProvider() {
     }
 
     companion object {
-        val CONTENT_URI = Uri.parse("content://com.mlibrary.crop/")
+        val CONTENT_URI = Uri.parse("content://org.smartrobot.crop/")
         private val MIME_TYPES = HashMap<String, String>()
 
         init {

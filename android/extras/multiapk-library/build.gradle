@@ -28,7 +28,7 @@ android {
 }
 
 dependencies {
-    //compile 'com.mlibrary:mbspatchlib:0.0.2'
+    //compile 'org.smartrobot:mbspatchlib:0.0.2'
     compile project(':extras:MBSPatchLib') //local
 }
 
@@ -41,9 +41,9 @@ publish {
     dryRun = false
     autoPublish = true //上传成功后自动发布
     repoName = "maven"
-    groupId = "com.mlibrary"//compile 'com.mlibrary:mpulllib:0.1'
-    artifactId = "multiapk-library" //compile 'com.mlibrary:mpulllib:0.1'
-    publishVersion = "0.0.1"  //compile 'com.mlibrary:mpulllib:0.1'
+    groupId = "org.smartrobot"//compile 'org.smartrobot:mpulllib:0.1'
+    artifactId = "multiapk-library" //compile 'org.smartrobot:mpulllib:0.1'
+    publishVersion = "0.0.1"  //compile 'org.smartrobot:mpulllib:0.1'
     userOrg = "krmao"           //krmao/maven/MPullLib
     uploadName = "multiapk-library"     //krmao/maven/MPullLib
     desc = "apply to multiapk.plugin https://github.com/multiapk/multiapk-plugin"

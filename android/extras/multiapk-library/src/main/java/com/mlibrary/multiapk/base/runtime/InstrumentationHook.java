@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.base.runtime;
+package org.smartrobot.multiapk.base.runtime;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -19,9 +19,9 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 
-import com.mlibrary.multiapk.base.hack.SysHacks;
-import com.mlibrary.multiapk.base.util.LogUtil;
-import com.mlibrary.multiapk.MultiApk;
+import org.smartrobot.multiapk.base.hack.SysHacks;
+import org.smartrobot.multiapk.base.util.LogUtil;
+import org.smartrobot.multiapk.MultiApk;
 
 import java.util.List;
 

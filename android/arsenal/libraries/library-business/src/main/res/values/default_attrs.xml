@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DefaultFrameLoadingLayout">
+        <attr name="loadingView" format="reference" />
+        <attr name="failureView" format="reference" />
+        <attr name="emptyView" format="reference" />
+        <attr name="centerInParent" format="reference|boolean" />
+        <attr name="useSmallStyle" format="reference|boolean" />
+        <attr name="scaleFactor" format="float" />
+        <attr name="allBackground" format="reference|color" />
+    </declare-styleable>
+
+
+    <declare-styleable name="DefaultTitleBar">
+        <!--title-->
+        <attr name="titleText" format="reference|string" />
+        <attr name="titleSize" format="reference|dimension" />
+        <attr name="titleTxtColor" format="reference|color" />
+        <attr name="titleAppearance" format="integer" />
+        <!--left0-->
+        <attr name="left0BgViewBackground" format="reference|color" />
+        <attr name="left0BgViewPadding" format="reference|dimension" />
+        <attr name="left0Visible" format="enum">
+            <enum name="visible" value="0x00000000" />
+            <enum name="invisible" value="0x00000004" />
+            <enum name="gone" value="0x00000008" />
+        </attr>
+        <attr name="left0Appearance" format="integer" />
+        <attr name="left0Background" format="reference|color" />
+        <attr name="left0Text" format="reference|string" />
+        <attr name="left0TextSize" format="reference|dimension" />
+        <attr name="left0TextColor" format="reference|color" />
+        <attr name="left0BgWidth" format="reference|dimension" />
+        <attr name="left0BgPaddingLeft" format="reference|dimension" />
+        <attr name="left0BgPaddingRight" format="reference|dimension" />
+        <attr name="left0BgPaddingTop" format="reference|dimension" />
+        <attr name="left0BgPaddingBottom" format="reference|dimension" />
+        <attr name="left0BgTextColor" format="reference|color" />
+        <!--left1-->
+        <attr name="left1BgViewBackground" format="reference|color" />
+        <attr name="left1BgViewPadding" format="reference|dimension" />
+        <attr name="left1Visible" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="left1Appearance" format="integer" />
+        <attr name="left1Background" format="reference|color" />
+        <attr name="left1Text" format="reference|string" />
+        <attr name="left1TextSize" format="reference|dimension" />
+        <attr name="left1TextColor" format="reference|color" />
+        <attr name="left1BgWidth" format="reference|dimension" />
+        <attr name="left1BgPaddingLeft" format="reference|dimension" />
+        <attr name="left1BgPaddingRight" format="reference|dimension" />
+        <attr name="left1BgPaddingTop" format="reference|dimension" />
+        <attr name="left1BgPaddingBottom" format="reference|dimension" />
+        <attr name="left1BgTextColor" format="reference|color" />
+        <!--right0-->
+        <attr name="right0BgViewBackground" format="reference|color" />
+        <attr name="right0BgViewPadding" format="reference|dimension" />
+        <attr name="right0Visible" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="right0Appearance" format="integer" />
+        <attr name="right0Background" format="reference|color" />
+        <attr name="right0Text" format="reference|string" />
+        <attr name="right0TextSize" format="reference|dimension" />
+        <attr name="right0TextColor" format="reference|color" />
+        <attr name="right0BgWidth" format="reference|dimension" />
+        <attr name="right0BgPaddingLeft" format="reference|dimension" />
+        <attr name="right0BgPaddingRight" format="reference|dimension" />
+        <attr name="right0BgPaddingTop" format="reference|dimension" />
+        <attr name="right0BgPaddingBottom" format="reference|dimension" />
+        <attr name="right0BgTextColor" format="reference|color" />
+        <!--right1-->
+        <attr name="right1BgViewBackground" format="reference|color" />
+        <attr name="right1BgViewPadding" format="reference|dimension" />
+        <attr name="right1Visible" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
+            <enum name="gone" value="2" />
+        </attr>
+        <attr name="right1Appearance" format="integer" />
+        <attr name="right1Background" format="reference|color" />
+        <attr name="right1Text" format="reference|string" />
+        <attr name="right1TextSize" format="reference|dimension" />
+        <attr name="right1TextColor" format="reference|color" />
+        <attr name="right1BgWidth" format="reference|dimension" />
+        <attr name="right1BgPaddingLeft" format="reference|dimension" />
+        <attr name="right1BgPaddingRight" format="reference|dimension" />
+        <attr name="right1BgPaddingTop" format="reference|dimension" />
+        <attr name="right1BgPaddingBottom" format="reference|dimension" />
+        <attr name="right1BgTextColor" format="reference|color" />
+    </declare-styleable>
+</resources>

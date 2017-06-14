@@ -6,12 +6,12 @@ gradle plugin for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK).
 ```
     jcenter()
     dependencies {
-        classpath 'com.mlibrary:multiapk.plugin:0.0.1'
+        classpath 'org.smartrobot:multiapk.plugin:0.0.1'
     }
 ```
 ```
     apply plugin: 'com.android.application'
-    apply plugin: 'com.mlibrary.multiapk.plugin.application'
+    apply plugin: 'org.smartrobot.multiapk.plugin.application'
 
     multiApkApplication {
         solidMode = project.solidMode
@@ -27,7 +27,7 @@ gradle plugin for ctrip [DynamicAPK](https://github.com/CtripMobile/DynamicAPK).
 ```
 ```
     apply plugin: 'com.android.library'
-    apply plugin: 'com.mlibrary.multiapk.plugin.library'
+    apply plugin: 'org.smartrobot.multiapk.plugin.library'
 
     multiApkLibrary {
         packageName = "com.mctrip.modules.device"

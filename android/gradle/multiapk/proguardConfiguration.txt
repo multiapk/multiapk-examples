@@ -76,7 +76,7 @@
 -adaptclassstrings com.example.Test
 -dontpreverify
 -verbose
--dontnote java.lang.invoke.SerializedLambda,com.google.vending.licensing.ILicensingService,com.android.vending.licensing.ILicensingService,android.support.**,com.facebook.**,okio.**,okhttp3.**,com.mlibrary.multiapk.**,org.apache.http.**,android.net.**,io.reactivex.**,fqcn.of.**,com.jakewharton.**
+-dontnote java.lang.invoke.SerializedLambda,com.google.vending.licensing.ILicensingService,com.android.vending.licensing.ILicensingService,android.support.**,com.facebook.**,okio.**,okhttp3.**,org.smartrobot.multiapk.**,org.apache.http.**,android.net.**,io.reactivex.**,fqcn.of.**,com.jakewharton.**
 -dontwarn android.support.**,freemarker.**,android.support.**,okio.**,com.squareup.okhttp.**,okhttp3.**,javax.annotation.**,com.android.volley.toolbox.**,com.facebook.**,com.facebook.infer.**,okio.**,javax.annotation.**,retrofit2.Platform$Java8
 -printconfiguration /Users/krmao/Workspace/multiapk-examples/android/gradle/multiapk/proguardConfiguration.txt
 -dump /Users/krmao/Workspace/multiapk-examples/android/app/examples/build/outputs/mapping/prod/release/dump.txt

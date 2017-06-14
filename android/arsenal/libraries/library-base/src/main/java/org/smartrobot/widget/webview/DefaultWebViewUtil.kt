@@ -47,7 +47,7 @@ object DefaultWebViewUtil {
             webView.settings.useWideViewPort = false
             webView.settings.setSupportMultipleWindows(true)
 
-            val dbPath = DefaultBaseApplication.INSTANCE.getDir("db_web_cache", Context.MODE_PRIVATE).path
+            val dbPath = DefaultBaseApplication.instance.getDir("db_web_cache", Context.MODE_PRIVATE).path
             webView.settings.setAppCacheEnabled(true)
             webView.settings.setAppCachePath(dbPath)
 

@@ -15,21 +15,21 @@ object DefaultAlarmManagerUtil {
         MAlarmManagerUtil.setNormalAlarm(calendar.getTimeInMillis(), pendingIntent);
      */
     fun setNormalAlarm(timeInMillis: Long, pendingIntent: PendingIntent): PendingIntent {
-        val context = DefaultBaseApplication.INSTANCE.applicationContext
+        val context = DefaultBaseApplication.instance.applicationContext
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.set(AlarmManager.RTC_WAKEUP, timeInMillis, pendingIntent)
         return pendingIntent
     }
 
     fun setRepeatAlarm(timeInMillis: Long, intervalMillis: Long, pendingIntent: PendingIntent): PendingIntent {
-        val context = DefaultBaseApplication.INSTANCE.applicationContext
+        val context = DefaultBaseApplication.instance.applicationContext
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeInMillis, intervalMillis, pendingIntent)
         return pendingIntent
     }
 
     fun cancelAlarm(pendingIntent: PendingIntent) {
-        val context = DefaultBaseApplication.INSTANCE.applicationContext
+        val context = DefaultBaseApplication.instance.applicationContext
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         alarmManager.cancel(pendingIntent)
     }

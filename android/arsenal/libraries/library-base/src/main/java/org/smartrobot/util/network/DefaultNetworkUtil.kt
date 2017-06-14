@@ -13,7 +13,7 @@ object DefaultNetworkUtil {
 
     fun isNetworkAvailable(): Boolean {
         var isNetworkAvailable = false
-        val application = DefaultBaseApplication.INSTANCE
+        val application = DefaultBaseApplication.instance
         val conManager = application?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         val networkInfo = conManager?.activeNetworkInfo
         if (networkInfo != null && networkInfo.isConnectedOrConnecting) {
@@ -52,7 +52,7 @@ object DefaultNetworkUtil {
 
     fun getNetType(): MNetworkType {
         var networkType = MNetworkType.NONE
-        val application = DefaultBaseApplication.INSTANCE
+        val application = DefaultBaseApplication.instance
         if (application != null) {
             networkType = getNetType(application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
         }
@@ -90,7 +90,7 @@ object DefaultNetworkUtil {
 
     private fun updateNetProvider(type: Int): MNetworkType {
         var networkType = MNetworkType.NONE
-        val application = DefaultBaseApplication.INSTANCE
+        val application = DefaultBaseApplication.instance
         if (application != null) {
             val tempType = getSwitchedType(type)
             val telephonyManager = application.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?

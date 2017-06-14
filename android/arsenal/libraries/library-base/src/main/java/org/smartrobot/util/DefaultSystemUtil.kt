@@ -123,16 +123,16 @@ object DefaultSystemUtil {
     }
 
     val displayMetrics: DisplayMetrics
-        get() = DefaultBaseApplication.INSTANCE.resources.displayMetrics
+        get() = DefaultBaseApplication.instance.resources.displayMetrics
 
     val density: Float
         get() = displayMetrics.density
 
     val width: Int
-        get() = DefaultBaseApplication.INSTANCE.resources.displayMetrics.widthPixels
+        get() = DefaultBaseApplication.instance.resources.displayMetrics.widthPixels
 
     val height: Int
-        get() = DefaultBaseApplication.INSTANCE.resources.displayMetrics.heightPixels
+        get() = DefaultBaseApplication.instance.resources.displayMetrics.heightPixels
 
 
     fun getPxFromDp(value: Float): Float {
@@ -150,9 +150,9 @@ object DefaultSystemUtil {
     val statusBarHeight2: Int
         get() {
             var statusBarHeight = 0
-            val resourceId = DefaultBaseApplication.INSTANCE.resources.getIdentifier("status_bar_height", "dimen", "android")
+            val resourceId = DefaultBaseApplication.instance.resources.getIdentifier("status_bar_height", "dimen", "android")
             if (resourceId > 0) {
-                statusBarHeight = DefaultBaseApplication.INSTANCE.resources.getDimensionPixelSize(resourceId)
+                statusBarHeight = DefaultBaseApplication.instance.resources.getDimensionPixelSize(resourceId)
             }
             return statusBarHeight
         }
@@ -180,7 +180,7 @@ object DefaultSystemUtil {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     fun copyToClipboard(label: String, contentText: String): Boolean {
         try {
-            val cm = DefaultBaseApplication.INSTANCE.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
+            val cm = DefaultBaseApplication.instance.getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
             val clip = android.content.ClipData.newPlainText(label, contentText)
             cm.primaryClip = clip
             return true
@@ -240,7 +240,7 @@ object DefaultSystemUtil {
 
     //获取设备的信息 包含 IMEI (getDeviceId)
     val telephonyManager: TelephonyManager
-        get() = DefaultBaseApplication.INSTANCE.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        get() = DefaultBaseApplication.instance.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 
     /**
      * Returns the unique device ID, for example, the IMEI for GSM and the MEID
@@ -272,7 +272,7 @@ object DefaultSystemUtil {
         get() {
             var versionCode = 0
             try {
-                versionCode = DefaultBaseApplication.INSTANCE.packageManager.getPackageInfo(DefaultBaseApplication.INSTANCE.packageName, 0).versionCode
+                versionCode = DefaultBaseApplication.instance.packageManager.getPackageInfo(DefaultBaseApplication.instance.packageName, 0).versionCode
             } catch (e: PackageManager.NameNotFoundException) {
                 e.printStackTrace()
             }
@@ -284,7 +284,7 @@ object DefaultSystemUtil {
         get() {
             var versionName: String? = null
             try {
-                versionName = DefaultBaseApplication.INSTANCE.packageManager.getPackageInfo(DefaultBaseApplication.INSTANCE.packageName, 0).versionName
+                versionName = DefaultBaseApplication.instance.packageManager.getPackageInfo(DefaultBaseApplication.instance.packageName, 0).versionName
             } catch (e: PackageManager.NameNotFoundException) {
                 e.printStackTrace()
             }
@@ -295,7 +295,7 @@ object DefaultSystemUtil {
     fun getAppMetaData(key: String): String? {
         var metaData: String? = null
         try {
-            val info = DefaultBaseApplication.INSTANCE.packageManager.getApplicationInfo(DefaultBaseApplication.INSTANCE.packageName, PackageManager.GET_META_DATA)
+            val info = DefaultBaseApplication.instance.packageManager.getApplicationInfo(DefaultBaseApplication.instance.packageName, PackageManager.GET_META_DATA)
             metaData = info.metaData.getString(key)
         } catch (e: Exception) {
             e.printStackTrace()
@@ -307,7 +307,7 @@ object DefaultSystemUtil {
     fun getAppMetaDataForInt(key: String): Int {
         var metaData = 0
         try {
-            val info = DefaultBaseApplication.INSTANCE.packageManager.getApplicationInfo(DefaultBaseApplication.INSTANCE.packageName, PackageManager.GET_META_DATA)
+            val info = DefaultBaseApplication.instance.packageManager.getApplicationInfo(DefaultBaseApplication.instance.packageName, PackageManager.GET_META_DATA)
             metaData = info.metaData.getInt(key)
         } catch (e: Exception) {
             e.printStackTrace()

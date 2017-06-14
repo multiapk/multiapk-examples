@@ -1,16 +1,15 @@
 package com.multiapk.modules.order
 
 import android.util.Log
+import business.smartrobot.DefaultApplication
+import business.smartrobot.database.dao.OrderDao
+import business.smartrobot.database.model.Order
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
-import org.smartrobot.base.DefaultBaseApplication
-import org.smartrobot.database.dao.OrderDao
-import org.smartrobot.database.model.Order
-
 
 open class OrderRepository : OrderContract.DataSource {
 
-    val orderDao: OrderDao = DefaultBaseApplication.INSTANCE.getDaoSession().orderDao
+    val orderDao: OrderDao = DefaultApplication.instance.getDaoSession().orderDao
 
     override fun getOrders(): Flowable<List<Order>> {
         return Flowable.fromCallable {

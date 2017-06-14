@@ -8,7 +8,7 @@ import java.util.*
 
 
 class DefaultPreferencesUtil protected constructor() {
-    private var mSharedPreferences: SharedPreferences? = DefaultBaseApplication.INSTANCE.getSharedPreferences(DATA_NAME, Context.MODE_PRIVATE)
+    private var mSharedPreferences: SharedPreferences? = DefaultBaseApplication.instance.getSharedPreferences(DATA_NAME, Context.MODE_PRIVATE)
 
     fun getBoolean(name: String, bDefault: Boolean): Boolean {
         return mSharedPreferences!!.getBoolean(name, bDefault)
@@ -98,6 +98,6 @@ class DefaultPreferencesUtil protected constructor() {
 
     companion object {
         val DATA_NAME = "org.smartrobot.preferences"
-        var INSTANCE: DefaultPreferencesUtil = DefaultPreferencesUtil()
+        var instance: DefaultPreferencesUtil = DefaultPreferencesUtil()
     }
 }

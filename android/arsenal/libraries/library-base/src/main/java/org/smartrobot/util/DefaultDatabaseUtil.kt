@@ -9,7 +9,7 @@ import java.io.FileOutputStream
 object DefaultDatabaseUtil {
 
     fun getDatabase(dbName: String): File {
-        return DefaultBaseApplication.INSTANCE.getDatabasePath(dbName)
+        return DefaultBaseApplication.instance.getDatabasePath(dbName)
     }
 
     fun copyDBFile(dbName: String, dbResId: Int, destDBDir: File?) {
@@ -24,7 +24,7 @@ object DefaultDatabaseUtil {
                 destDBFile.delete()
             SQLiteDatabase.openOrCreateDatabase(destDBFile, null)
 
-            val inputStream = DefaultBaseApplication.INSTANCE.resources.openRawResource(dbResId)
+            val inputStream = DefaultBaseApplication.instance.resources.openRawResource(dbResId)
             val outputStream = FileOutputStream(destDBFile)
 
             val buffer = ByteArray(1024)

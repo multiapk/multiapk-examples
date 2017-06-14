@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.base.hack;
+package org.smartrobot.multiapk.base.hack;
 
 import android.app.Application;
 import android.app.Instrumentation;
@@ -10,10 +10,10 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.view.ContextThemeWrapper;
 
-import com.mlibrary.multiapk.base.hack.Hack.HackedClass;
-import com.mlibrary.multiapk.base.hack.Hack.HackedField;
-import com.mlibrary.multiapk.base.hack.Hack.HackedMethod;
-import com.mlibrary.multiapk.base.util.LogUtil;
+import org.smartrobot.multiapk.base.hack.Hack.HackedClass;
+import org.smartrobot.multiapk.base.hack.Hack.HackedField;
+import org.smartrobot.multiapk.base.hack.Hack.HackedMethod;
+import org.smartrobot.multiapk.base.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.Map;

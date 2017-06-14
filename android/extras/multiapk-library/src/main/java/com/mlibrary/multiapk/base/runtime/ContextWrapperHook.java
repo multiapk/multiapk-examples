@@ -1,11 +1,11 @@
-package com.mlibrary.multiapk.base.runtime;
+package org.smartrobot.multiapk.base.runtime;
 
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
 
-import com.mlibrary.multiapk.base.util.LogUtil;
+import org.smartrobot.multiapk.base.util.LogUtil;
 
 
 /**

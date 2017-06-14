@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.mlibrary.multiapk.base.util;
+package org.smartrobot.multiapk.base.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;

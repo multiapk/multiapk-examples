@@ -82,8 +82,8 @@ public static java.lang.String TABLENAME;
 -dontwarn javax.annotation.ParametersAreNonnullByDefault
 -dontnote okhttp3.**
 
-#com.mlibrary.multiapk.**
--dontnote com.mlibrary.multiapk.**
+#org.smartrobot.multiapk.**
+-dontnote org.smartrobot.multiapk.**
 
 #org.apache.http.**
 -dontnote org.apache.http.**

@@ -1,4 +1,4 @@
-package com.mlibrary.multiapk.core.apk;
+package org.smartrobot.multiapk.core.apk;
 
 import android.os.Build;
 import android.util.Log;

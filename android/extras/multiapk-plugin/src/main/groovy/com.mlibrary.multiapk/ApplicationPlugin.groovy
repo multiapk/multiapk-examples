@@ -1,6 +1,6 @@
-package com.mlibrary.multiapk
+package org.smartrobot.multiapk
 
-import com.mlibrary.multiapk.util.TextUtil
+import org.smartrobot.multiapk.util.TextUtil
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -27,7 +27,7 @@ public class ApplicationPlugin implements Plugin<Project> {
         project.afterEvaluate {
             try {
                 println("$project.path:apply multiApkApplication:>>>>>>============================================================>>>>>>")
-                println("$project.path:apply multiApkApplication:>>>>>>======apply plugin: 'com.mlibrary.dynamic.application'======>>>>>>")
+                println("$project.path:apply multiApkApplication:>>>>>>======apply plugin: 'org.smartrobot.dynamic.application'======>>>>>>")
                 boolean isConditionOK = true
                 if (applicationExtension == null) {
                     println("$project.path:apply multiApkApplication:applicationExtension==null return")
@@ -57,7 +57,7 @@ public class ApplicationPlugin implements Plugin<Project> {
                     configureConcatMappingsTask();
                     configureRepackAllTask();
                 }
-                println("$project.path:apply multiApkApplication:<<<<<<======apply plugin: 'com.mlibrary.dynamic.application'======<<<<<<")
+                println("$project.path:apply multiApkApplication:<<<<<<======apply plugin: 'org.smartrobot.dynamic.application'======<<<<<<")
                 println("$project.path:apply multiApkApplication:<<<<<<============================================================<<<<<<")
             } catch (Exception e) {
                 e.printStackTrace()

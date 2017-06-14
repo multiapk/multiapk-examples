@@ -6,7 +6,7 @@ import android.content.BroadcastReceiver
     必须静态注册，动态注册没有任何作用
     <receiver android:name=".modules.mine.MAlarmBroadcastReceiver">
         <intent-filter>
-            <action android:name="com.mlibrary.action.alarm" />
+            <action android:name="org.smartrobot.action.alarm" />
         </intent-filter>
     </receiver>
  */

@@ -23,4 +23,5 @@ android {
 
 dependencies {
     compile project(':arsenal:libraries:library-base')
+    compile project(path: ':arsenal:libraries:library-business')
 }

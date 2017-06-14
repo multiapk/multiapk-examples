@@ -1,5 +1,5 @@
 /*
-package com.mlibrary.util.picture
+package org.smartrobot.util.picture
 
 import android.Manifest
 import android.app.Activity
@@ -33,10 +33,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 
-import com.mlibrary.util.MCheckerUtil
-import com.mlibrary.util.MFileUtil
-import com.mlibrary.util.DefaultLogUtil
-import com.mlibrary.util.manager.DefaultCacheManager
+import org.smartrobot.util.MCheckerUtil
+import org.smartrobot.util.MFileUtil
+import org.smartrobot.util.DefaultLogUtil
+import org.smartrobot.util.manager.DefaultCacheManager
 
 import org.smartrobot.R
 import org.smartrobot.base.DefaultBaseApplication
@@ -54,7 +54,7 @@ import java.io.OutputStream
 /*
  拍照 or 选择 图片
 <activity
-            android:name="com.mlibrary.base.DefaultTransparentActivity"
+            android:name="org.smartrobot.base.DefaultTransparentActivity"
             android:configChanges="locale|fontScale|orientation|keyboardHidden|screenSize"
             android:launchMode="standard"
             android:screenOrientation="portrait"
@@ -89,8 +89,8 @@ class DefaultPictureFragment : DefaultBaseFragment() {
             mFileTemp = File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_FILE_NAME)
             mFileTempCrop = File(Environment.getExternalStorageDirectory(), TEMP_PHOTO_CROP_FILE_NAME)
         } else {
-            mFileTemp = File(DefaultBaseApplication.INSTANCE.filesDir, TEMP_PHOTO_FILE_NAME)
-            mFileTempCrop = File(DefaultBaseApplication.INSTANCE.filesDir, TEMP_PHOTO_CROP_FILE_NAME)
+            mFileTemp = File(DefaultBaseApplication.instance.filesDir, TEMP_PHOTO_FILE_NAME)
+            mFileTempCrop = File(DefaultBaseApplication.instance.filesDir, TEMP_PHOTO_CROP_FILE_NAME)
         }
         if (mFileTemp!!.exists()) {
             DefaultLogUtil.e(TAG, "mFileTemp:" + mFileTemp!!.length())

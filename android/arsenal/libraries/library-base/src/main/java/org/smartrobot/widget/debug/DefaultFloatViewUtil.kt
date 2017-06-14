@@ -1,5 +1,6 @@
 package org.smartrobot.widget.debug
 
+
 import android.content.Context
 import android.graphics.PixelFormat
 import android.os.Build
@@ -9,11 +10,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
-
-
 import org.smartrobot.R
 import org.smartrobot.base.DefaultBaseApplication
-import org.smartrobot.util.DefaultCacheManager
 import org.smartrobot.util.DefaultPreferencesUtil
 import org.smartrobot.util.DefaultSystemUtil
 
@@ -37,9 +35,9 @@ enum class DefaultFloatViewUtil private constructor() {
     private lateinit var listener: View.OnClickListener
 
     init {
-        floatView = ImageView(DefaultBaseApplication.INSTANCE)
+        floatView = ImageView(DefaultBaseApplication.instance)
         floatView.setImageResource(R.drawable.default_emo_im_happy)
-        windowManager = DefaultBaseApplication.INSTANCE.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        windowManager = DefaultBaseApplication.instance.getSystemService(Context.WINDOW_SERVICE) as WindowManager
         windowLayoutParams = WindowManager.LayoutParams()
         windowLayoutParams.type = WindowManager.LayoutParams.TYPE_TOAST
         windowLayoutParams.format = PixelFormat.RGBA_8888
@@ -48,8 +46,8 @@ enum class DefaultFloatViewUtil private constructor() {
         windowLayoutParams.width = defaultWH
         windowLayoutParams.height = defaultWH
         windowLayoutParams.gravity = Gravity.START or Gravity.TOP
-        windowLayoutParams.x = DefaultPreferencesUtil.INSTANCE.getInt(KEY_LAST_X, defaultX)
-        windowLayoutParams.y = DefaultPreferencesUtil.INSTANCE.getInt(KEY_LAST_Y, defaultY)
+        windowLayoutParams.x = DefaultPreferencesUtil.instance.getInt(KEY_LAST_X, defaultX)
+        windowLayoutParams.y = DefaultPreferencesUtil.instance.getInt(KEY_LAST_Y, defaultY)
         floatView.setOnTouchListener(object : View.OnTouchListener {
             private var x: Float = 0.toFloat()
             private var y: Float = 0.toFloat()
@@ -72,21 +70,13 @@ enum class DefaultFloatViewUtil private constructor() {
                     }
                     MotionEvent.ACTION_UP -> {
                         floatView.setImageResource(R.drawable.default_emo_im_happy)
-                        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_X, windowLayoutParams.x)
-                        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_Y, windowLayoutParams.y)
+                        DefaultPreferencesUtil.instance.putInt(KEY_LAST_X, windowLayoutParams.x)
+                        DefaultPreferencesUtil.instance.putInt(KEY_LAST_Y, windowLayoutParams.y)
                         if (Math.abs(event.rawX - rawX) < 5 && Math.abs(event.rawY - rawY) < 5) {
                             if (listener != null)
-                                listener!!.onClick(floatView)
+                                listener.onClick(floatView)
                             else
-                                DefaultDebugFragment.goTo(object : DefaultCacheManager.OnCacheCallBack<Any> {
-                                    override fun onSuccess(successObject: Any?) {
-
-                                    }
-
-                                    override fun onFailure(failureObject: Any?) {
-
-                                    }
-                                })
+                                DefaultDebugFragment.goTo()
                         }
                     }
                 }
@@ -96,9 +86,9 @@ enum class DefaultFloatViewUtil private constructor() {
     }
 
     var isAwaysHide: Boolean
-        get() = DefaultPreferencesUtil.INSTANCE.getBoolean(KEY_HIDE_ALWAYS, false)
+        get() = DefaultPreferencesUtil.instance.getBoolean(KEY_HIDE_ALWAYS, false)
         set(isAwaysHide) {
-            DefaultPreferencesUtil.INSTANCE.putBoolean(KEY_HIDE_ALWAYS, isAwaysHide)
+            DefaultPreferencesUtil.instance.putBoolean(KEY_HIDE_ALWAYS, isAwaysHide)
             if (isAwaysHide)
                 hide()
         }
@@ -124,8 +114,8 @@ enum class DefaultFloatViewUtil private constructor() {
 
 
     fun clearLocationCatch() {
-        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_X, defaultX)
-        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_Y, defaultY)
+        DefaultPreferencesUtil.instance.putInt(KEY_LAST_X, defaultX)
+        DefaultPreferencesUtil.instance.putInt(KEY_LAST_Y, defaultY)
     }
 
     fun hide() {

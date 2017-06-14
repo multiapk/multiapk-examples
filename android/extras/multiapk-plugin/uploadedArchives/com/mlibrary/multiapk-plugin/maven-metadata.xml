@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-  <groupId>com.mlibrary</groupId>
+  <groupId>org.smartrobot</groupId>
   <artifactId>multiapk-plugin</artifactId>
   <versioning>
     <release>0.0.1</release>

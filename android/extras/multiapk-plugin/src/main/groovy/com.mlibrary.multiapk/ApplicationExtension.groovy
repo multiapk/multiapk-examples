@@ -1,6 +1,6 @@
-package com.mlibrary.multiapk
+package org.smartrobot.multiapk
 
-import com.mlibrary.multiapk.util.TextUtil
+import org.smartrobot.multiapk.util.TextUtil
 import org.apache.tools.ant.taskdefs.condition.Os
 import org.gradle.api.Project
 import org.gradle.api.file.ConfigurableFileCollection

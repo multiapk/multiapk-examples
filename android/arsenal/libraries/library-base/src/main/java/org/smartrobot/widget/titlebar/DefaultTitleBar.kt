@@ -18,7 +18,7 @@ import org.smartrobot.util.DefaultSystemUtil
  * “图片、颜色、文字”
  * xmlns:mlibrary="http://schemas.android.com/apk/res-auto"
  */
-class DefaultTitleBar(private val mContext: Context, attrs: AttributeSet?) : RelativeLayout(mContext, attrs) {
+open class DefaultTitleBar(val mContext: Context, attrs: AttributeSet?) : RelativeLayout(mContext, attrs) {
 
     lateinit var rootLayout: RelativeLayout
 

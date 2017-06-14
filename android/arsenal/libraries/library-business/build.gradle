@@ -1,0 +1,25 @@
+apply plugin: "com.android.library"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'org.greenrobot.greendao'
+
+android {
+
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+    }
+
+    greendao {
+        schemaVersion 1
+        daoPackage 'business.smartrobot.database.dao'
+        targetGenDir 'src/main/java'
+    }
+}
+
+dependencies {
+    compile project(':arsenal:libraries:library-base')
+}

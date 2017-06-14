@@ -1,8 +1,8 @@
-package com.mlibrary.multiapk;
+package org.smartrobot.multiapk;
 
 import android.app.Application;
 
-import com.mlibrary.multiapk.core.apk.ApkManager;
+import org.smartrobot.multiapk.core.apk.ApkManager;
 
 import java.io.File;
 
