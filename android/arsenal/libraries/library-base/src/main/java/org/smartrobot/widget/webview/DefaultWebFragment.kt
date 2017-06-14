@@ -13,20 +13,12 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.JsResult
-import android.webkit.URLUtil
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceError
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
-
-import com.mlibrary.widget.loading.DefaultFrameLoadingLayout
-import com.mlibrary.widget.titlebar.DefaultTitleBar
-
+import android.webkit.*
 import org.smartrobot.R
 import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseFragment
+import org.smartrobot.widget.loading.DefaultFrameLoadingLayout
+import org.smartrobot.widget.titlebar.DefaultTitleBar
 
 open class DefaultWebFragment : DefaultBaseFragment(), DefaultBaseFragment.OnBackPressedListener {
     protected lateinit var mUrl: String
@@ -84,7 +76,12 @@ open class DefaultWebFragment : DefaultBaseFragment(), DefaultBaseFragment.OnBac
             else
                 frameLayoutLoading.showView(DefaultFrameLoadingLayout.ViewType.NETWORK_EXCEPTION, "加载失败,Url不正确:\n" + mUrl, false, true)
         } else {
-            frameLayoutLoading.setOnRefreshClickListener { mWebView!!.loadUrl(mUrl) }
+            frameLayoutLoading.setOnRefreshClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+                    mWebView!!.loadUrl(mUrl)
+                }
+
+            })
             if (!TextUtils.isEmpty(mHtmlData)) {
                 mWebView!!.loadDataWithBaseURL(null, mHtmlData, "text/html", "utf-8", null)
             } else

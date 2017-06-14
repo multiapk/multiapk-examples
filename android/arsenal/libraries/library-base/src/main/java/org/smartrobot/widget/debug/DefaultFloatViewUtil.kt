@@ -10,12 +10,12 @@ import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
 
-import com.mlibrary.util.DefaultSystemUtil
-import com.mlibrary.util.DefaultPreferencesUtil
-import com.mlibrary.util.manager.DefaultCacheManager
 
 import org.smartrobot.R
 import org.smartrobot.base.DefaultBaseApplication
+import org.smartrobot.util.DefaultCacheManager
+import org.smartrobot.util.DefaultPreferencesUtil
+import org.smartrobot.util.DefaultSystemUtil
 
 /*
 <!--悬浮窗-->
@@ -23,6 +23,18 @@ import org.smartrobot.base.DefaultBaseApplication
 */
 enum class DefaultFloatViewUtil private constructor() {
     instance;
+
+    private val KEY_LAST_X = "M_FLOAT_VIEW_LAST_X"
+    private val KEY_LAST_Y = "M_FLOAT_VIEW_LAST_Y"
+    private val KEY_HIDE_ALWAYS = "KEY_HIDE_ALWAYS"
+    private val defaultWH = DefaultSystemUtil.getPxFromDp(42f).toInt()
+    private val defaultX = 0
+    private val defaultY = defaultWH * 5
+
+    private lateinit var floatView: ImageView
+    private lateinit var windowManager: WindowManager
+    private lateinit var windowLayoutParams: WindowManager.LayoutParams
+    private lateinit var listener: View.OnClickListener
 
     init {
         floatView = ImageView(DefaultBaseApplication.INSTANCE)
@@ -36,8 +48,8 @@ enum class DefaultFloatViewUtil private constructor() {
         windowLayoutParams.width = defaultWH
         windowLayoutParams.height = defaultWH
         windowLayoutParams.gravity = Gravity.START or Gravity.TOP
-        windowLayoutParams.x = DefaultPreferencesUtil.getInstance().getInt(KEY_LAST_X, defaultX)
-        windowLayoutParams.y = DefaultPreferencesUtil.getInstance().getInt(KEY_LAST_Y, defaultY)
+        windowLayoutParams.x = DefaultPreferencesUtil.INSTANCE.getInt(KEY_LAST_X, defaultX)
+        windowLayoutParams.y = DefaultPreferencesUtil.INSTANCE.getInt(KEY_LAST_Y, defaultY)
         floatView.setOnTouchListener(object : View.OnTouchListener {
             private var x: Float = 0.toFloat()
             private var y: Float = 0.toFloat()
@@ -60,18 +72,18 @@ enum class DefaultFloatViewUtil private constructor() {
                     }
                     MotionEvent.ACTION_UP -> {
                         floatView.setImageResource(R.drawable.default_emo_im_happy)
-                        DefaultPreferencesUtil.getInstance().putInt(KEY_LAST_X, windowLayoutParams.x)
-                        DefaultPreferencesUtil.getInstance().putInt(KEY_LAST_Y, windowLayoutParams.y)
+                        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_X, windowLayoutParams.x)
+                        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_Y, windowLayoutParams.y)
                         if (Math.abs(event.rawX - rawX) < 5 && Math.abs(event.rawY - rawY) < 5) {
                             if (listener != null)
                                 listener!!.onClick(floatView)
                             else
                                 DefaultDebugFragment.goTo(object : DefaultCacheManager.OnCacheCallBack<Any> {
-                                    override fun onSuccess(successObject: Any) {
+                                    override fun onSuccess(successObject: Any?) {
 
                                     }
 
-                                    override fun onFailure(failureObject: Any) {
+                                    override fun onFailure(failureObject: Any?) {
 
                                     }
                                 })
@@ -83,22 +95,10 @@ enum class DefaultFloatViewUtil private constructor() {
         })
     }
 
-    private val KEY_LAST_X = "M_FLOAT_VIEW_LAST_X"
-    private val KEY_LAST_Y = "M_FLOAT_VIEW_LAST_Y"
-    private val KEY_HIDE_ALWAYS = "KEY_HIDE_ALWAYS"
-    private val defaultWH = DefaultSystemUtil.getPxFromDp(42f).toInt()
-    private val defaultX = 0
-    private val defaultY = defaultWH * 5
-
-    private val floatView: ImageView? = null
-    private val windowManager: WindowManager?
-    private val windowLayoutParams: WindowManager.LayoutParams
-    private var listener: View.OnClickListener? = null
-
     var isAwaysHide: Boolean
-        get() = DefaultPreferencesUtil.getInstance().getBoolean(KEY_HIDE_ALWAYS, false)
+        get() = DefaultPreferencesUtil.INSTANCE.getBoolean(KEY_HIDE_ALWAYS, false)
         set(isAwaysHide) {
-            DefaultPreferencesUtil.getInstance().putBoolean(KEY_HIDE_ALWAYS, isAwaysHide)
+            DefaultPreferencesUtil.INSTANCE.putBoolean(KEY_HIDE_ALWAYS, isAwaysHide)
             if (isAwaysHide)
                 hide()
         }
@@ -107,7 +107,7 @@ enum class DefaultFloatViewUtil private constructor() {
         floatView?.setImageResource(resId)
     }
 
-    fun setOnClickListener(listener: View.OnClickListener?) {
+    fun setOnClickListener(listener: View.OnClickListener) {
         this.listener = listener
     }
 
@@ -124,8 +124,8 @@ enum class DefaultFloatViewUtil private constructor() {
 
 
     fun clearLocationCatch() {
-        DefaultPreferencesUtil.getInstance().putInt(KEY_LAST_X, defaultX)
-        DefaultPreferencesUtil.getInstance().putInt(KEY_LAST_Y, defaultY)
+        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_X, defaultX)
+        DefaultPreferencesUtil.INSTANCE.putInt(KEY_LAST_Y, defaultY)
     }
 
     fun hide() {

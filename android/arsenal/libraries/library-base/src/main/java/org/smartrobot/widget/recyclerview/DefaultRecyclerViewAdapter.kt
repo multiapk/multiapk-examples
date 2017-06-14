@@ -2,68 +2,48 @@ package org.smartrobot.widget.recyclerview
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
+import org.smartrobot.widget.recyclerview.helper.DefaultRecyclerViewItemTouchHelperAdapter
+import java.util.*
 
-import com.mlibrary.widget.recyclerview.helper.DefaultRecyclerViewItemTouchHelperAdapter
-
-import java.util.ArrayList
-import java.util.Collections
-
-abstract class DefaultRecyclerViewAdapter<Entity, ViewHolder : RecyclerView.ViewHolder>(context: Context, dataList: List<Entity>) : RecyclerView.Adapter<ViewHolder>(), DefaultRecyclerViewItemTouchHelperAdapter {
-    var context: Context
-        protected set
-    protected var dataList: List<Entity>? = null
-
-    init {
-        context = context
-        setDataList(dataList)
-    }
-
-    fun getDataList(): MutableList<Entity> {
-        if (dataList == null)
-            dataList = ArrayList<Entity>()
-        return dataList
-    }
-
-    protected fun setDataList(dataList: List<Entity>) {
-        this.dataList = dataList
-    }
+abstract class DefaultRecyclerViewAdapter<Entity, ViewHolder : RecyclerView.ViewHolder>(var context: Context, dataList: ArrayList<Entity>) : RecyclerView.Adapter<ViewHolder>(), DefaultRecyclerViewItemTouchHelperAdapter {
+    var dataList: ArrayList<Entity> = ArrayList<Entity>()
 
     override fun getItemCount(): Int {
-        return getDataList().size
+        return dataList.size
     }
 
     fun remove(position: Int) {
-        if (position >= 0 && position < getDataList().size) {
-            getDataList().removeAt(position)
+        if (position >= 0 && position < dataList.size) {
+            dataList.removeAt(position)
             notifyItemRemoved(position)
-            notifyItemRangeChanged(position, getDataList().size - position)
+            notifyItemRangeChanged(position, dataList.size - position)
         }
     }
 
     fun removeAll() {
-        val oldSize = getDataList().size
-        getDataList().clear()
+        val oldSize = dataList.size
+        dataList.clear()
         notifyItemRangeRemoved(0, oldSize)
     }
 
     fun add(newList: List<Entity>?) {
         if (newList != null && !newList.isEmpty()) {
-            val oldSize = getDataList().size
-            getDataList().addAll(newList)
+            val oldSize = dataList.size
+            dataList.addAll(newList)
             notifyItemRangeChanged(oldSize - 1, newList.size + 1)
         }
     }
 
     fun add(entity: Entity, position: Int) {
-        if (position >= 0 && position <= getDataList().size) {
-            getDataList().add(entity)
+        if (position >= 0 && position <= dataList.size) {
+            dataList.add(entity)
             notifyItemInserted(position)
-            notifyItemRangeChanged(position, getDataList().size - position)
+            notifyItemRangeChanged(position, dataList.size - position)
         }
     }
 
     fun notifyItemRangeChanged() {
-        notifyItemRangeChanged(0, getDataList().size)
+        notifyItemRangeChanged(0, dataList.size)
     }
 
     override fun onItemDismiss(position: Int) {
@@ -71,7 +51,7 @@ abstract class DefaultRecyclerViewAdapter<Entity, ViewHolder : RecyclerView.View
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int): Boolean {
-        Collections.swap(getDataList(), fromPosition, toPosition)
+        Collections.swap(dataList, fromPosition, toPosition)
         notifyItemMoved(fromPosition, toPosition)
         return true
     }

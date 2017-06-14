@@ -5,6 +5,7 @@ import android.graphics.Point
 import android.support.v7.widget.AppCompatSpinner
 import android.util.AttributeSet
 import android.view.MotionEvent
+import android.view.View
 
 /***
  * 增加 onClickListener ，点击事件发生后，默认不再打开列表选择框，如需打开，请调用

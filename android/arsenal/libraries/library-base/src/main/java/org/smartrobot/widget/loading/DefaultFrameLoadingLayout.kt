@@ -193,9 +193,10 @@ class DefaultFrameLoadingLayout @JvmOverloads constructor(context: Context, attr
 
     }
 
-    fun setViewsBackground(drawable: Drawable) {
+    @Suppress("DEPRECATION")
+    fun setViewsBackground(drawable: Drawable?) {
         for ((_, view) in mViewMaps) {
-            view?.setBackgroundDrawable(drawable)
+            view.setBackgroundDrawable(drawable)
         }
     }
 

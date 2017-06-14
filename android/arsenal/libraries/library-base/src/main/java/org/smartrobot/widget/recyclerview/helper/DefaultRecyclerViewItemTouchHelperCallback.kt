@@ -78,7 +78,7 @@ class DefaultRecyclerViewItemTouchHelperCallback(private val mAdapter: DefaultRe
         }
     }
 
-    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
+    override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder, actionState: Int) {
         // We only want the active item to change
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             if (onDragListener != null)
@@ -87,7 +87,7 @@ class DefaultRecyclerViewItemTouchHelperCallback(private val mAdapter: DefaultRe
         super.onSelectedChanged(viewHolder, actionState)
     }
 
-    override fun clearView(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder) {
+    override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         super.clearView(recyclerView, viewHolder)
         if (onDragListener != null)
             onDragListener!!.onDragEnd(recyclerView, viewHolder)

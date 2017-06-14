@@ -28,7 +28,7 @@ class DefaultScrollView : android.widget.ScrollView {
     protected var yDistance: Float = 0.toFloat()
     protected var xLast: Float = 0.toFloat()
     protected var yLast: Float = 0.toFloat()
-    protected var onScrollListener: OnScrollListener? = null
+    protected var _onScrollListener: OnScrollListener? = null
 
     constructor(context: Context) : super(context) {}
 
@@ -61,13 +61,13 @@ class DefaultScrollView : android.widget.ScrollView {
     }
 
     fun setOnScrollListener(onScrollListener: OnScrollListener) {
-        this.onScrollListener = onScrollListener
+        this._onScrollListener = onScrollListener
     }
 
     override fun onScrollChanged(x: Int, y: Int, oldX: Int, oldY: Int) {
         super.onScrollChanged(x, y, oldX, oldY)
-        if (onScrollListener != null)
-            onScrollListener!!.onScrollChanged(x, y, oldX, oldY)
+        if (_onScrollListener != null)
+            _onScrollListener!!.onScrollChanged(x, y, oldX, oldY)
     }
 
     fun isChildVisible(child: View?): Boolean {

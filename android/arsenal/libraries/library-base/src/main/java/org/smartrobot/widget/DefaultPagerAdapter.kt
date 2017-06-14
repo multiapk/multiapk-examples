@@ -12,8 +12,8 @@ abstract class DefaultPagerAdapter<ItemEntity> : PagerAdapter {
 
     protected var TAG = javaClass.simpleName
 
-    protected var mDataList: ArrayList<ItemEntity>
-    protected var mContext: Context
+    protected lateinit var mDataList: ArrayList<ItemEntity>
+    protected lateinit var mContext: Context
 
     private constructor() {}
 

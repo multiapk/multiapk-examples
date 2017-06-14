@@ -10,8 +10,8 @@ abstract class DefaultListAdapter<ItemEntity, ViewHolder : RecyclerView.ViewHold
 
     protected var TAG = javaClass.simpleName
 
-    protected var mDataList: List<ItemEntity>
-    protected var mContext: Context
+    protected lateinit var mDataList: List<ItemEntity>
+    protected lateinit var mContext: Context
 
     private constructor() {}
 
