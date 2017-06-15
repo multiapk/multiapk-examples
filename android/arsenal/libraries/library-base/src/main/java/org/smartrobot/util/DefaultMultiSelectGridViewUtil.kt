@@ -5,21 +5,15 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.GridView
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
-
+import android.widget.*
 import org.smartrobot.R
-
 import java.io.Serializable
-import java.util.ArrayList
+import java.util.*
 
 class DefaultMultiSelectGridViewUtil {
 
     lateinit var mDataList: ArrayList<GMultiData>
-    lateinit var multiAdapter: MultiAdapter
+    var multiAdapter: MultiAdapter? = null
     lateinit var gridView: GridView
     lateinit var activity: Activity
 
@@ -60,21 +54,21 @@ class DefaultMultiSelectGridViewUtil {
 
         @SuppressLint("InflateParams")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var convertView = convertView
             if (multiCustomLayoutHandler != null) {
                 return multiCustomLayoutHandler!!.createItemView(position, convertView, getItem(position))
             }
 
+            var contentView = convertView
             val viewHolder: MultiViewHolder
-            if (convertView == null) {
-                convertView = LayoutInflater.from(activity).inflate(R.layout.default_multi_grid_item_layout, null)
+            if (contentView == null) {
+                contentView = LayoutInflater.from(activity).inflate(R.layout.default_multi_grid_item_layout, null)
                 viewHolder = MultiViewHolder()
-                viewHolder.mCheckImg = convertView!!.findViewById(R.id.mCheckImg) as ImageView
-                viewHolder.layout = convertView.findViewById(R.id.layout) as RelativeLayout
-                viewHolder.imageView = convertView.findViewById(R.id.imageView) as ImageView
-                convertView.tag = viewHolder
+                viewHolder.mCheckImg = contentView!!.findViewById(R.id.mCheckImg) as ImageView
+                viewHolder.layout = contentView.findViewById(R.id.layout) as RelativeLayout
+                viewHolder.imageView = contentView.findViewById(R.id.imageView) as ImageView
+                contentView.tag = viewHolder
             } else {
-                viewHolder = convertView.tag as MultiViewHolder
+                viewHolder = contentView.tag as MultiViewHolder
             }
 
             viewHolder.layout!!.layoutParams = LinearLayout.LayoutParams(itemWidth, itemWidth)
@@ -88,7 +82,7 @@ class DefaultMultiSelectGridViewUtil {
                 mDataList[_position].isChecked = !mDataList[_position].isChecked
                 viewHolder.mCheckImg!!.visibility = if (mDataList[_position].isChecked) View.VISIBLE else View.GONE
             }
-            return convertView
+            return contentView
         }
     }
 

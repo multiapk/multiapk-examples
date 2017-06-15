@@ -92,6 +92,7 @@ class DefaultToastUtil private constructor() {
                 val textView = TextView(DefaultBaseApplication.instance)
                 textView.setShadowLayer(2.75f, 1f, 1f, Color.parseColor("#BB000000"))
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f)
+                @Suppress("DEPRECATION")
                 textView.setTextColor(DefaultBaseApplication.instance.resources.getColor(android.R.color.background_light))
                 textView.setPadding(dp5, dp5, dp5, dp5)
                 contentLayout.addView(textView)

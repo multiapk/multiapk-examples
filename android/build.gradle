@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlinVersion = '1.1.2-3'
+    ext.kotlinVersion = '1.1.2-5'
     ext.ankoVersion = '0.8.2'
     ext.greendaoVersion = '3.2.0'
     //ext.freelineVersion = '0.8.7'

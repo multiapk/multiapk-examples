@@ -44,6 +44,8 @@ dependencies {
     /******* 网络请求库 ****************************************************************************/
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3Version"
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-jackson:$rootProject.ext.retrofitVersion"
+
     compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofit2rxjava2Version"
     compile "org.ligboy.retrofit2:converter-fastjson-android:$rootProject.ext.converterfastjsonandroidVersion"
 
@@ -53,6 +55,11 @@ dependencies {
 
     /******* 必备工具库 ****************************************************************************/
     compile "com.alibaba:fastjson:$rootProject.ext.fastjsonVersion"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.9"
+    //compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.9'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.9'
+    //compile 'com.fasterxml.jackson.core:jackson-core:2.8.9'
+
     compile "com.google.guava:guava:$rootProject.ext.guavaVersion"  //1.5MB
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"    //1.3MB [EventBus]
     compile "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlinVersion"

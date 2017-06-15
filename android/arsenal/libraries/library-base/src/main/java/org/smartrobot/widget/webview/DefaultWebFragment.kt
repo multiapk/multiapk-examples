@@ -109,6 +109,7 @@ open class DefaultWebFragment : DefaultBaseFragment(), DefaultBaseFragment.OnBac
                 }
             }
 
+            @Suppress("DEPRECATION", "OverridingDeprecatedMember")
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
                 Log.d("HTML5", "shouldOverrideUrlLoading:" + url)
                 return super.shouldOverrideUrlLoading(view, url)

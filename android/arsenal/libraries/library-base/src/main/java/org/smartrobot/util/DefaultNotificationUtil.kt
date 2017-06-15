@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package org.smartrobot.util
 
 import android.app.Activity

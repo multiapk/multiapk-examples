@@ -8,6 +8,7 @@ import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import org.smartrobot.util.DefaultLogUtil
 
+@Suppress("DEPRECATION")
 class DefaultNetworkChangedReceiver : BroadcastReceiver() {
     private val TAG = javaClass.simpleName
 
@@ -15,9 +16,9 @@ class DefaultNetworkChangedReceiver : BroadcastReceiver() {
         // 这个监听wifi的打开与关闭，与wifi的连接无关
         if (WifiManager.WIFI_STATE_CHANGED_ACTION == intent.action) {
             val wifiState = intent.getIntExtra(WifiManager.EXTRA_WIFI_STATE, 0)
-            val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val gprs = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-            val wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+            //val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            //val gprs = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+            //val wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
             when (wifiState) {
                 WifiManager.WIFI_STATE_DISABLED -> if (mLastNetworkType == null)
                     DefaultLogUtil.w(TAG, "首次启动，多多关照....")
@@ -53,8 +54,8 @@ class DefaultNetworkChangedReceiver : BroadcastReceiver() {
         // 这个广播的最大弊端是比上边两个广播的反应要慢，如果只是要监听wifi，我觉得还是用上边两个配合比较合适
         if (ConnectivityManager.CONNECTIVITY_ACTION == intent.action) {
             val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            val gprs = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-            val wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+            //val gprs = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+            //val wifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
             val currentNetworkType = DefaultNetworkUtil.getNetType(manager)
             if (mLastNetworkType != null) {//第一次
                 if (mLastNetworkType != currentNetworkType) {

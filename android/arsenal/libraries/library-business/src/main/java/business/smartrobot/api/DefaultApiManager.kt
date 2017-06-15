@@ -22,7 +22,7 @@ object DefaultApiManager {
     private val retrofitClient = DefaultRetrofitClient()
 
 
-    init {
+    fun init() {
         if (BuildConfig.DEBUG) {
             DefaultDebugFragment.addUrl("FAT", URL_FAT, false)
             DefaultDebugFragment.addUrl("UAT", URL_UAT, false)

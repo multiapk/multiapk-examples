@@ -1,10 +1,11 @@
+@file:Suppress("DEPRECATION")
+
 package org.smartrobot.util
 
 import android.annotation.TargetApi
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Environment
@@ -17,11 +18,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
-
 import org.smartrobot.base.DefaultBaseApplication
-
-import java.io.File
-import java.lang.reflect.Field
 
 
 object DefaultSystemUtil {

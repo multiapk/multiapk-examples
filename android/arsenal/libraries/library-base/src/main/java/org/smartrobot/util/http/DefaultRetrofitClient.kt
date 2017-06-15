@@ -2,11 +2,12 @@ package org.smartrobot.util.http
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.Retrofit
-import retrofit2.converter.fastjson.FastJsonConverterFactory
+import retrofit2.converter.jackson.JacksonConverterFactory
 
 open class DefaultRetrofitClient {
     protected var builder: Retrofit.Builder = Retrofit.Builder()
-            .addConverterFactory(FastJsonConverterFactory.create())
+            //.addConverterFactory(FastJsonConverterFactory.create())
+            .addConverterFactory(JacksonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(DefaultOkHttpClient.INSTANCE.okHttpClient)
 

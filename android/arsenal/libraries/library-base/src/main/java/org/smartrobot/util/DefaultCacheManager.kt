@@ -39,6 +39,7 @@ class DefaultCacheManager private constructor() {
         allModuleCacheMap.put(module, subModuleCacheMap)
     }
 
+    @Suppress("UNCHECKED_CAST")
     operator fun <T> get(module: String, key: String): T? {
         if (!TextUtils.isEmpty(module) && !TextUtils.isEmpty(key)) {
             var subModuleCacheMap: ConcurrentHashMap<String, Any>? = null
@@ -70,7 +71,7 @@ class DefaultCacheManager private constructor() {
         // 荣耀6 会有很多警告
         val packageDir: File
             get() {
-                var cacheDir: File? = null
+                val cacheDir: File?
                 if (DefaultSystemUtil.isSdCardExist) {
                     cacheDir = File(Environment.getExternalStorageDirectory().absolutePath + "/Android/data/" + DefaultBaseApplication.instance.packageName)
                 } else {

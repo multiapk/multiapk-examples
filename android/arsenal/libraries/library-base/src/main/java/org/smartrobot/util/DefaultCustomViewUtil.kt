@@ -80,7 +80,7 @@ object DefaultCustomViewUtil {
     }
 
     fun getString(typedArray: TypedArray, index: Int, defaultValue: String): String {
-        var result: String? = null
+        var result: String?
         try {
             val resId = typedArray.getResourceId(index, -1)
             if (resId != -1)

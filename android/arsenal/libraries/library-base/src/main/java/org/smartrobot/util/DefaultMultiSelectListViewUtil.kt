@@ -5,17 +5,10 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.CheckBox
-import android.widget.CompoundButton
-import android.widget.LinearLayout
-import android.widget.ListView
-import android.widget.TextView
-
+import android.widget.*
 import org.smartrobot.R
-
 import java.io.Serializable
-import java.util.ArrayList
+import java.util.*
 
 class DefaultMultiSelectListViewUtil {
 
@@ -36,12 +29,7 @@ class DefaultMultiSelectListViewUtil {
 
     fun notifyDataSetChanged(dataList: ArrayList<MultiData>) {
         mDataList = dataList
-        if (multiAdapter != null) {
-            multiAdapter!!.notifyDataSetChanged()
-        } else {
-            multiAdapter = MultiAdapter()
-            listView.adapter = multiAdapter
-        }
+        multiAdapter.notifyDataSetChanged()
     }
 
     inner class MultiAdapter : BaseAdapter() {
@@ -59,24 +47,24 @@ class DefaultMultiSelectListViewUtil {
 
         @SuppressLint("InflateParams")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var convertView = convertView
+
             if (multiCustomLayoutHandler != null) {
                 return multiCustomLayoutHandler!!.createItemView(position, convertView, getItem(position))
             }
-
+            var contentView = convertView
             val viewHolder: MultiViewHolder
-            if (convertView == null) {
-                convertView = LayoutInflater.from(activity).inflate(R.layout.default_multi_listview_item_layout, null)
+            if (contentView == null) {
+                contentView = LayoutInflater.from(activity).inflate(R.layout.default_multi_listview_item_layout, null)
                 viewHolder = MultiViewHolder()
-                viewHolder.mCheckBox = convertView!!.findViewById(R.id.mCheckBox) as CheckBox
-                viewHolder.mTextView = convertView.findViewById(R.id.mTextView) as TextView
-                viewHolder.mItemLayout = convertView.findViewById(R.id.mItemLayout) as LinearLayout
-                convertView.tag = viewHolder
+                viewHolder.mCheckBox = contentView!!.findViewById(R.id.mCheckBox) as CheckBox
+                viewHolder.mTextView = contentView.findViewById(R.id.mTextView) as TextView
+                viewHolder.mItemLayout = contentView.findViewById(R.id.mItemLayout) as LinearLayout
+                contentView.tag = viewHolder
             } else {
-                viewHolder = convertView.tag as MultiViewHolder
+                viewHolder = contentView.tag as MultiViewHolder
             }
 
-            viewHolder.mCheckBox!!.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewHolder.mCheckBox!!.setOnCheckedChangeListener { _, isChecked ->
                 mDataList[position].isChecked = isChecked
                 viewHolder.mCheckBox!!.isChecked = mDataList[position].isChecked
             }
@@ -87,9 +75,9 @@ class DefaultMultiSelectListViewUtil {
             viewHolder.mItemLayout!!.setOnClickListener {
                 /**POI类型：0:景点 1:购物 2:娱乐 3:餐馆 */
                 /**POI类型：0:景点 1:购物 2:娱乐 3:餐馆 */
-                val multiData = getItem(position)
+                //val multiData = getItem(position)
             }
-            return convertView
+            return contentView
         }
     }
 

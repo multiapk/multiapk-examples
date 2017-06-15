@@ -14,7 +14,7 @@ object DefaultNetworkUtil {
     fun isNetworkAvailable(): Boolean {
         var isNetworkAvailable = false
         val application = DefaultBaseApplication.instance
-        val conManager = application?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+        val conManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
         val networkInfo = conManager?.activeNetworkInfo
         if (networkInfo != null && networkInfo.isConnectedOrConnecting) {
             isNetworkAvailable = true
@@ -51,12 +51,7 @@ object DefaultNetworkUtil {
     }
 
     fun getNetType(): MNetworkType {
-        var networkType = MNetworkType.NONE
-        val application = DefaultBaseApplication.instance
-        if (application != null) {
-            networkType = getNetType(application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
-        }
-        return networkType
+        return getNetType(DefaultBaseApplication.instance.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
     }
 
     fun getNetType(connectivityManager: ConnectivityManager?): MNetworkType {
@@ -91,32 +86,31 @@ object DefaultNetworkUtil {
     private fun updateNetProvider(type: Int): MNetworkType {
         var networkType = MNetworkType.NONE
         val application = DefaultBaseApplication.instance
-        if (application != null) {
-            val tempType = getSwitchedType(type)
-            val telephonyManager = application.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
-            var IMSI: String? = null
-            var netType = 0
-            if (telephonyManager != null) {
-                IMSI = telephonyManager.subscriberId
-                netType = telephonyManager.networkType
-            }
-            val provide = getNetworkProvider(IMSI)
-
-            if (tempType == ConnectivityManager.TYPE_WIFI) {
-                networkType = MNetworkType.WIFI
-            } else if (tempType == ConnectivityManager.TYPE_MOBILE) {
-                when (netType) {
-                    TelephonyManager.NETWORK_TYPE_GPRS, TelephonyManager.NETWORK_TYPE_EDGE, TelephonyManager.NETWORK_TYPE_CDMA, TelephonyManager.NETWORK_TYPE_1xRTT, TelephonyManager.NETWORK_TYPE_IDEN -> networkType = MNetworkType.G2
-                    TelephonyManager.NETWORK_TYPE_UMTS, TelephonyManager.NETWORK_TYPE_EVDO_0, TelephonyManager.NETWORK_TYPE_EVDO_A, TelephonyManager.NETWORK_TYPE_HSDPA, TelephonyManager.NETWORK_TYPE_HSUPA, TelephonyManager.NETWORK_TYPE_HSPA, TelephonyManager.NETWORK_TYPE_EVDO_B, TelephonyManager.NETWORK_TYPE_EHRPD, TelephonyManager.NETWORK_TYPE_HSPAP -> networkType = MNetworkType.G3
-                    TelephonyManager.NETWORK_TYPE_LTE -> networkType = MNetworkType.G4
-                }
-            }
-            networkType.provider = provide
+        val tempType = getSwitchedType(type)
+        val telephonyManager = application.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager?
+        var IMSI: String? = null
+        var netType = 0
+        if (telephonyManager != null) {
+            IMSI = telephonyManager.subscriberId
+            netType = telephonyManager.networkType
         }
+        val provide = getNetworkProvider(IMSI)
+
+        if (tempType == ConnectivityManager.TYPE_WIFI) {
+            networkType = MNetworkType.WIFI
+        } else if (tempType == ConnectivityManager.TYPE_MOBILE) {
+            when (netType) {
+                TelephonyManager.NETWORK_TYPE_GPRS, TelephonyManager.NETWORK_TYPE_EDGE, TelephonyManager.NETWORK_TYPE_CDMA, TelephonyManager.NETWORK_TYPE_1xRTT, TelephonyManager.NETWORK_TYPE_IDEN -> networkType = MNetworkType.G2
+                TelephonyManager.NETWORK_TYPE_UMTS, TelephonyManager.NETWORK_TYPE_EVDO_0, TelephonyManager.NETWORK_TYPE_EVDO_A, TelephonyManager.NETWORK_TYPE_HSDPA, TelephonyManager.NETWORK_TYPE_HSUPA, TelephonyManager.NETWORK_TYPE_HSPA, TelephonyManager.NETWORK_TYPE_EVDO_B, TelephonyManager.NETWORK_TYPE_EHRPD, TelephonyManager.NETWORK_TYPE_HSPAP -> networkType = MNetworkType.G3
+                TelephonyManager.NETWORK_TYPE_LTE -> networkType = MNetworkType.G4
+            }
+        }
+        networkType.provider = provide
         return networkType
     }
 
     private fun getSwitchedType(type: Int): Int {
+        @Suppress("DEPRECATION")
         when (type) {
             ConnectivityManager.TYPE_MOBILE, ConnectivityManager.TYPE_MOBILE_DUN, ConnectivityManager.TYPE_MOBILE_HIPRI, ConnectivityManager.TYPE_MOBILE_MMS, ConnectivityManager.TYPE_MOBILE_SUPL -> return ConnectivityManager.TYPE_MOBILE
             else -> return type

@@ -16,7 +16,7 @@ import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseFragment
 import org.smartrobot.util.*
 import org.smartrobot.util.rx.RxBus
-import java.util.*
+import org.smartrobot.widget.titlebar.DefaultTitleBar
 
 open class DefaultDebugFragment : DefaultBaseFragment() {
 
@@ -24,15 +24,21 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
         return inflater.inflate(R.layout.default_debug_fragment, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clearCacheTV.setOnClickListener { DefaultIntentUtil.goToAppDetails(activity) }
         hideTV.setOnClickListener { DefaultFloatViewUtil.instance.isAwaysHide = true }
 
+        val _titleBar: DefaultTitleBar = view.findViewById(R.id.titleBar) as DefaultTitleBar
+        _titleBar.right0BgView.setOnClickListener {
+            saveUrlList()
+            Snackbar.make(clearCacheTV, "保存成功!", Snackbar.LENGTH_SHORT).show()
+            activity.finish()
+        }
         val adapter = DebugAdapter(urlList, activity)
-        listView.adapter = adapter
+        mListView.adapter = adapter
         addCustom.setOnClickListener(View.OnClickListener {
-            val newEntity = UrlEntity(editLabel.text.toString().trim { it <= ' ' }, editUrl.text.toString().trim { it <= ' ' }, false)
+            val newEntity = UrlEntity(editLabel.text.toString(), editUrl.text.toString(), false)
             if (TextUtils.isEmpty(newEntity.label)) {
                 DefaultToastUtil.show("请填写标签")
                 return@OnClickListener
@@ -51,11 +57,6 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
             DefaultSystemUtil.hide(activity)
             RxBus.instance.post(UrlChangeEvent(newEntity))
         })
-        defaultTitleBar.right0BgView.setOnClickListener {
-            saveUrlList()
-            Snackbar.make(defaultTitleBar, "保存成功!", Snackbar.LENGTH_SHORT).show()
-            activity.finish()
-        }
     }
 
     class UrlEntity(var label: String, var url: String, var isSelected: Boolean) {
@@ -113,7 +114,7 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
             val textView = convertView.findViewById(R.id.textView) as TextView
             val urlEntity = getItem(position)
             radioButton.text = urlEntity.label
-            radioButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            radioButton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked && !urlEntity.isSelected) {
                     urlEntity.isSelected = true
                     for (item in urlList) {
@@ -144,13 +145,8 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
 
         val KEY_CUSTOM_LIST = "KEY_CUSTOM_LIST"
         var isShown = false
-        var urlList: MutableList<UrlEntity> = ArrayList()
-            get() {
-                urlList = DefaultPreferencesUtil.instance.getList(KEY_CUSTOM_LIST, UrlEntity::class.java)
-                if (isEnableLog)
-                    DefaultLogUtil.d(TAG, "[getUrlList]:\n" + urlList.toString())
-                return urlList
-            }
+        var urlList: MutableList<UrlEntity> = DefaultPreferencesUtil.instance.getList(KEY_CUSTOM_LIST, UrlEntity::class.java)
+
         var isEnableLog = false
 
         fun addUrl(vararg urlEntities: UrlEntity) {

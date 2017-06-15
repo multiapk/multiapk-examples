@@ -14,7 +14,7 @@ import java.util.*
 class DefaultSingleSelectListViewUtil {
 
     lateinit var mDataList: ArrayList<out SingleData<*>>
-    lateinit var multiAdapter: MultiAdapter
+    var multiAdapter: MultiAdapter? = null
     lateinit var listView: ListView
     lateinit var activity: Activity
 
@@ -31,7 +31,7 @@ class DefaultSingleSelectListViewUtil {
     fun notifyDataSetChanged(dataList: ArrayList<out SingleData<*>>) {
         mDataList = dataList
         if (multiAdapter != null) {
-            multiAdapter!!.notifyDataSetChanged()
+            multiAdapter?.notifyDataSetChanged()
         } else {
             multiAdapter = MultiAdapter()
             listView.adapter = multiAdapter
@@ -52,8 +52,8 @@ class DefaultSingleSelectListViewUtil {
         }
 
         @SuppressLint("InflateParams")
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var convertView = convertView
+        override fun getView(position: Int, _convertView: View?, parent: ViewGroup): View {
+            var convertView = _convertView
             if (singleCustomLayoutHandler != null) {
                 return singleCustomLayoutHandler!!.createItemView(position, convertView, getItem(position))
             }

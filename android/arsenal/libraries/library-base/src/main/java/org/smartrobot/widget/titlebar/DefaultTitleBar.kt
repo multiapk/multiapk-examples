@@ -62,6 +62,7 @@ open class DefaultTitleBar(val mContext: Context, attrs: AttributeSet?) : Relati
             setBgPadding(left0BgView, R.styleable.DefaultTitleBar_left0BgViewPadding, R.styleable.DefaultTitleBar_left0BgPaddingLeft, R.styleable.DefaultTitleBar_left0BgPaddingRight, R.styleable.DefaultTitleBar_left0BgPaddingTop, R.styleable.DefaultTitleBar_left0BgPaddingBottom, DefaultTitleBarIconPadding, typedArray)
             left0BgView.visibility = typedArray.getInt(R.styleable.DefaultTitleBar_left0Visible, View.VISIBLE)
             setTextAppearance(left0Btn, R.styleable.DefaultTitleBar_left0Appearance, typedArray)
+            @Suppress("DEPRECATION")
             val transparentColor = resources.getColor(android.R.color.transparent)
             setBackground(left0Btn, R.styleable.DefaultTitleBar_left0Background, transparentColor, -1, typedArray)
             setText(left0Btn, R.styleable.DefaultTitleBar_left0Text, null, typedArray)
@@ -174,8 +175,8 @@ open class DefaultTitleBar(val mContext: Context, attrs: AttributeSet?) : Relati
 
     }
 
-    private fun setBgPadding(bgView: View, indexPadding: Int, indexLeft: Int, indexRight: Int, indexTop: Int, indexBottom: Int, defaultPadding: Int, typedArray: TypedArray) {
-        var defaultPadding = defaultPadding
+    private fun setBgPadding(bgView: View, indexPadding: Int, indexLeft: Int, indexRight: Int, indexTop: Int, indexBottom: Int, _defaultPadding: Int, typedArray: TypedArray) {
+        var defaultPadding = _defaultPadding
         try {
             var padding = typedArray.getDimensionPixelSize(indexPadding, -10000).toFloat()
             var paddingLeft = typedArray.getDimensionPixelSize(indexLeft, -10000).toFloat()
@@ -233,6 +234,7 @@ open class DefaultTitleBar(val mContext: Context, attrs: AttributeSet?) : Relati
 
             val drawable = typedArray.getDrawable(index)
             if (drawable != null) {
+                @Suppress("DEPRECATION")
                 view.setBackgroundDrawable(drawable)
                 resetVisible(view)
             } else {
@@ -264,8 +266,8 @@ open class DefaultTitleBar(val mContext: Context, attrs: AttributeSet?) : Relati
 
     }
 
-    private fun setText(textView: TextView, index: Int, defaultString: String?, typedArray: TypedArray) {
-        var defaultString = defaultString
+    private fun setText(textView: TextView, index: Int, _defaultString: String?, typedArray: TypedArray) {
+        var defaultString = _defaultString
         try {
             textView.text = defaultString
             defaultString = typedArray.getString(index)
@@ -337,8 +339,8 @@ open class DefaultTitleBar(val mContext: Context, attrs: AttributeSet?) : Relati
 
     }
 
-    private fun setTextSize(textView: TextView, index: Int, defaultSize: Float, typedArray: TypedArray) {
-        var defaultSize = defaultSize
+    private fun setTextSize(textView: TextView, index: Int, _defaultSize: Float, typedArray: TypedArray) {
+        var defaultSize = _defaultSize
         try {
             if (defaultSize != -1f)
                 textView.textSize = defaultSize
@@ -362,6 +364,7 @@ open class DefaultTitleBar(val mContext: Context, attrs: AttributeSet?) : Relati
         try {
             val resId = typedArray.getResourceId(index, -1)
             if (resId != -1) {
+                @Suppress("DEPRECATION")
                 textView.setTextAppearance(mContext, resId)
             }
         } catch (e: Exception) {

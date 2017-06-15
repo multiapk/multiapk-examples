@@ -1,5 +1,6 @@
 package business.smartrobot
 
+import business.smartrobot.api.DefaultApiManager
 import business.smartrobot.database.dao.DaoMaster
 import business.smartrobot.database.dao.DaoSession
 import com.facebook.react.ReactApplication
@@ -24,6 +25,7 @@ class DefaultApplication : DefaultBaseApplication(), ReactApplication {
 
         SoLoader.init(this, false)
         initDatabase()
+        DefaultApiManager.init()
     }
 
     private lateinit var daoSession: DaoSession

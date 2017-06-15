@@ -5,8 +5,7 @@ import android.support.v7.widget.RecyclerView
 import org.smartrobot.widget.recyclerview.helper.DefaultRecyclerViewItemTouchHelperAdapter
 import java.util.*
 
-abstract class DefaultRecyclerViewAdapter<Entity, ViewHolder : RecyclerView.ViewHolder>(var context: Context, dataList: ArrayList<Entity>) : RecyclerView.Adapter<ViewHolder>(), DefaultRecyclerViewItemTouchHelperAdapter {
-    var dataList: ArrayList<Entity> = ArrayList<Entity>()
+abstract class DefaultRecyclerViewAdapter<Entity, ViewHolder : RecyclerView.ViewHolder>(var context: Context, var dataList: ArrayList<Entity>) : RecyclerView.Adapter<ViewHolder>(), DefaultRecyclerViewItemTouchHelperAdapter {
 
     override fun getItemCount(): Int {
         return dataList.size

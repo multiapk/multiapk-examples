@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <org.smartrobot.widget.titlebar.DefaultTitleBar
-                android:id="@+id/defaultTitleBar"
+                android:id="@+id/titleBar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/default_titlebar_height"
                 android:background="#111"
@@ -33,7 +33,7 @@
                 app:titleTxtColor="@color/white" />
 
             <org.smartrobot.widget.DefaultListView
-                android:id="@+id/listView"
+                android:id="@+id/mListView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/pink"

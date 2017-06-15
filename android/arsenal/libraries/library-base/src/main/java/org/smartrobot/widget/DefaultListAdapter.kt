@@ -36,14 +36,15 @@ abstract class DefaultListAdapter<ItemEntity, ViewHolder : RecyclerView.ViewHold
 
     abstract fun onBindViewHolder(holder: ViewHolder, position: Int)
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var convertView = convertView
+    override fun getView(position: Int, _convertView: View?, parent: ViewGroup): View {
+        var convertView = _convertView
         val viewHolder: ViewHolder
         if (convertView == null) {
             viewHolder = onCreateViewHolder(parent, getItemViewType(position))
             convertView = viewHolder.itemView
             convertView!!.tag = viewHolder
         } else {
+            @Suppress("UNCHECKED_CAST")
             viewHolder = convertView.tag as ViewHolder
         }
         onBindViewHolder(viewHolder, position)

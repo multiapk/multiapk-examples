@@ -29,10 +29,10 @@ enum class DefaultFloatViewUtil private constructor() {
     private val defaultX = 0
     private val defaultY = defaultWH * 5
 
-    private lateinit var floatView: ImageView
-    private lateinit var windowManager: WindowManager
-    private lateinit var windowLayoutParams: WindowManager.LayoutParams
-    private lateinit var listener: View.OnClickListener
+    private var floatView: ImageView
+    private var windowManager: WindowManager
+    private var windowLayoutParams: WindowManager.LayoutParams
+    private var listener: View.OnClickListener? = null
 
     init {
         floatView = ImageView(DefaultBaseApplication.instance)
@@ -74,7 +74,7 @@ enum class DefaultFloatViewUtil private constructor() {
                         DefaultPreferencesUtil.instance.putInt(KEY_LAST_Y, windowLayoutParams.y)
                         if (Math.abs(event.rawX - rawX) < 5 && Math.abs(event.rawY - rawY) < 5) {
                             if (listener != null)
-                                listener.onClick(floatView)
+                                listener?.onClick(floatView)
                             else
                                 DefaultDebugFragment.goTo()
                         }
@@ -94,7 +94,7 @@ enum class DefaultFloatViewUtil private constructor() {
         }
 
     fun setImageResource(@DrawableRes resId: Int) {
-        floatView?.setImageResource(resId)
+        floatView.setImageResource(resId)
     }
 
     fun setOnClickListener(listener: View.OnClickListener) {
@@ -105,7 +105,7 @@ enum class DefaultFloatViewUtil private constructor() {
         try {
             hide()
             if (!isAwaysHide)
-                windowManager!!.addView(floatView, windowLayoutParams)
+                windowManager.addView(floatView, windowLayoutParams)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -120,14 +120,12 @@ enum class DefaultFloatViewUtil private constructor() {
 
     fun hide() {
         try {
-            if (floatView != null && windowManager != null) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    if (floatView.isAttachedToWindow)
-                        windowManager.removeViewImmediate(floatView)
-                } else {
-                    if (floatView.parent != null)
-                        windowManager.removeViewImmediate(floatView)
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                if (floatView.isAttachedToWindow)
+                    windowManager.removeViewImmediate(floatView)
+            } else {
+                if (floatView.parent != null)
+                    windowManager.removeViewImmediate(floatView)
             }
         } catch (e: Exception) {
             e.printStackTrace()
