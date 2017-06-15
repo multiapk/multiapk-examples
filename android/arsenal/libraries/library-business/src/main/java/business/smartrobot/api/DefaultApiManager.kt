@@ -6,6 +6,7 @@ import io.reactivex.Flowable
 import io.reactivex.FlowableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.smartrobot.util.DefaultToastUtil
 import org.smartrobot.util.http.DefaultRetrofitClient
 import org.smartrobot.util.rx.RxBus
 import org.smartrobot.widget.debug.DefaultDebugFragment
@@ -28,6 +29,7 @@ object DefaultApiManager {
         DefaultDebugFragment.addUrl("PRO", URL_PRO, true)
         RxBus.instance.toObservable(DefaultDebugFragment.UrlChangeEvent::class.java).subscribe { urlChangeEvent ->
             URL_MAIN = urlChangeEvent.urlEntity.url
+            DefaultToastUtil.show("检测到环境切换!")
         }
 //        }
     }

@@ -26,9 +26,6 @@
                 app:left0Background="@drawable/default_menu_back_left_white"
                 app:left0BgViewPadding="10dp"
                 app:left0BgWidth="@dimen/default_titlebar_height"
-                app:right0Text="提交"
-                app:right0TextColor="@color/white"
-                app:right0TextSize="16dp"
                 app:titleSize="20dp"
                 app:titleText="配置环境"
                 app:titleTxtColor="@color/white" />

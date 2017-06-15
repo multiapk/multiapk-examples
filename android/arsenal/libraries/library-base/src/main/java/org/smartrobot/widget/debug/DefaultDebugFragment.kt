@@ -32,9 +32,9 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
 
         fun addUrl(vararg urlEntities: UrlEntity) {
             if (urlEntities.isNotEmpty()) {
-                urlEntities
-                        .filterNot { urlList.contains(it) }
-                        .forEach { urlList.add(it) }
+                for (tmpUrlEntity in urlEntities)
+                    if (!urlList.contains(tmpUrlEntity))
+                        urlList.add(tmpUrlEntity)
                 saveUrlList()
             }
         }
@@ -78,12 +78,6 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        titleBar.right0BgView.setOnClickListener {
-            saveUrlList()
-            Snackbar.make(titleBar, "保存成功!", Snackbar.LENGTH_SHORT).show()
-            activity.finish()
-        }
-
         val adapter = DebugAdapter(urlList, activity)
         listView.adapter = adapter
         addCustom.setOnClickListener(View.OnClickListener {
@@ -101,10 +95,10 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
             if (!urlList.contains(newEntity)) {
                 urlList.add(newEntity)
                 saveUrlList()
+                RxBus.instance.post(UrlChangeEvent(newEntity))
                 adapter.notifyDataSetChanged()
             }
             DefaultSystemUtil.hide(activity)
-            RxBus.instance.post(UrlChangeEvent(newEntity))
         })
 
         clearCacheTV.setOnClickListener { DefaultIntentUtil.goToAppDetails(activity) }
@@ -146,7 +140,10 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
                     for (item in urlList) {
                         item.isSelected = item == urlEntity
                     }
+                    saveUrlList()
+                    RxBus.instance.post(UrlChangeEvent(urlEntity))
                     notifyDataSetChanged()
+                    Snackbar.make(radioButton, "环境已经切换!", Snackbar.LENGTH_SHORT).show()
                 }
             }
             radioButton.isChecked = urlEntity.isSelected
