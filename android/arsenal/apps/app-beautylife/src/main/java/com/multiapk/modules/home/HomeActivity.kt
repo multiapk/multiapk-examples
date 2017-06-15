@@ -146,8 +146,8 @@ class HomeActivity : DefaultBaseActivity() {
         })
         initDebugView()
 
-        DefaultDebugFragment.goTo()
-        DefaultActivity.start(this, DefaultDebugFragment::class.java)
+        //DefaultDebugFragment.goTo()
+        //DefaultActivity.start(this, DefaultDebugFragment::class.java)
     }
 
     @Suppress("DEPRECATION")

@@ -1,6 +1,5 @@
 package business.smartrobot.api
 
-import business.smartrobot.BuildConfig
 import business.smartrobot.api.exception.DefaultRetrofitException
 import business.smartrobot.api.exception.DefaultRetrofitServerException
 import io.reactivex.Flowable
@@ -23,14 +22,14 @@ object DefaultApiManager {
 
 
     fun init() {
-        if (BuildConfig.DEBUG) {
-            DefaultDebugFragment.addUrl("FAT", URL_FAT, false)
-            DefaultDebugFragment.addUrl("UAT", URL_UAT, false)
-            DefaultDebugFragment.addUrl("PRO", URL_PRO, true)
-            RxBus.instance.toObservable(DefaultDebugFragment.UrlEntity::class.java).subscribe { urlEntity ->
-                URL_MAIN = urlEntity.url
-            }
+//        if (BuildConfig.DEBUG) {
+        DefaultDebugFragment.addUrl("FAT", URL_FAT, false)
+        DefaultDebugFragment.addUrl("UAT", URL_UAT, false)
+        DefaultDebugFragment.addUrl("PRO", URL_PRO, true)
+        RxBus.instance.toObservable(DefaultDebugFragment.UrlChangeEvent::class.java).subscribe { urlChangeEvent ->
+            URL_MAIN = urlChangeEvent.urlEntity.url
         }
+//        }
     }
 
     @Synchronized fun getDefaultApi(): DefaultApi {

@@ -3,7 +3,7 @@ package org.smartrobot.util
 import android.content.Context
 import android.content.SharedPreferences
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.databind.type.TypeFactory
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.smartrobot.base.DefaultBaseApplication
 import java.util.*
@@ -76,7 +76,7 @@ class DefaultPreferencesUtil protected constructor() {
     fun <T> getList(key: String, classOfT: Class<T>?): MutableList<T> {
         var list: MutableList<T> = ArrayList()
         try {
-            list = objectMapper.readValue(mSharedPreferences.getString(key, null))
+            list = objectMapper.readValue(mSharedPreferences.getString(key, null), TypeFactory.defaultInstance().constructCollectionType(ArrayList::class.java, classOfT))
         } catch (e: Exception) {
             e.printStackTrace()
         }
