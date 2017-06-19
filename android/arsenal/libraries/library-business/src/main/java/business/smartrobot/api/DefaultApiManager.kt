@@ -1,6 +1,5 @@
 package business.smartrobot.api
 
-import business.smartrobot.BuildConfig
 import business.smartrobot.api.exception.DefaultRetrofitException
 import business.smartrobot.api.exception.DefaultRetrofitServerException
 import io.reactivex.Flowable
@@ -22,16 +21,14 @@ object DefaultApiManager {
 
     private val retrofitClient = DefaultRetrofitClient()
 
-
     fun init(isShowDebugNotification: Boolean) {
-        DefaultToastUtil.show("DEBUG?${isShowDebugNotification}")
         if (isShowDebugNotification) {
             DefaultDebugFragment.addUrl("FAT", URL_FAT, false)
             DefaultDebugFragment.addUrl("UAT", URL_UAT, false)
             DefaultDebugFragment.addUrl("PRO", URL_PRO, true)
-            RxBus.instance.toObservable(DefaultDebugFragment.UrlChangeEvent::class.java).subscribe { urlChangeEvent ->
-                URL_MAIN = urlChangeEvent.urlEntity.url
-                DefaultToastUtil.show("检测到环境切换!")
+            RxBus.instance.toObservable(DefaultDebugFragment.ServerChangeEvent::class.java).subscribe { urlChangeEvent ->
+                URL_MAIN = urlChangeEvent.serverModel.url
+                DefaultToastUtil.show("检测到环境切换!已切换到${urlChangeEvent.serverModel.label}")
             }
             DefaultDebugFragment.showDebugNotification(isShowDebugNotification)
         }

@@ -37,29 +37,29 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
 
         val KEY_CUSTOM_LIST = "KEY_CUSTOM_LIST"
         var isShown = false
-        var urlList: MutableList<UrlEntity> = DefaultPreferencesUtil.instance.getList(KEY_CUSTOM_LIST, UrlEntity::class.java)
+        var serverList: MutableList<ServerModel> = DefaultPreferencesUtil.instance.getList(KEY_CUSTOM_LIST, ServerModel::class.java)
 
-        fun addUrl(vararg urlEntities: UrlEntity) {
-            if (urlEntities.isNotEmpty()) {
-                for (tmpUrlEntity in urlEntities)
-                    if (!urlList.contains(tmpUrlEntity))
-                        urlList.add(tmpUrlEntity)
+        fun addUrl(vararg serverModels: ServerModel) {
+            if (serverModels.isNotEmpty()) {
+                for (tmpUrlEntity in serverModels)
+                    if (!serverList.contains(tmpUrlEntity))
+                        serverList.add(tmpUrlEntity)
                 saveUrlList()
             }
         }
 
         fun addUrl(label: String, url: String, isSelected: Boolean = false) {
             if (!TextUtils.isEmpty(label) && !TextUtils.isEmpty(url))
-                addUrl(UrlEntity(label, url, isSelected))
+                addUrl(ServerModel(label, url, isSelected))
         }
 
         fun saveUrlList() {
-            DefaultLogUtil.d(TAG, "[saveUrlList]:\n" + urlList.toString())
-            DefaultPreferencesUtil.instance.putList(KEY_CUSTOM_LIST, urlList)
+            DefaultLogUtil.d(TAG, "[saveUrlList]:\n" + serverList.toString())
+            DefaultPreferencesUtil.instance.putList(KEY_CUSTOM_LIST, serverList)
         }
 
         fun getCurrentUrl(): String {
-            val tmpUrlList = urlList
+            val tmpUrlList = serverList
 
             var url: String = ""
 
@@ -71,7 +71,7 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
             }
             if (TextUtils.isEmpty(url) && tmpUrlList.size > 0) {
                 tmpUrlList[0].isSelected = true
-                urlList = tmpUrlList
+                serverList = tmpUrlList
                 url = tmpUrlList[0].url
                 saveUrlList()
             }
@@ -106,9 +106,9 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
                                         .setBigContentTitle("bigtitle")
                                         .setSummaryText("summarytext")*/
                         )
-                        .addAction(R.drawable.ic_done, "FAT", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 0, Intent(DebugBroadcastReceiver.ACTION).putExtra("type", 0), PendingIntent.FLAG_UPDATE_CURRENT))
-                        .addAction(R.drawable.ic_edit, "UAT", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 1, Intent(DebugBroadcastReceiver.ACTION).putExtra("type", 1), PendingIntent.FLAG_UPDATE_CURRENT))
-                        .addAction(R.drawable.ic_launcher, "PRO", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 2, Intent(DebugBroadcastReceiver.ACTION).putExtra("type", 2), PendingIntent.FLAG_UPDATE_CURRENT))
+                        .addAction(R.drawable.ic_done, "FAT", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 0, Intent(DebugBroadcastReceiver.ACTION).putExtra("name", "FAT"), PendingIntent.FLAG_UPDATE_CURRENT))
+                        .addAction(R.drawable.ic_edit, "UAT", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 1, Intent(DebugBroadcastReceiver.ACTION).putExtra("name", "UAT"), PendingIntent.FLAG_UPDATE_CURRENT))
+                        .addAction(R.drawable.ic_launcher, "PRO", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 2, Intent(DebugBroadcastReceiver.ACTION).putExtra("name", "PRO"), PendingIntent.FLAG_UPDATE_CURRENT))
 
                 DefaultNotificationUtil.showNotifyToFragment(DefaultBaseApplication.instance, NOTIFICATION_ID, Notification.FLAG_NO_CLEAR, builder, DefaultDebugFragment::class.java, Bundle(), PendingIntent.FLAG_CANCEL_CURRENT)
 
@@ -132,10 +132,10 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = DebugAdapter(urlList, activity)
+        val adapter = DebugAdapter(serverList, activity)
         listView.adapter = adapter
         addCustom.setOnClickListener(View.OnClickListener {
-            val newEntity = UrlEntity(editLabel.text.toString(), editUrl.text.toString(), false)
+            val newEntity = ServerModel(editLabel.text.toString(), editUrl.text.toString(), false)
             if (TextUtils.isEmpty(newEntity.label)) {
                 DefaultToastUtil.show("请填写标签")
                 return@OnClickListener
@@ -146,10 +146,10 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
             }
             editLabel.text = null
             editUrl.text = null
-            if (!urlList.contains(newEntity)) {
-                urlList.add(newEntity)
+            if (!serverList.contains(newEntity)) {
+                serverList.add(newEntity)
                 saveUrlList()
-                RxBus.instance.post(UrlChangeEvent(newEntity))
+                RxBus.instance.post(ServerChangeEvent(newEntity))
                 adapter.notifyDataSetChanged()
             }
             DefaultSystemUtil.hide(activity)
@@ -169,12 +169,12 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
         isShown = false
     }
 
-    class DebugAdapter(var list: List<UrlEntity>, private val context: Context) : BaseAdapter() {
+    class DebugAdapter(var list: List<ServerModel>, private val context: Context) : BaseAdapter() {
         override fun getCount(): Int {
             return list.size
         }
 
-        override fun getItem(position: Int): UrlEntity {
+        override fun getItem(position: Int): ServerModel {
             return list[position]
         }
 
@@ -191,11 +191,11 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
             radioButton.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked && !urlEntity.isSelected) {
                     urlEntity.isSelected = true
-                    for (item in urlList) {
+                    for (item in serverList) {
                         item.isSelected = item == urlEntity
                     }
                     saveUrlList()
-                    RxBus.instance.post(UrlChangeEvent(urlEntity))
+                    RxBus.instance.post(ServerChangeEvent(urlEntity))
                     notifyDataSetChanged()
                     Snackbar.make(radioButton, "环境已经切换!", Snackbar.LENGTH_SHORT).show()
                 }
@@ -213,11 +213,13 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
 
     }
 
-    class UrlChangeEvent(var urlEntity: UrlEntity)
+    class ServerChangeEvent(var serverModel: ServerModel)
 
-    class UrlEntity(var label: String, var url: String, var isSelected: Boolean) {
+    class ServerModel(var label: String, var url: String, var isSelected: Boolean) {
+        constructor(label: String) : this(label, "", false)
+
         override fun equals(other: Any?): Boolean {
-            if (other is UrlEntity) {
+            if (other is ServerModel) {
                 return !TextUtils.isEmpty(label) && label == other.label
             } else {
                 return false
@@ -225,7 +227,7 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
         }
 
         override fun toString(): String {
-            return "UrlEntity{" +
+            return "ServerModel{" +
                     "label='" + label + '\'' +
                     ", url='" + url + '\'' +
                     ", isSelected=" + isSelected +
@@ -248,15 +250,15 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
 
         override fun onReceive(context: Context?, intent: Intent) {
             DefaultSystemUtil.closeStatusBar()
-            val type: Int = intent.getIntExtra("type", 0)
-            Log.w("krmao", "DebugBroadcastReceiver:type=" + type)
-
-            val urlEntity: UrlEntity = urlList[type]
-            for (item in urlList) {
-                item.isSelected = item == urlEntity
+            val label: String = intent.getStringExtra("name")
+            Log.w("krmao", "收到广播,即将切换环境到:" + label)
+            val destServerModel: ServerModel = ServerModel(label)
+            if (serverList.contains(destServerModel)) {
+                for (item in serverList)
+                    item.isSelected = item == destServerModel
+                saveUrlList()
+                RxBus.instance.post(ServerChangeEvent(destServerModel))
             }
-            saveUrlList()
-            RxBus.instance.post(UrlChangeEvent(urlEntity))
         }
     }
 }
