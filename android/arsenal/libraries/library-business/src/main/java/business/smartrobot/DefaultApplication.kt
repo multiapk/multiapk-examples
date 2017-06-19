@@ -25,7 +25,7 @@ class DefaultApplication : DefaultBaseApplication(), ReactApplication {
 
         SoLoader.init(this, false)
         initDatabase()
-        DefaultApiManager.init()
+        DefaultApiManager.init(isDebugModel)
     }
 
     private lateinit var daoSession: DaoSession
@@ -47,7 +47,7 @@ class DefaultApplication : DefaultBaseApplication(), ReactApplication {
     override fun getReactNativeHost(): ReactNativeHost {
         return object : ReactNativeHost(this) {
             override fun getUseDeveloperSupport(): Boolean {
-                return BuildConfig.DEBUG
+                return isDebugModel
             }
 
             override fun getPackages(): List<ReactPackage> {

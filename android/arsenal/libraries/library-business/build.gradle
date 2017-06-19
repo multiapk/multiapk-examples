@@ -18,6 +18,15 @@ android {
         daoPackage 'business.smartrobot.database.dao'
         targetGenDir 'src/main/java'
     }
+
+    /*buildTypes {
+        debug {
+            buildConfigField "boolean", "DEBUG", "true"
+        }
+        release {
+            buildConfigField "boolean", "DEBUG", "false"
+        }
+    }*/
 }
 
 dependencies {

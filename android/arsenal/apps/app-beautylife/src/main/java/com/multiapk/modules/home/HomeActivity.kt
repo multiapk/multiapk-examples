@@ -1,23 +1,20 @@
 package com.multiapk.modules.home
 
 import android.Manifest
-import android.app.Notification
-import android.app.PendingIntent
 import android.app.SearchManager
 import android.content.Context
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import business.smartrobot.BuildConfig
 import business.smartrobot.DefaultApplication
 import business.smartrobot.api.DefaultApiManager
 import business.smartrobot.api.model.UserModel
 import business.smartrobot.database.model.Order
 import com.jakewharton.rxbinding2.view.RxView
 import com.jude.swipbackhelper.SwipeBackHelper
-import com.multiapk.BuildConfig
 import com.multiapk.R
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,7 +25,7 @@ import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseActivity
-import org.smartrobot.util.DefaultNotificationUtil
+import org.smartrobot.util.DefaultSystemUtil
 import org.smartrobot.util.rx.RxBus
 import org.smartrobot.util.rx.RxTestEvent
 import org.smartrobot.widget.debug.DefaultDebugFragment
@@ -144,44 +141,8 @@ class HomeActivity : DefaultBaseActivity() {
             Snackbar.make(button, event.content + ":thread=" + Thread.currentThread().name, Snackbar.LENGTH_SHORT).show()
             collapsingToolbarLayout.title = event.content
         })
-        initDebugView()
 
-        //DefaultDebugFragment.goTo()
-        //DefaultActivity.start(this, DefaultDebugFragment::class.java)
-    }
-
-    @Suppress("DEPRECATION")
-    fun initDebugView() {
-        if (BuildConfig.DEBUG) {
-            val builder = android.support.v7.app.NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.ic_launcher)
-                    .setContentTitle("smartrobot-title")
-                    .setContentText("smartrobot-text")
-                    .setAutoCancel(false)
-                    .setDefaults(Notification.DEFAULT_ALL)
-                    .setOngoing(true)
-                    .setPriority(Notification.PRIORITY_MAX)
-                    .setSubText("smartrobot-subtext")
-                    .setTicker("smartrobot-ticker")
-                    .setStyle(
-                            /*NotificationCompat.DecoratedCustomViewStyle()*/
-                            android.support.v4.app.NotificationCompat.BigPictureStyle()
-                                    .bigPicture(BitmapFactory.decodeResource(resources, R.drawable.default_image))
-                                    .bigLargeIcon(BitmapFactory.decodeResource(resources, R.drawable.ios))
-                                    .setBigContentTitle("bigtitle")
-                                    .setSummaryText("summarytext")
-
-                            /*android.support.v4.app.NotificationCompat.BigTextStyle()
-                                    .bigText("bigtext")
-                                    .setBigContentTitle("bigtitle")
-                                    .setSummaryText("summarytext")*/
-                    )
-                    .addAction(R.drawable.ic_done, "FAT", null)
-                    .addAction(R.drawable.ic_edit, "UAT", null)
-                    .addAction(R.drawable.ic_launcher, "PRO", null)
-
-            DefaultNotificationUtil.showNotifyToFragment(this, 0, Notification.FLAG_NO_CLEAR, builder, DefaultDebugFragment::class.java, Bundle(), PendingIntent.FLAG_CANCEL_CURRENT)
-        }
+        Log.d("krmao", "HomeActivity:DefaultSystemUtil:metadata:" + DefaultSystemUtil.getAppMetaData("debugModel"))
     }
 
     fun testDB() {
@@ -198,5 +159,6 @@ class HomeActivity : DefaultBaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         subscriptions.dispose()
+        DefaultDebugFragment.cancelDebugNotification(BuildConfig.DEBUG)
     }
 }

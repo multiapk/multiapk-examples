@@ -10,6 +10,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Environment
 import android.os.StatFs
+import android.support.annotation.RequiresPermission
 import android.telephony.TelephonyManager
 import android.util.DisplayMetrics
 import android.util.Log
@@ -19,6 +20,7 @@ import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import org.smartrobot.base.DefaultBaseApplication
+import java.lang.reflect.Method
 
 
 object DefaultSystemUtil {
@@ -289,15 +291,14 @@ object DefaultSystemUtil {
             return versionName
         }
 
-    fun getAppMetaData(key: String): String? {
-        var metaData: String? = null
+    fun getAppMetaData(key: String): Any? {
+        var metaData: Any? = null
         try {
             val info = DefaultBaseApplication.instance.packageManager.getApplicationInfo(DefaultBaseApplication.instance.packageName, PackageManager.GET_META_DATA)
-            metaData = info.metaData.getString(key)
+            metaData = info.metaData.get(key)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
         return metaData
     }
 
@@ -344,5 +345,24 @@ object DefaultSystemUtil {
             }
         }
         return false
+    }
+
+    /**
+     * 收起下拉通知栏
+     */
+    @RequiresPermission("android.permission.EXPAND_STATUS_BAR")
+    fun closeStatusBar() {
+        try {
+            val statusBarManager = DefaultBaseApplication.instance.getSystemService("statusbar")
+            val collapse: Method
+            if (Build.VERSION.SDK_INT <= 16) {
+                collapse = statusBarManager.javaClass.getMethod("collapse")
+            } else {
+                collapse = statusBarManager.javaClass.getMethod("collapsePanels")
+            }
+            collapse.invoke(statusBarManager)
+        } catch (localException: Exception) {
+            localException.printStackTrace()
+        }
     }
 }

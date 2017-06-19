@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-apply plugin: 'com.neenbedankt.android-apt'
+//apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: "com.mlibrary.multiapk.application"
 apply plugin: 'walle'
 apply plugin: 'kotlin-android'
@@ -199,12 +199,16 @@ android {
     // Remove mockRelease as it's not needed.
     variantFilter { variant ->
         if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
-            variant.setIgnore(true);
+            variant.setIgnore(false);
+//            variant.setIgnore(true);
         }
     }
 
     productFlavors.all { flavor ->
-        flavor.manifestPlaceholders = [solidMode: solidMode,]
+        flavor.manifestPlaceholders = [
+                //solidMode : solidMode,
+                debugModel: true,
+        ]
     }
 
     applicationVariants.all { variant ->

@@ -1,9 +1,16 @@
 package org.smartrobot.widget.debug
 
+import android.app.Notification
+import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +20,7 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.default_debug_view_fragment.*
 import org.smartrobot.R
 import org.smartrobot.base.DefaultActivity
+import org.smartrobot.base.DefaultBaseApplication
 import org.smartrobot.base.DefaultBaseFragment
 import org.smartrobot.util.*
 import org.smartrobot.util.rx.RxBus
@@ -20,6 +28,7 @@ import org.smartrobot.util.rx.RxBus
 open class DefaultDebugFragment : DefaultBaseFragment() {
     companion object {
         val TAG = "DefaultDebugFragment"
+        val debugBroadcastReceiver: DebugBroadcastReceiver = DebugBroadcastReceiver()
 
         fun goTo() {
             if (!isShown)
@@ -67,6 +76,51 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
                 saveUrlList()
             }
             return url
+        }
+
+        val NOTIFICATION_ID = 771
+
+        @Suppress("DEPRECATION")
+        fun showDebugNotification(isShowDebugNotification: Boolean) {
+            if (isShowDebugNotification) {
+                val builder = android.support.v7.app.NotificationCompat.Builder(DefaultBaseApplication.instance)
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle("smartrobot-title")
+                        .setContentText("smartrobot-text")
+                        .setAutoCancel(false)
+                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setOngoing(true)
+                        .setPriority(Notification.PRIORITY_MAX)
+                        .setSubText("smartrobot-subtext")
+                        .setTicker("smartrobot-ticker")
+                        .setStyle(
+                                /*NotificationCompat.DecoratedCustomViewStyle()*/
+                                android.support.v4.app.NotificationCompat.BigPictureStyle()
+                                        .bigPicture(BitmapFactory.decodeResource(DefaultBaseApplication.instance.resources, R.drawable.android_yellow))
+                                        .bigLargeIcon(BitmapFactory.decodeResource(DefaultBaseApplication.instance.resources, R.drawable.ic_launcher))
+                                        .setBigContentTitle("bigtitle")
+                                        .setSummaryText("summarytext")
+
+                                /*android.support.v4.app.NotificationCompat.BigTextStyle()
+                                        .bigText("bigtext")
+                                        .setBigContentTitle("bigtitle")
+                                        .setSummaryText("summarytext")*/
+                        )
+                        .addAction(R.drawable.ic_done, "FAT", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 0, Intent(DebugBroadcastReceiver.ACTION).putExtra("type", 0), PendingIntent.FLAG_UPDATE_CURRENT))
+                        .addAction(R.drawable.ic_edit, "UAT", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 1, Intent(DebugBroadcastReceiver.ACTION).putExtra("type", 1), PendingIntent.FLAG_UPDATE_CURRENT))
+                        .addAction(R.drawable.ic_launcher, "PRO", PendingIntent.getBroadcast(DefaultBaseApplication.instance, 2, Intent(DebugBroadcastReceiver.ACTION).putExtra("type", 2), PendingIntent.FLAG_UPDATE_CURRENT))
+
+                DefaultNotificationUtil.showNotifyToFragment(DefaultBaseApplication.instance, NOTIFICATION_ID, Notification.FLAG_NO_CLEAR, builder, DefaultDebugFragment::class.java, Bundle(), PendingIntent.FLAG_CANCEL_CURRENT)
+
+                DefaultBaseApplication.instance.registerReceiver(debugBroadcastReceiver, IntentFilter(DebugBroadcastReceiver.ACTION))
+            }
+        }
+
+        fun cancelDebugNotification(isShowDebugNotification: Boolean) {
+            if (isShowDebugNotification) {
+                DefaultNotificationUtil.cancelNotify(DefaultBaseApplication.instance, NOTIFICATION_ID)
+                DefaultBaseApplication.instance.unregisterReceiver(debugBroadcastReceiver)
+            }
         }
     }
 
@@ -183,6 +237,26 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
             result = 31 * result + url.hashCode()
             result = 31 * result + isSelected.hashCode()
             return result
+        }
+    }
+
+    class DebugBroadcastReceiver : BroadcastReceiver() {
+
+        companion object {
+            val ACTION = "org.smartrobot.action.debug"
+        }
+
+        override fun onReceive(context: Context?, intent: Intent) {
+            DefaultSystemUtil.closeStatusBar()
+            val type: Int = intent.getIntExtra("type", 0)
+            Log.w("krmao", "DebugBroadcastReceiver:type=" + type)
+
+            val urlEntity: UrlEntity = urlList[type]
+            for (item in urlList) {
+                item.isSelected = item == urlEntity
+            }
+            saveUrlList()
+            RxBus.instance.post(UrlChangeEvent(urlEntity))
         }
     }
 }

@@ -166,12 +166,9 @@ ext {// Sdk and tools
     //others
     Properties properties = new Properties()
     properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    solidMode = false
-    solidModeConfigValue = properties.getProperty('solidMode')
-    if ('true'.equalsIgnoreCase(solidModeConfigValue))
-        solidMode = true
-    else if ('false'.equalsIgnoreCase(solidModeConfigValue))
-        solidMode = false
+
+    solidMode = 'true'.equalsIgnoreCase(properties.getProperty('solidMode'))
+    debugModel = 'true'.equalsIgnoreCase(properties.getProperty('debugModel'))
 
     bintrayUser = properties.getProperty('bintray.user')
     bintrayKey = properties.getProperty('bintray.apikey')
