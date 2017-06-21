@@ -27,7 +27,6 @@ dependencies {
     //compile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
 
     /******* kotlin支持 ***************************************************************************/
-    //compile "org.jetbrains.anko:anko-common:$rootProject.ext.ankoVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlinVersion"
 
     /******* 应用权限库 ****************************************************************************/

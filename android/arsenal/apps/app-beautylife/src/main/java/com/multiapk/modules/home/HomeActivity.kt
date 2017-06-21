@@ -3,6 +3,7 @@ package com.multiapk.modules.home
 import android.Manifest
 import android.app.SearchManager
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.SearchView
@@ -34,10 +35,14 @@ class HomeActivity : DefaultBaseActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         toolbar.inflateMenu(R.menu.home_menu)
         toolbar.setOnMenuItemClickListener {
-            Snackbar.make(toolbar, "您点击了:" + it?.title, Snackbar.LENGTH_SHORT).show()
-            if (it.itemId == R.id.action_order) {
-                DefaultActivity.start(this, "com.multiapk.modules.order.OrderFragment")
-            }
+            val intent = Intent()
+            intent.setClassName(baseContext, "com.multiapk.modules.order.OrderActivity")
+            startActivity(intent)
+//            DefaultActivity.start(HomeActivity@this, "com.multiapk.modules.order.OrderFragment")
+//            Snackbar.make(toolbar, "您点击了:" + it?.title, Snackbar.LENGTH_SHORT).show()
+//            if (it.itemId == R.id.action_order) {
+//                DefaultActivity.start(getBaseContext(), "com.multiapk.modules.order.OrderFragment")
+//            }
             true
         }
         val searchItem = toolbar.menu.findItem(R.id.action_search)

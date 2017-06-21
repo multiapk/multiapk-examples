@@ -6,6 +6,9 @@ apply plugin: 'org.greenrobot.greendao'
 
 atlas.bundleConfig.awbBundle = true
 
+group = 'org.smartrobot'
+version = '1.0.1'
+
 android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -51,6 +54,8 @@ dependencies {
     compile "com.facebook.fresco:imagepipeline-okhttp3:$rootProject.ext.frescoVersion"
 
     /******* 必备工具库 ****************************************************************************/
+    compile "org.jetbrains.anko:anko-common:$rootProject.ext.ankoVersion"
+
     //compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.9'
     //compile "com.alibaba:fastjson:$rootProject.ext.fastjsonVersion"
 

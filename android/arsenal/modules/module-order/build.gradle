@@ -7,7 +7,15 @@ atlas {
     bundleConfig{
         awbBundle true
     }
+    /*buildTypes {
+        debug {
+            baseApFile project.rootProject.file('app/build/outputs/apk/app-debug.ap')
+        }
+    }*/
 }
+
+group = 'org.smartrobot'
+version = '1.0.1'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -22,10 +30,16 @@ android {
     lintOptions {
         abortOnError false
     }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
 }
 
 dependencies {
     providedCompile project(':arsenal:libraries:library-base')
-//    providedCompile project(':arsenal:libraries:library-business')
     providedCompile project(':arsenal:libraries:library-business')
 }

@@ -43,6 +43,10 @@ open class DefaultActivity : DefaultBaseActivity() {
             activity.startActivity(getIntent(activity, 0, fragmentClassName, null))
         }
 
+        fun start(context: Context, fragmentClassName: String) {
+            context.startActivity(getIntent(context, 0, fragmentClassName, null))
+        }
+
         fun startByCustomAnimation(activity: Activity, fragmentClass: Class<*>, args: Bundle, enterAnim: Int, exitAnim: Int) {
             activity.startActivity(getIntent(activity, fragmentClass, args))
             activity.overridePendingTransition(enterAnim, exitAnim)

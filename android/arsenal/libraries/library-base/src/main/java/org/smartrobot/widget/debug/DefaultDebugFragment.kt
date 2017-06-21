@@ -119,7 +119,12 @@ open class DefaultDebugFragment : DefaultBaseFragment() {
         fun cancelDebugNotification(isShowDebugNotification: Boolean) {
             if (isShowDebugNotification) {
                 DefaultNotificationUtil.cancelNotify(DefaultBaseApplication.instance, NOTIFICATION_ID)
-                DefaultBaseApplication.instance.unregisterReceiver(debugBroadcastReceiver)
+                try {
+                    DefaultBaseApplication.instance.unregisterReceiver(debugBroadcastReceiver)
+                }catch (exception:Exception){
+                    exception.printStackTrace()
+                }
+
             }
         }
     }

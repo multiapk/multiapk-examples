@@ -6,8 +6,8 @@ include ':arsenal:libraries:library-base'
 include ':arsenal:libraries:library-business'
 
 //modules
-//include ':arsenal:modules:module-computer'
-//include ':arsenal:modules:module-mobile'
+include ':arsenal:modules:module-computer'
+include ':arsenal:modules:module-mobile'
 //include ':arsenal:modules:module-mobile-android'
 //include ':arsenal:modules:module-mobile-ios'
 include ':arsenal:modules:module-order'

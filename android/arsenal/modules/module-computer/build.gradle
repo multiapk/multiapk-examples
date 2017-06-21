@@ -4,12 +4,15 @@ apply plugin: 'com.taobao.atlas'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-
 atlas {
     bundleConfig{
         awbBundle true
     }
 }
+
+group = 'org.smartrobot'
+version = '1.0.1'
+
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -19,6 +22,8 @@ android {
         targetSdkVersion project.targetSdkVersion
     }
 
+    resourcePrefix 'computer_'
+
     lintOptions {
         abortOnError false
     }
@@ -26,4 +31,5 @@ android {
 
 dependencies {
     providedCompile project(':arsenal:libraries:library-base')
+    providedCompile project(':arsenal:libraries:library-business')
 }
