@@ -3,7 +3,6 @@ package business.smartrobot
 import business.smartrobot.api.DefaultApiManager
 import business.smartrobot.database.dao.DaoMaster
 import business.smartrobot.database.dao.DaoSession
-import com.squareup.leakcanary.LeakCanary
 import org.greenrobot.greendao.database.Database
 import org.smartrobot.base.DefaultBaseApplication
 
@@ -15,7 +14,6 @@ class DefaultApplication : DefaultBaseApplication() {
     override fun onCreate() {
         super.onCreate()
         DefaultApplication.instance = this
-        LeakCanary.install(this)
         initDatabase()
         DefaultApiManager.init(isDebugModel)
     }

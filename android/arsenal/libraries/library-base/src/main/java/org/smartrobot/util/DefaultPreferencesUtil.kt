@@ -2,16 +2,16 @@ package org.smartrobot.util
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.type.TypeFactory
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+//import com.fasterxml.jackson.databind.ObjectMapper
+//import com.fasterxml.jackson.databind.type.TypeFactory
+//import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.smartrobot.base.DefaultBaseApplication
 import java.util.*
 
 
 class DefaultPreferencesUtil protected constructor() {
     private var mSharedPreferences: SharedPreferences = DefaultBaseApplication.instance.getSharedPreferences(DATA_NAME, Context.MODE_PRIVATE)
-    private var objectMapper: ObjectMapper = ObjectMapper().registerKotlinModule()
+//    private var objectMapper: ObjectMapper = ObjectMapper().registerKotlinModule()
 
     fun getBoolean(name: String, bDefault: Boolean): Boolean {
         return mSharedPreferences.getBoolean(name, bDefault)
@@ -42,7 +42,7 @@ class DefaultPreferencesUtil protected constructor() {
     fun putEntity(key: String, value: Any): Boolean {
         try {
             val editor = mSharedPreferences.edit()
-            editor.putString(key, objectMapper.writeValueAsString(value))
+//            editor.putString(key, objectMapper.writeValueAsString(value))
             return editor.commit()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -54,7 +54,7 @@ class DefaultPreferencesUtil protected constructor() {
     fun <T> getEntity(key: String, classOfT: Class<T>): T? {
         var entity: T? = null
         try {
-            entity = objectMapper.readValue(mSharedPreferences.getString(key, null), classOfT)
+//            entity = objectMapper.readValue(mSharedPreferences.getString(key, null), classOfT)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -64,7 +64,7 @@ class DefaultPreferencesUtil protected constructor() {
     fun putList(key: String, list: List<*>): Boolean {
         try {
             val editor = mSharedPreferences.edit()
-            editor.putString(key, objectMapper.writeValueAsString(list))
+//            editor.putString(key, objectMapper.writeValueAsString(list))
             return editor.commit()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -76,7 +76,7 @@ class DefaultPreferencesUtil protected constructor() {
     fun <T> getList(key: String, classOfT: Class<T>?): MutableList<T> {
         var list: MutableList<T> = ArrayList()
         try {
-            list = objectMapper.readValue(mSharedPreferences.getString(key, null), TypeFactory.defaultInstance().constructCollectionType(ArrayList::class.java, classOfT))
+//            list = objectMapper.readValue(mSharedPreferences.getString(key, null), TypeFactory.defaultInstance().constructCollectionType(ArrayList::class.java, classOfT))
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -207,7 +207,7 @@ atlas {
         //autoStartBundles = ['com.taobao.firstbundle'] //自启动bundle配置
         //outOfApkBundles = ['remotebundle']
         //preLaunch = 'com.taobao.demo.DemoPreLaunch'
-        //classInject false
+        classInject false
     }
 
     manifestOptions {
@@ -231,10 +231,34 @@ walle {
     channelFile = new File("${projectDir}/channels.txt")
 }
 
+tasks.whenTaskAdded { task ->
+    if (task.name.contains("DebugAndroidTest")) {
+        task.setEnabled(false);
+    }
+    if (task.name.contains("assemble")) {
+        def files = null;
+        def file = new File(task.project.getBuildDir(), "outputs");
+        if (file.exists() && new File(file, "tpatch-debug").exists()) {
+            files = new File(file, "tpatch-debug").listFiles();
+        }
+        if (files != null) {
+            for (File file1 : files) {
+                if (file1.getName().endsWith(".json") || file1.getName().endsWith(".tpatch")) {
+
+                    if (!new File(task.project.getRootDir(), "hisTpatch").exists()) {
+                        new File(task.project.getRootDir(), "hisTpatch").mkdirs();
+                    }
+                    org.apache.commons.io.FileUtils.copyFileToDirectory(file1, new File(task.project.getRootDir(), "hisTpatch"));
+                }
+            }
+        }
+    }
+}
+
 dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile project(':arsenal:libraries:library-base')
-    compile project(':arsenal:libraries:library-business')
+    bundleCompile project(':arsenal:libraries:library-business')
 
     // compile time start ----------------------------------------------------------------------
     // https://bitbucket.org/hvisser/android-apt/wiki/Migration
@@ -287,4 +311,8 @@ dependencies {
     androidTestCompile "com.android.support:animated-vector-drawable:$rootProject.ext.supportLibraryVersion"
     //androidTestCompile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
 
+    // LeakCanary
+    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVersion"
+    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
+    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
 }

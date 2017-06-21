@@ -7,7 +7,7 @@ import io.reactivex.FlowableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.smartrobot.util.DefaultToastUtil
-import org.smartrobot.util.http.DefaultRetrofitClient
+import business.smartrobot.base.DefaultRetrofitClient
 import org.smartrobot.util.rx.RxBus
 import org.smartrobot.widget.debug.DefaultDebugFragment
 

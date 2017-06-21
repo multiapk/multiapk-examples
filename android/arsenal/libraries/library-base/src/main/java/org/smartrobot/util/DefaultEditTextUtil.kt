@@ -1,7 +1,6 @@
 package org.smartrobot.util
 
 import android.text.Selection
-import android.text.Spannable
 import android.text.TextUtils
 import android.widget.EditText
 

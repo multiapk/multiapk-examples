@@ -1,7 +1,10 @@
 apply plugin: "com.android.library"
+apply plugin: 'com.taobao.atlas'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
+
+atlas.bundleConfig.awbBundle = true
 
 android {
 
@@ -30,5 +33,36 @@ android {
 }
 
 dependencies {
-    compile project(':arsenal:libraries:library-base')
+    providedCompile project(':arsenal:libraries:library-base')
+
+    /******* 数据库管理 ****************************************************************************/
+    compile "org.greenrobot:greendao:$rootProject.ext.greendaoVersion"
+
+    /******* 网络请求库 ****************************************************************************/
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3Version"
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-jackson:$rootProject.ext.retrofitVersion"
+
+    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofit2rxjava2Version"
+    compile "org.ligboy.retrofit2:converter-fastjson-android:$rootProject.ext.converterfastjsonandroidVersion"
+
+    /******* 网络图片库 ****************************************************************************/
+    compile "com.facebook.fresco:fresco:$rootProject.ext.frescoVersion"
+    compile "com.facebook.fresco:imagepipeline-okhttp3:$rootProject.ext.frescoVersion"
+
+    /******* 必备工具库 ****************************************************************************/
+    //compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.9'
+    //compile "com.alibaba:fastjson:$rootProject.ext.fastjsonVersion"
+
+    compile "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlinVersion"
+    compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion" //8KB
+
+    compile "com.google.guava:guava:$rootProject.ext.guavaVersion"  //1.5MB
+
+    compile "com.jakewharton.rxbinding2:rxbinding-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rootProject.ext.rxbindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rootProject.ext.rxbindingVersion"
+    //compile "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$rootProject.ext.rxbindingVersion" //for TV
 }

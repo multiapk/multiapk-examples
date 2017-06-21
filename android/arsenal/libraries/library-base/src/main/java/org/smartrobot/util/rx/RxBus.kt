@@ -1,14 +1,12 @@
 package org.smartrobot.util.rx
 
-import io.reactivex.Observable
-import io.reactivex.subjects.PublishSubject
 import java.util.concurrent.ConcurrentHashMap
 
 
 enum class RxBus {
     instance;
 
-    private val bus: PublishSubject<Any> = PublishSubject.create<Any>()
+    private val bus: io.reactivex.subjects.PublishSubject<Any> = io.reactivex.subjects.PublishSubject.create<Any>()
     private val stickyEventMap: ConcurrentHashMap<Class<*>, Any> = ConcurrentHashMap()
 
     fun post(event: Any) {
@@ -20,14 +18,14 @@ enum class RxBus {
         post(event)
     }
 
-    fun <T> toObservable(eventType: Class<T>): Observable<T> {
+    fun <T> toObservable(eventType: Class<T>): io.reactivex.Observable<T> {
         return bus.ofType(eventType)
     }
 
-    fun <T> toObservableSticky(eventType: Class<T>): Observable<T> {
+    fun <T> toObservableSticky(eventType: Class<T>): io.reactivex.Observable<T> {
         val observable = bus.ofType(eventType)
         val event = stickyEventMap[eventType]
-        return if (event != null) observable.mergeWith(Observable.just(eventType.cast(event))) else observable
+        return if (event != null) observable.mergeWith(io.reactivex.Observable.just(eventType.cast(event))) else observable
     }
 
     fun <T> getStickyEvent(eventType: Class<T>): T {

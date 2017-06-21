@@ -8,28 +8,20 @@ import android.support.design.widget.Snackbar
 import android.support.v7.widget.SearchView
 import android.support.v7.widget.Toolbar
 import android.util.Log
-import business.smartrobot.BuildConfig
-import business.smartrobot.DefaultApplication
-import business.smartrobot.api.DefaultApiManager
-import business.smartrobot.api.model.UserModel
-import business.smartrobot.database.model.Order
-import com.jakewharton.rxbinding2.view.RxView
 import com.jude.swipbackhelper.SwipeBackHelper
 import com.multiapk.R
 import com.tbruyelle.rxpermissions2.RxPermissions
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subscribers.DisposableSubscriber
 import kotlinx.android.synthetic.main.activity_home.*
-import org.jetbrains.anko.longToast
-import org.jetbrains.anko.toast
+//import org.jetbrains.anko.longToast
+//import org.jetbrains.anko.toast
 import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseActivity
+import org.smartrobot.base.DefaultBaseApplication
 import org.smartrobot.util.DefaultSystemUtil
 import org.smartrobot.util.rx.RxBus
 import org.smartrobot.util.rx.RxTestEvent
 import org.smartrobot.widget.debug.DefaultDebugFragment
-import java.util.concurrent.TimeUnit
 
 
 class HomeActivity : DefaultBaseActivity() {
@@ -67,37 +59,12 @@ class HomeActivity : DefaultBaseActivity() {
         })
 
         cardViewComputerModule.setOnClickListener {
-            longToast("电脑模块")
+//            longToast("电脑模块")
             DefaultActivity.start(this, "com.multiapk.modules.computer.ComputerFragment")
         }
         cardViewMobileModule.setOnClickListener {
-            toast("手机模块")
+//            toast("手机模块")
             DefaultActivity.start(this, "com.multiapk.modules.mobile.MobileFragment")
-        }
-
-        RxView.clicks(button).debounce(200, TimeUnit.MILLISECONDS).observeOn(AndroidSchedulers.mainThread()).subscribe {
-            Snackbar.make(button, "hello michael", Snackbar.LENGTH_SHORT).setAction("undo", {
-                toast("you clicked undo")
-            }).setActionTextColor(R.color.material_blue_grey_800).show()
-            RxBus.instance.post(RxTestEvent("点击首页按钮"))
-
-            subscriptions.add(DefaultApiManager.getDefaultApi().getUser(1)
-                    .compose(DefaultApiManager.compose<UserModel>())
-                    .subscribeWith(
-                            object : DisposableSubscriber<UserModel>() {
-                                override fun onComplete() {
-                                    Log.d("krmao", "onComplete:(" + System.currentTimeMillis() + ")")
-                                }
-
-                                override fun onNext(p0: UserModel?) {
-                                    Log.d("krmao", "onNext:(" + System.currentTimeMillis() + ")" + p0.toString())
-                                }
-
-                                override fun onError(p0: Throwable?) {
-                                    Log.d("krmao", "onError:(" + System.currentTimeMillis() + ")" + p0?.message, p0)
-                                }
-                            }
-                    ))
         }
 
         val rxPermissions = RxPermissions(this)
@@ -135,8 +102,6 @@ class HomeActivity : DefaultBaseActivity() {
             }
         })
 
-        testDB()
-
         subscriptions.add(RxBus.instance.toObservable(RxTestEvent::class.java).subscribe { event ->
             Snackbar.make(button, event.content + ":thread=" + Thread.currentThread().name, Snackbar.LENGTH_SHORT).show()
             collapsingToolbarLayout.title = event.content
@@ -145,20 +110,9 @@ class HomeActivity : DefaultBaseActivity() {
         Log.d("krmao", "HomeActivity:DefaultSystemUtil:metadata:" + DefaultSystemUtil.getAppMetaData("debugModel"))
     }
 
-    fun testDB() {
-        val daoSession = (application as DefaultApplication).getDaoSession()
-        val orderDao = daoSession.orderDao
-
-        orderDao.insert(Order())
-        orderDao.insert(Order())
-        orderDao.insert(Order())
-        orderDao.insert(Order())
-        orderDao.insert(Order())
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         subscriptions.dispose()
-        DefaultDebugFragment.cancelDebugNotification(BuildConfig.DEBUG)
+        DefaultDebugFragment.cancelDebugNotification(DefaultBaseApplication.isDebugModel)
     }
 }

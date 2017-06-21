@@ -46,7 +46,7 @@ open class DefaultBaseApplication : Application() {
                     val activity = ActivityTaskMgr.getInstance().peekTopActivity()
                     val remoteBundleFile = File(activity.getExternalCacheDir(), "lib" + bundleName.replace(".", "_") + ".so")
 
-                    var path = ""
+                    val path:String
                     if (remoteBundleFile.exists()) {
                         path = remoteBundleFile.getAbsolutePath()
                     } else {

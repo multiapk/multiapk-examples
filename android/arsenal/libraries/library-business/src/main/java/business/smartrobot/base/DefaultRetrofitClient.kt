@@ -1,4 +1,4 @@
-package org.smartrobot.util.http
+package business.smartrobot.base
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.Retrofit

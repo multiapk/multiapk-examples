@@ -1,4 +1,4 @@
-package org.smartrobot.util.http
+package business.smartrobot.base
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -15,83 +15,34 @@ android {
 }
 
 dependencies {
-
     /******* 官方支持库 ****************************************************************************/
-    //compile "com.android.support:multidex:$rootProject.ext.multidex"
-
-    compile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+    //compile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.android.support:animated-vector-drawable:$rootProject.ext.supportLibraryVersion"
+    //compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    //compile "com.android.support:animated-vector-drawable:$rootProject.ext.supportLibraryVersion"
     //compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
     //compile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
 
     /******* kotlin支持 ***************************************************************************/
-    compile "org.jetbrains.anko:anko-common:$rootProject.ext.ankoVersion"
+    //compile "org.jetbrains.anko:anko-common:$rootProject.ext.ankoVersion"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlinVersion"
 
     /******* 应用权限库 ****************************************************************************/
     compile "com.tbruyelle.rxpermissions2:rxpermissions:$rootProject.ext.rxpermissionsVersion"
 
-    /******* 网络图片库 ****************************************************************************/
-    compile "com.facebook.fresco:fresco:$rootProject.ext.frescoVersion"
-    compile "com.facebook.fresco:imagepipeline-okhttp3:$rootProject.ext.frescoVersion"
-
-    /******* 网络请求库 ****************************************************************************/
-    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3Version"
-    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
-    compile "com.squareup.retrofit2:converter-jackson:$rootProject.ext.retrofitVersion"
-
-    compile "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofit2rxjava2Version"
-    compile "org.ligboy.retrofit2:converter-fastjson-android:$rootProject.ext.converterfastjsonandroidVersion"
-
-    /******* 数据库管理 ****************************************************************************/
-    compile "org.greenrobot:greendao:$rootProject.ext.greendaoVersion"
-    //compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.sqlbriteVersion" // wait for support rxjava2
-
     /******* 必备工具库 ****************************************************************************/
-    //compile('com.taobao.android:atlas_core:5.0.7.11')
     compile('com.taobao.android:atlas_core:5.0.7.11@aar') { transitive = true }
-    compile 'com.taobao.android:atlas_core:5.0.6-rc92@aar'
-    compile 'com.taobao.android:atlasupdate:1.1.4.10@aar'
+    //compile 'com.taobao.android:atlasupdate:1.1.4.10@aar'
 
-
-
-    compile "com.alibaba:fastjson:$rootProject.ext.fastjsonVersion"
-    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.9"
-    //compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.9'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.9'
-    //compile 'com.fasterxml.jackson.core:jackson-core:2.8.9'
-
-    compile "com.google.guava:guava:$rootProject.ext.guavaVersion"  //1.5MB
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"    //1.3MB [EventBus]
-    compile "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlinVersion"
-    compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion" //8KB
-    //compile "com.trello.rxlifecycle2:rxlifecycle:$rootProject.ext.rxlifecycleVersion"
-    //compile "com.trello.rxlifecycle2:rxlifecycle-android:$rootProject.ext.rxlifecycleVersion"
-    //compile "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.ext.rxlifecycleVersion"
-
-    compile "com.jakewharton.rxbinding2:rxbinding-kotlin:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rootProject.ext.rxbindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:$rootProject.ext.rxbindingVersion"
-    //compile "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$rootProject.ext.rxbindingVersion" //for TV
 
     /******* 其它常用库 ****************************************************************************/
     compile 'com.jude:swipebackhelper:3.1.2'
 
-    /*compile("com.facebook.react:react-native:$rootProject.ext.reactnativeVersion") {
-        exclude module: "okhttp-ws" //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class
-    }*/
-
-    //compile project(":extras:multiapk-library")
-
-    // LeakCanary
-    debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVersion"
-    releaseCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
-    testCompile "com.squareup.leakcanary:leakcanary-android-no-op:$rootProject.ext.leakcanaryVersion"
+    //compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.9"
+    //compile 'com.fasterxml.jackson.core:jackson-databind:2.8.9'
+    //compile 'com.fasterxml.jackson.core:jackson-core:2.8.9'
 }
