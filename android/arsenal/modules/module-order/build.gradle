@@ -1,11 +1,17 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.mlibrary.multiapk.library'
+apply plugin: 'com.taobao.atlas'
 
-multiApkLibrary {
-    packageName = "com.multiapk.modules.order"
-    moduleProguardRulesFilePath = "$rootDir/gradle/multiapk/sub-project-proguard-rules.pro"
+atlas {
+    bundleConfig{
+        awbBundle true
+    }
+    /*buildTypes {
+        debug {
+            baseApFile project.rootProject.file('app/build/outputs/apk/app-debug.ap')
+        }
+    }*/
 }
 
 android {
@@ -16,6 +22,8 @@ android {
         targetSdkVersion project.targetSdkVersion
     }
 
+    resourcePrefix 'order_'
+
     lintOptions {
         abortOnError false
     }
@@ -23,5 +31,5 @@ android {
 
 dependencies {
     compile project(':arsenal:libraries:library-base')
-    compile project(path: ':arsenal:libraries:library-business')
+    compile project(':arsenal:libraries:library-business')
 }

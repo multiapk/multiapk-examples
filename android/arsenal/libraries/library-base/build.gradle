@@ -10,7 +10,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        buildConfigField("boolean", "solidMode", "$rootProject.ext.solidMode")
     }
 
 }
@@ -18,7 +17,7 @@ android {
 dependencies {
 
     /******* 官方支持库 ****************************************************************************/
-    compile "com.android.support:multidex:$rootProject.ext.multidex"
+    //compile "com.android.support:multidex:$rootProject.ext.multidex"
 
     compile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
@@ -54,6 +53,13 @@ dependencies {
     //compile "com.squareup.sqlbrite:sqlbrite:$rootProject.ext.sqlbriteVersion" // wait for support rxjava2
 
     /******* 必备工具库 ****************************************************************************/
+    //compile('com.taobao.android:atlas_core:5.0.7.11')
+    compile('com.taobao.android:atlas_core:5.0.7.11@aar') { transitive = true }
+    compile 'com.taobao.android:atlas_core:5.0.6-rc92@aar'
+    compile 'com.taobao.android:atlasupdate:1.1.4.10@aar'
+
+
+
     compile "com.alibaba:fastjson:$rootProject.ext.fastjsonVersion"
     compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.8.9"
     //compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.9'
@@ -78,11 +84,11 @@ dependencies {
     /******* 其它常用库 ****************************************************************************/
     compile 'com.jude:swipebackhelper:3.1.2'
 
-    compile("com.facebook.react:react-native:$rootProject.ext.reactnativeVersion") {
+    /*compile("com.facebook.react:react-native:$rootProject.ext.reactnativeVersion") {
         exclude module: "okhttp-ws" //duplicate entry: okhttp3/internal/ws/RealWebSocket$1.class
-    }
-    //compile "org.smartrobot:multiapk-library:0.0.1"
-    compile project(":extras:multiapk-library")
+    }*/
+
+    //compile project(":extras:multiapk-library")
 
     // LeakCanary
     debugCompile "com.squareup.leakcanary:leakcanary-android:$rootProject.ext.leakcanaryVersion"

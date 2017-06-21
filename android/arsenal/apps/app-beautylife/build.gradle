@@ -1,36 +1,8 @@
-apply plugin: "com.android.application"
-//apply plugin: 'com.neenbedankt.android-apt'
-apply plugin: "com.mlibrary.multiapk.application"
+apply plugin: 'com.android.application'
+apply plugin: 'com.taobao.atlas'
 apply plugin: 'walle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-
-multiApkApplication {
-    solidMode = rootProject.ext.solidMode
-    buildToolsVersion = rootProject.ext.buildToolsVersion
-    supportLibraryVersion = rootProject.ext.supportLibraryVersion
-    packageName = "com.multiapk"
-    moduleConfigFilePath = "$rootDir/gradle/multiapk/apk_module_config.xml"
-    keystore = "$projectDir/debug.keystore"
-    keyAlias = "androiddebugkey"
-    keyPassword = "android"
-    storePassword = "android"
-    javaCompileVersion = "1.7"
-    //releaseApkFileName = "$applicationProject.name-release.apk"
-//    aaptMacPath="/Volumes/android/android_source/WORKING_DIRECTORY/out/host/darwin-x86/bin/aapt"
-//    aaptMacPath = "/Volumes/android/android_source/WORKING_DIRECTORY/out/target/product/generic/system/bin/aapt"
-//    aaptMacPath="/Users/krmao/Desktop/aapt"
-    targetSdkVersion = rootProject.ext.targetSdkVersion
-}
-
-walle {
-    // 指定渠道包的输出路径
-    apkOutputFolder = new File("${buildDir}/outputs/channels");
-    // 定制渠道包的APK的文件名称
-    apkFileNameFormat = '${appName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
-    // 渠道配置文件
-    channelFile = new File("${projectDir}/channels.txt")
-}
 
 //noinspection GroovyMissingReturnStatement
 android {
@@ -44,8 +16,6 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 12
         versionName "12"
-
-        multiDexEnabled !solidMode
 
         //Gradle Plugin 2.0以上,AppCompat23.2以上,Android 5.0之前使用Vector
         vectorDrawables.useSupportLibrary = true
@@ -85,23 +55,23 @@ android {
 
     /*dataBinding { enabled = false }*/
 
-    signingConfigs {
-        debug {
-            storeFile file("debug.keystore")
-            storePassword multiApkApplication.storePassword
-            keyAlias multiApkApplication.keyAlias
-            keyPassword multiApkApplication.keyPassword
-            v2SigningEnabled true
-        }
+     signingConfigs {
+         debug {
+             storeFile file("debug.keystore")
+             storePassword "android"
+             keyAlias "androiddebugkey"
+             keyPassword "android"
+             v2SigningEnabled true
+         }
 
-        release {
-            storeFile file("debug.keystore")
-            storePassword multiApkApplication.storePassword
-            keyAlias multiApkApplication.keyAlias
-            keyPassword multiApkApplication.keyPassword
-            v2SigningEnabled true
-        }
-    }
+         release {
+             storeFile file("debug.keystore")
+             storePassword "android"
+             keyAlias "androiddebugkey"
+             keyPassword "android"
+             v2SigningEnabled true
+         }
+     }
 
     buildTypes {
         debug {
@@ -117,6 +87,10 @@ android {
 
             proguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguard-rules.pro"
             testProguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguardTest-rules.pro"
+
+            ndk {
+                abiFilters "x86","armeabi"
+            }
         }
         release {
             debuggable false
@@ -167,7 +141,7 @@ android {
         textReport true
         textOutput 'stdout'
         fatal 'UnusedResources'
-        warning 'ResourceType' //TODO remove eventually with ButterKnife 8.0 release
+        warning 'ResourceType'
     }
     lintOptions {
         checkReleaseBuilds false
@@ -190,7 +164,7 @@ android {
     }
 
     // If you need to add more flavors, consider using flavor dimensions.
-    productFlavors {
+    /*productFlavors {
         mock {
             applicationIdSuffix = ".mock"
         }
@@ -199,14 +173,12 @@ android {
     // Remove mockRelease as it's not needed.
     variantFilter { variant ->
         if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
-            variant.setIgnore(false);
-//            variant.setIgnore(true);
+            variant.setIgnore(true)
         }
     }
 
     productFlavors.all { flavor ->
         flavor.manifestPlaceholders = [
-                //solidMode : solidMode,
                 debugModel: true,
         ]
     }
@@ -222,7 +194,41 @@ android {
                 output.outputFile = new File(outputFile.parent, fileName)
             }
         }
+    }*/
+}
+
+atlas {
+
+    atlasEnabled true
+
+    tBuildConfig {
+        autoPackageId true
+        //preProcessManifest true
+        //autoStartBundles = ['com.taobao.firstbundle'] //自启动bundle配置
+        //outOfApkBundles = ['remotebundle']
+        //preLaunch = 'com.taobao.demo.DemoPreLaunch'
+        //classInject false
     }
+
+    manifestOptions {
+        addAtlasProxyComponents true
+    }
+
+    patchConfigs {
+        debug {
+            createTPatch true
+        }
+    }
+}
+
+
+walle {
+    // 指定渠道包的输出路径
+    apkOutputFolder = new File("${buildDir}/outputs/channels");
+    // 定制渠道包的APK的文件名称
+    apkFileNameFormat = '${appName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
+    // 渠道配置文件
+    channelFile = new File("${projectDir}/channels.txt")
 }
 
 dependencies {
@@ -236,51 +242,49 @@ dependencies {
     //annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
     //provided "com.google.auto.value:auto-value:1.4.1"
     // compile time end   ----------------------------------------------------------------------
+    
+//    bundleCompile project(":arsenal:modules:module-computer")
+//    bundleCompile project(":arsenal:modules:module-mobile")
+//    bundleCompile project(":arsenal:modules:module-mobile-android")
+//    bundleCompile project(":arsenal:modules:module-mobile-ios")
+    bundleCompile project(":arsenal:modules:module-order")
 
+    // Dependencies for local unit tests
+    testCompile "junit:junit:$rootProject.ext.junitVersion"
+    testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
+    testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
 
-    if (!solidMode) {//普通模式才需要依赖。solid模式编译时不依赖子bu。
-        compile project(":arsenal:modules:module-computer")
-        compile project(":arsenal:modules:module-mobile")
-        compile project(":arsenal:modules:module-mobile-android")
-        compile project(":arsenal:modules:module-mobile-ios")
-        compile project(":arsenal:modules:module-order")
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.ext.rulesVersion"
 
-        // Dependencies for local unit tests
-        testCompile "junit:junit:$rootProject.ext.junitVersion"
-        testCompile "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
-        testCompile "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
+    // Dependencies for Android unit tests
+    androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
+    androidTestCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
+    androidTestCompile "com.google.dexmaker:dexmaker:$rootProject.ext.dexmakerVersion"
+    androidTestCompile "com.google.dexmaker:dexmaker-mockito:$rootProject.ext.dexmakerVersion"
 
-        // Android Testing Support Library's runner and rules
-        androidTestCompile "com.android.support.test:runner:$rootProject.ext.runnerVersion"
-        androidTestCompile "com.android.support.test:rules:$rootProject.ext.rulesVersion"
+    // Set this dependency to build and run UI Automator tests
+    androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
 
-        // Dependencies for Android unit tests
-        androidTestCompile "junit:junit:$rootProject.ext.junitVersion"
-        androidTestCompile "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
-        androidTestCompile "com.google.dexmaker:dexmaker:$rootProject.ext.dexmakerVersion"
-        androidTestCompile "com.google.dexmaker:dexmaker-mockito:$rootProject.ext.dexmakerVersion"
+    // Espresso UI Testing
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
+    /*androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
+        exclude group: "com.google.code.findbugs"
+        exclude group: "com.android.support", module: "support-annotations"
+    })*/
 
-        // Set this dependency to build and run UI Automator tests
-        androidTestCompile 'com.android.support.test.uiautomator:uiautomator-v18:2.1.2'
+    // Resolve conflicts between main and test APK:
+    androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
+    androidTestCompile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    androidTestCompile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    androidTestCompile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    androidTestCompile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
+    androidTestCompile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    androidTestCompile "com.android.support:animated-vector-drawable:$rootProject.ext.supportLibraryVersion"
+    //androidTestCompile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
 
-        // Espresso UI Testing
-        androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
-        androidTestCompile "com.android.support.test.espresso:espresso-contrib:$rootProject.ext.espressoVersion"
-        androidTestCompile "com.android.support.test.espresso:espresso-intents:$rootProject.ext.espressoVersion"
-        androidTestCompile "com.android.support.test.espresso:espresso-idling-resource:$rootProject.ext.espressoVersion"
-        /*androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.espressoVersion", {
-            exclude group: "com.google.code.findbugs"
-            exclude group: "com.android.support", module: "support-annotations"
-        })*/
-
-        // Resolve conflicts between main and test APK:
-        androidTestCompile "com.android.support:support-annotations:$rootProject.ext.supportLibraryVersion"
-        androidTestCompile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
-        androidTestCompile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-        androidTestCompile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
-        androidTestCompile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
-        androidTestCompile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
-        androidTestCompile "com.android.support:animated-vector-drawable:$rootProject.ext.supportLibraryVersion"
-        //androidTestCompile "com.android.support:leanback-v17:$rootProject.ext.supportLibraryVersion"
-    }
 }

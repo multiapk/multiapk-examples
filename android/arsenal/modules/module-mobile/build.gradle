@@ -1,12 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.mlibrary.multiapk.library'
-
-multiApkLibrary {
-    packageName = "com.multiapk.modules.mobile"
-    moduleProguardRulesFilePath = "$rootDir/gradle/multiapk/sub-project-proguard-rules.pro"
-}
 
 android {
     compileSdkVersion project.compileSdkVersion

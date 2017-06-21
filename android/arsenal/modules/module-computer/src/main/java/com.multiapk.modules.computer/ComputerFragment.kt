@@ -17,7 +17,6 @@ class ComputerFragment : DefaultBaseFragment() {
         val contentView = inflater!!.inflate(R.layout.fragment_computer, null)
         RxView.clicks(contentView).subscribe {
             context?.toast("电脑模块" + Thread.currentThread().name)
-            startActivity(Intent(context, MyReactActivity::class.java))
         }
         return contentView
     }

@@ -1,11 +1,14 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.taobao.atlas'
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.mlibrary.multiapk.library'
 
-multiApkLibrary {
-    packageName = "com.multiapk.modules.computer"
-    moduleProguardRulesFilePath = "$rootDir/gradle/multiapk/sub-project-proguard-rules.pro"
+
+atlas {
+    bundleConfig{
+        awbBundle true
+    }
 }
 
 android {
@@ -22,5 +25,5 @@ android {
 }
 
 dependencies {
-    compile project(':arsenal:libraries:library-base')
+    providedCompile project(':arsenal:libraries:library-base')
 }
