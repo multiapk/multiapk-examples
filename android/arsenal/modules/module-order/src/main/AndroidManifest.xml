@@ -4,8 +4,9 @@
     package="com.multiapk.modules.order">
 
     <application
-        android:name="com.multiapk.modules.order.OrderApplication">
-        <activity android:name="com.multiapk.modules.computer.OrderActivity"/>
+        android:name="com.multiapk.modules.order.OrderApplication"
+        tools:replace="android:name">
+        <activity android:name=".OrderActivity" />
     </application>
 
 </manifest>

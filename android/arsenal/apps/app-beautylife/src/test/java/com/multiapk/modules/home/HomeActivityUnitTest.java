@@ -1,12 +1,12 @@
 package com.multiapk.modules.home;
 
-import com.google.common.collect.Lists;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -20,7 +20,7 @@ public class HomeActivityUnitTest {
 
     @Before
     public void init() {
-        dataList = Lists.newArrayList(1, 3, 2, 4);
+        dataList =new  ArrayList<>();
     }
 
     @Test

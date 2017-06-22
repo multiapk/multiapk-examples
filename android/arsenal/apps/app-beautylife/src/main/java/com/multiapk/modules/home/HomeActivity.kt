@@ -34,14 +34,12 @@ class HomeActivity : DefaultBaseActivity() {
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         toolbar.inflateMenu(R.menu.home_menu)
         toolbar.setOnMenuItemClickListener {
-            val intent = Intent()
-            intent.setClassName(baseContext, "com.multiapk.modules.order.OrderActivity")
-            startActivity(intent)
+            startActivity(Intent().setClassName(HomeActivity@this, "com.multiapk.modules.order.OrderActivity"))
             true
         }
 
         findViewById(R.id.button).setOnClickListener {
-            DefaultActivity.start(HomeActivity@ this, "com.multiapk.modules.computer.ComputerFragment")
+            startActivity(Intent().setClassName(HomeActivity@this, "com.multiapk.modules.computer.ComputerActivity"))
         }
 
         val searchItem = toolbar.menu.findItem(R.id.action_search)

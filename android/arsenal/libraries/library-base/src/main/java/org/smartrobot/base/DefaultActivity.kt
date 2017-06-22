@@ -141,7 +141,7 @@ open class DefaultActivity : DefaultBaseActivity() {
 
             setContentView(FrameLayout(this))
 
-            var fragment: Fragment? = null
+            var fragment: Fragment?
             val fragmentClassName: String
             val fragmentObject = args.get(KEY_FRAGMENT_CLASS)
 
@@ -155,6 +155,7 @@ open class DefaultActivity : DefaultBaseActivity() {
                 } catch (exception: Exception) {
                     //exception.printStackTrace()
                     try {
+                        @Suppress("DEPRECATION")
                         fragment = Atlas.getInstance().delegateClassLoader.loadClass(fragmentObject).newInstance() as Fragment
                     } catch (e: Exception) {
                         throw e

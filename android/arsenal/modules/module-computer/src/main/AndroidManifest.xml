@@ -1,10 +1,10 @@
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.multiapk.modules.computer">
 
     <application
-        android:name=".ComputerApplication">
-        <activity android:name=".ComputerActivity"/>
+        android:name=".ComputerApplication"
+        tools:replace="android:name">
+        <activity android:name=".ComputerActivity" />
     </application>
 </manifest>

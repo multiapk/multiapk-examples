@@ -37,7 +37,7 @@ android {
         //Gradle Plugin 2.0以上,AppCompat23.2以上,Android 5.0之前使用Vector
         vectorDrawables.useSupportLibrary = true
 
-        /*ndk {
+        ndk {
             //abiFilters 'x86', 'x86_64', 'arm64-v8a', 'armeabi-v7a', 'armeabi'
             abiFilters 'x86', 'x86_64', 'arm64-v8a', 'armeabi-v7a'
         }
@@ -46,10 +46,10 @@ android {
 
         jackOptions {
             enabled false
-        }*/
+        }
     }
 
-     /*signingConfigs {
+     signingConfigs {
          debug {
              storeFile file("debug.keystore")
              storePassword "android"
@@ -70,10 +70,10 @@ android {
     buildTypes {
 
         debug {
-            *//*if (apVersion) {
+            /*if (apVersion) {
                 baseApDependency "com.taobao.android.atlasdemo:AP-debug:${apVersion}@ap"
                 patchConfig patchConfigs.debug
-            }*//*
+            }*/
 
             debuggable true
             jniDebuggable true
@@ -85,12 +85,12 @@ android {
             shrinkResources false
             signingConfig signingConfigs.debug
 
-//            proguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguard-rules.pro"
-//            testProguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguardTest-rules.pro"
+            proguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguard-rules.pro"
+            testProguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguardTest-rules.pro"
 
-            *//*ndk {
+            ndk {
                 abiFilters "x86","armeabi"
-            }*//*
+            }
         }
         release {
             debuggable true
@@ -101,8 +101,8 @@ android {
             shrinkResources false
             signingConfig signingConfigs.release
 
-//            proguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguard-rules.pro"
-//            testProguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguardTest-rules.pro"
+            proguardFiles "${rootDir}/gradle/proguard_base.pro", "proguard-rules.pro"
+            testProguardFiles "${rootDir}/gradle/proguard_base.pro", "proguardTest-rules.pro"
         }
     }
 
@@ -146,7 +146,7 @@ android {
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
-        lintConfig file("$rootDir/lint.xml")
+        lintConfig file("$rootDir/gradle/lint.xml")
         showAll true
         absolutePaths true
         textReport true
@@ -161,7 +161,7 @@ android {
         resolutionStrategy {
             force "com.google.code.findbugs:jsr305:1.3.9"
         }
-    }*/
+    }
 
     // If you need to add more flavors, consider using flavor dimensions.
     /*productFlavors {
@@ -204,7 +204,7 @@ atlas {
     tBuildConfig {
         autoPackageId true
         preProcessManifest true
-        //autoStartBundles = ['com.multiapk.modules.computer','business.smartrobot','com.multiapk.modules.order'] //自启动bundle配置
+        autoStartBundles = ['business.smartrobot'] //自启动bundle配置
         outOfApkBundles = ['module-mobile']
         preLaunch = 'com.multiapk.BeautyPreLaunch'
         classInject false

@@ -3,5 +3,6 @@
     package="com.multiapk.modules.mobile">
 
     <application
-        android:name=".MobileApplication" />
+        android:name=".MobileApplication"
+        tools:replace="android:name" />
 </manifest>
