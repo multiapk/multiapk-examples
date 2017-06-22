@@ -1,7 +1,8 @@
 //app
-include(':arsenal:apps:app-beautylife')
+include(':app-beautylife'); project(':app-beautylife').projectDir = new File(settingsDir, 'arsenal/apps/app-beautylife')
 
 //app common libraries
+include(':library-base'); project(':library-base').projectDir = new File(settingsDir, 'arsenal/libraries/library-base')
 include(':library-base'); project(':library-base').projectDir = new File(settingsDir, 'arsenal/libraries/library-base')
 include(':library-business'); project(':library-business').projectDir = new File(settingsDir, 'arsenal/libraries/library-business')
 

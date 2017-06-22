@@ -19,17 +19,15 @@ buildscript {
     }
 
     dependencies {
-        //classpath "com.taobao.android:atlasplugin:2.3.1.rc25"
         classpath "com.taobao.android:atlasplugin:2.3.3.beta1"
-//        classpath "com.meituan.android.walle:plugin:$walleVersion"
-        //classpath "com.neenbedankt.gradle.plugins:android-apt:$androidaptVersion"
+        classpath "com.meituan.android.walle:plugin:$walleVersion"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.greenrobot:greendao-gradle-plugin:$rootProject.ext.greendaoVersion"
     }
 }
 
-//apply plugin: 'android-reporting'
+apply plugin: 'android-reporting'
 
 allprojects {
     repositories {

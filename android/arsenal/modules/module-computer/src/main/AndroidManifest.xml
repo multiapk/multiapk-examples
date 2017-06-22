@@ -4,8 +4,7 @@
     package="com.multiapk.modules.computer">
 
     <application
-        android:name=".ComputerApplication"
-        tools:replace="android:name">
+        android:name=".ComputerApplication">
         <activity android:name=".ComputerActivity"/>
     </application>
 </manifest>

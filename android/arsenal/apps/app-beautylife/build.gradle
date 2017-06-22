@@ -17,7 +17,7 @@ static String getEnvValue(key, defValue) {
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.taobao.atlas'
-//apply plugin: 'walle'
+apply plugin: 'walle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
@@ -221,7 +221,7 @@ atlas {
     }
 }
 
-/*
+
 walle {
     // 指定渠道包的输出路径
     apkOutputFolder = new File("${buildDir}/outputs/channels");
@@ -229,7 +229,7 @@ walle {
     apkFileNameFormat = '${appName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
     // 渠道配置文件
     channelFile = new File("${projectDir}/channels.txt")
-}*/
+}
 
 tasks.whenTaskAdded { task ->
     if (task.name.contains("DebugAndroidTest")) {
