@@ -1,5 +1,7 @@
 package com.multiapk.modules.home
 
+//import org.jetbrains.anko.longToast
+//import org.jetbrains.anko.toast
 import android.Manifest
 import android.app.SearchManager
 import android.content.Context
@@ -14,12 +16,9 @@ import com.multiapk.R
 import com.tbruyelle.rxpermissions2.RxPermissions
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_home.*
-//import org.jetbrains.anko.longToast
-//import org.jetbrains.anko.toast
 import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseActivity
 import org.smartrobot.base.DefaultBaseApplication
-import org.smartrobot.util.DefaultSystemUtil
 import org.smartrobot.util.rx.RxBus
 import org.smartrobot.util.rx.RxTestEvent
 import org.smartrobot.widget.debug.DefaultDebugFragment
@@ -38,13 +37,13 @@ class HomeActivity : DefaultBaseActivity() {
             val intent = Intent()
             intent.setClassName(baseContext, "com.multiapk.modules.order.OrderActivity")
             startActivity(intent)
-//            DefaultActivity.start(HomeActivity@this, "com.multiapk.modules.order.OrderFragment")
-//            Snackbar.make(toolbar, "您点击了:" + it?.title, Snackbar.LENGTH_SHORT).show()
-//            if (it.itemId == R.id.action_order) {
-//                DefaultActivity.start(getBaseContext(), "com.multiapk.modules.order.OrderFragment")
-//            }
             true
         }
+
+        findViewById(R.id.button).setOnClickListener {
+            DefaultActivity.start(HomeActivity@ this, "com.multiapk.modules.computer.ComputerFragment")
+        }
+
         val searchItem = toolbar.menu.findItem(R.id.action_search)
         val searchView: SearchView? = searchItem?.actionView as SearchView
 
@@ -64,11 +63,11 @@ class HomeActivity : DefaultBaseActivity() {
         })
 
         cardViewComputerModule.setOnClickListener {
-//            longToast("电脑模块")
+            //            longToast("电脑模块")
             DefaultActivity.start(this, "com.multiapk.modules.computer.ComputerFragment")
         }
         cardViewMobileModule.setOnClickListener {
-//            toast("手机模块")
+            //            toast("手机模块")
             DefaultActivity.start(this, "com.multiapk.modules.mobile.MobileFragment")
         }
 
@@ -76,34 +75,34 @@ class HomeActivity : DefaultBaseActivity() {
         rxPermissions.request(Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS).subscribe { granted ->
             if (granted!!) {
                 // All permissions were granted//
-                Log.d("krmao", "All permissions were granted")
+                //Log.d("krmao", "All permissions were granted")
             } else {
                 //One or more permissions was denied//
-                Log.d("krmao", "One or more permissions was denied")
+                //Log.d("krmao", "One or more permissions was denied")
             }
         }
         rxPermissions.request(Manifest.permission.SEND_SMS, Manifest.permission.READ_CONTACTS).subscribe({ granted ->
             if (granted!!) {
                 // All permissions were granted//
-                Log.d("krmao", "All permissions were granted")
+                //Log.d("krmao", "All permissions were granted")
             } else {
                 //One or more permissions was denied//
-                Log.d("krmao", "One or more permissions was denied")
+                //Log.d("krmao", "One or more permissions was denied")
             }
         })
         rxPermissions.setLogging(true)
         rxPermissions.requestEach(Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE).subscribe({ permission ->
             if (permission.granted) {
                 // `permission.name` is granted !
-                Log.d("krmao", "permission:" + permission.name + " is granted")
+                //Log.d("krmao", "permission:" + permission.name + " is granted")
             } else if (permission.shouldShowRequestPermissionRationale) {
                 // Denied permission without ask never again
-                Log.d("krmao", "Denied permission without ask never again")
+                //Log.d("krmao", "Denied permission without ask never again")
                 //rxPermissions.shouldShowRequestPermissionRationale(HomeActivity.this, Manifest.permission.CAMERA, Manifest.permission.READ_PHONE_STATE);
             } else {
                 // Denied permission with ask never again
                 // Need to go to the settings
-                Log.d("krmao", "Need to go to the settings")
+                //Log.d("krmao", "Need to go to the settings")
             }
         })
 
@@ -111,8 +110,6 @@ class HomeActivity : DefaultBaseActivity() {
             Snackbar.make(button, event.content + ":thread=" + Thread.currentThread().name, Snackbar.LENGTH_SHORT).show()
             collapsingToolbarLayout.title = event.content
         })
-
-        Log.d("krmao", "HomeActivity:DefaultSystemUtil:metadata:" + DefaultSystemUtil.getAppMetaData("debugModel"))
     }
 
     override fun onDestroy() {

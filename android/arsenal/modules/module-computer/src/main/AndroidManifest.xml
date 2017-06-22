@@ -1,3 +1,11 @@
-<manifest package="com.multiapk.modules.computer">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.multiapk.modules.computer">
 
+    <application
+        android:name=".ComputerApplication"
+        tools:replace="android:name">
+        <activity android:name=".ComputerActivity"/>
+    </application>
 </manifest>

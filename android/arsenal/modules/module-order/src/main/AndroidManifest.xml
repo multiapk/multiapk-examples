@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.multiapk.modules.order">
 
-    <application>
-        <activity android:name="com.multiapk.modules.order.OrderActivity"/>
+    <application
+        android:name="com.multiapk.modules.order.OrderApplication"
+        tools:replace="android:name">
+        <activity android:name="com.multiapk.modules.computer.OrderActivity"/>
     </application>
 
 </manifest>

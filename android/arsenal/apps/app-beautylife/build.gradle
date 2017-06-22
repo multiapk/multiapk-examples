@@ -204,7 +204,7 @@ atlas {
     tBuildConfig {
         autoPackageId true
         preProcessManifest true
-        autoStartBundles = ['com.multiapk.modules.order'] //自启动bundle配置
+        //autoStartBundles = ['com.multiapk.modules.computer','business.smartrobot','com.multiapk.modules.order'] //自启动bundle配置
         outOfApkBundles = ['module-mobile']
         preLaunch = 'com.multiapk.BeautyPreLaunch'
         classInject false
@@ -257,8 +257,8 @@ tasks.whenTaskAdded { task ->
 
 dependencies {
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile project(':arsenal:libraries:library-base')
-    bundleCompile project(':arsenal:libraries:library-business')
+    compile project(':library-base')
+    bundleCompile project(':library-business')
 
     // compile time start ----------------------------------------------------------------------
     // https://bitbucket.org/hvisser/android-apt/wiki/Migration
@@ -267,11 +267,11 @@ dependencies {
     //provided "com.google.auto.value:auto-value:1.4.1"
     // compile time end   ----------------------------------------------------------------------
     
-    bundleCompile project(":arsenal:modules:module-computer")
-    bundleCompile project(":arsenal:modules:module-mobile")
-//    bundleCompile project(":arsenal:modules:module-mobile-android")
-//    bundleCompile project(":arsenal:modules:module-mobile-ios")
-    bundleCompile project(":arsenal:modules:module-order")
+    bundleCompile project(":module-computer")
+    bundleCompile project(":module-mobile")
+//    bundleCompile project(":module-mobile-android")
+//    bundleCompile project(":module-mobile-ios")
+    bundleCompile project(":module-order")
 
     // Dependencies for local unit tests
     testCompile "junit:junit:$rootProject.ext.junitVersion"

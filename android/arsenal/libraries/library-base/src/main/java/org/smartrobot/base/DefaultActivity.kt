@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.taobao.atlas.framework.Atlas
 import android.util.Log
 import android.widget.FrameLayout
 
@@ -41,10 +42,6 @@ open class DefaultActivity : DefaultBaseActivity() {
 
         fun start(activity: Activity, fragmentClassName: String) {
             activity.startActivity(getIntent(activity, 0, fragmentClassName, null))
-        }
-
-        fun start(context: Context, fragmentClassName: String) {
-            context.startActivity(getIntent(context, 0, fragmentClassName, null))
         }
 
         fun startByCustomAnimation(activity: Activity, fragmentClass: Class<*>, args: Bundle, enterAnim: Int, exitAnim: Int) {
@@ -112,7 +109,7 @@ open class DefaultActivity : DefaultBaseActivity() {
 
         fun getNewTaskIntent(context: Context, themResId: Int, fragmentClass: Class<*>, args: Bundle?): Intent {
             val intent = Intent(context, DefaultActivity::class.java)
-            intent.putExtra(KEY_FRAGMENT_CLASS, fragmentClass.canonicalName)
+            intent.putExtra(KEY_FRAGMENT_CLASS, fragmentClass)
             if (args != null)
                 intent.putExtra(KEY_FRAGMENT_ARGS, args)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -123,7 +120,7 @@ open class DefaultActivity : DefaultBaseActivity() {
 
         fun getSingleTaskIntent(context: Context, themResId: Int, fragmentClass: Class<*>, args: Bundle?): Intent {
             val intent = Intent(context, DefaultActivity::class.java)
-            intent.putExtra(KEY_FRAGMENT_CLASS, fragmentClass.canonicalName)
+            intent.putExtra(KEY_FRAGMENT_CLASS, fragmentClass)
             if (args != null)
                 intent.putExtra(KEY_FRAGMENT_ARGS, args)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -144,10 +141,30 @@ open class DefaultActivity : DefaultBaseActivity() {
 
             setContentView(FrameLayout(this))
 
-            val fragmentClassName = args.getString(KEY_FRAGMENT_CLASS)
-            val fragment = Class.forName(fragmentClassName).newInstance() as Fragment
-            fragment.arguments = args.getBundle(KEY_FRAGMENT_ARGS)
-            supportFragmentManager.beginTransaction().add(android.R.id.content, fragment, fragmentClassName).commitAllowingStateLoss()
+            var fragment: Fragment? = null
+            val fragmentClassName: String
+            val fragmentObject = args.get(KEY_FRAGMENT_CLASS)
+
+            if (fragmentObject is Class<*>) {
+                fragmentClassName = fragmentObject.canonicalName
+                fragment = fragmentObject.newInstance() as Fragment
+            } else {
+                fragmentClassName = fragmentObject as String
+                try {
+                    fragment = Class.forName(fragmentObject).newInstance() as Fragment
+                } catch (exception: Exception) {
+                    //exception.printStackTrace()
+                    try {
+                        fragment = Atlas.getInstance().delegateClassLoader.loadClass(fragmentObject).newInstance() as Fragment
+                    } catch (e: Exception) {
+                        throw e
+                    }
+                }
+            }
+            if (fragment != null) {
+                fragment.arguments = args.getBundle(KEY_FRAGMENT_ARGS)
+                supportFragmentManager.beginTransaction().add(android.R.id.content, fragment, fragmentClassName).commitAllowingStateLoss()
+            }
         } catch (e: Exception) {
             Log.e(DefaultActivity::javaClass.name, "Has error in new instance of fragment", e)
         }

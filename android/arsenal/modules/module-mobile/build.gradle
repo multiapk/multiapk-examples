@@ -28,6 +28,6 @@ android {
 }
 
 dependencies {
-    providedCompile project(':arsenal:libraries:library-base')
-    providedCompile project(':arsenal:libraries:library-business')
+    providedCompile project(':library-base')
+    providedCompile project(':library-business')
 }

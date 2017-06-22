@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-    providedCompile project(':arsenal:libraries:library-base')
+    providedCompile project(':library-base')
 
     /******* 数据库管理 ****************************************************************************/
     compile "org.greenrobot:greendao:$rootProject.ext.greendaoVersion"

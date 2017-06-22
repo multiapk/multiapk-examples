@@ -1,13 +1,14 @@
 //app
-include ':arsenal:apps:app-beautylife'
+include(':arsenal:apps:app-beautylife')
 
 //app common libraries
-include ':arsenal:libraries:library-base'
-include ':arsenal:libraries:library-business'
+include(':library-base'); project(':library-base').projectDir = new File(settingsDir, 'arsenal/libraries/library-base')
+include(':library-business'); project(':library-business').projectDir = new File(settingsDir, 'arsenal/libraries/library-business')
 
 //modules
-include ':arsenal:modules:module-computer'
-include ':arsenal:modules:module-mobile'
+include(':module-computer'); project(':module-computer').projectDir = new File(settingsDir, 'arsenal/modules/module-computer')
+include(':module-mobile'); project(':module-mobile').projectDir = new File(settingsDir, 'arsenal/modules/module-mobile')
+include(':module-order'); project(':module-order').projectDir = new File(settingsDir, 'arsenal/modules/module-order')
+
 //include ':arsenal:modules:module-mobile-android'
 //include ':arsenal:modules:module-mobile-ios'
-include ':arsenal:modules:module-order'

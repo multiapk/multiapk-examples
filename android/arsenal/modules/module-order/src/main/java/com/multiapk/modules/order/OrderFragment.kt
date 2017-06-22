@@ -3,7 +3,6 @@ package com.multiapk.modules.order
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -11,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import business.smartrobot.database.model.Order
-import kotlinx.android.synthetic.main.fragment_order.*
+import kotlinx.android.synthetic.main.order_fragment_order.*
 import org.jetbrains.annotations.NotNull
 import org.smartrobot.base.DefaultBaseFragment
 
@@ -21,7 +20,7 @@ class OrderFragment : DefaultBaseFragment(), OrderContract.View {
     private var orderAdapter: OrderAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_order, null)
+        return inflater.inflate(R.layout.order_fragment_order, null)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
@@ -32,7 +31,6 @@ class OrderFragment : DefaultBaseFragment(), OrderContract.View {
             true
         }
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = orderAdapter
 
         presenter = OrderPresenter(this)
