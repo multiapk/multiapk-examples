@@ -24,7 +24,7 @@ apply plugin: 'kotlin-android-extensions'
 //noinspection GroovyMissingReturnStatement
 android {
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion = rootProject.ext.compileSdkVersion
     buildToolsVersion = rootProject.ext.buildToolsVersion
 
     defaultConfig {

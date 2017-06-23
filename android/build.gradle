@@ -4,9 +4,11 @@ buildscript {
     ext.greendaoVersion = '3.2.0'
     ext.walleVersion = '1.1.1'
     ext.androidaptVersion = '1.8'
+    ext.atlaspluginVersion = '2.3.3.beta1'
 
     repositories {
         maven { url "http://mvnrepo.alibaba-inc.com/mvn/repository" }
+        mavenLocal()
         jcenter()
         mavenCentral()
         maven { url "https://maven.google.com" }
@@ -27,12 +29,13 @@ buildscript {
     }
 }
 
-allprojects {
+subprojects {
     repositories {
+        maven {
+            url "http://mvnrepo.alibaba-inc.com/mvn/repository"
+        }
         jcenter()
-        mavenCentral()
     }
-
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {
             options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"

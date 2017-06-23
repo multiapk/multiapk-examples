@@ -34,6 +34,7 @@ dependencies {
 
     /******* 必备工具库 ****************************************************************************/
     compile('com.taobao.android:atlas_core:5.0.7.11@aar') { transitive = true }
+//    compile 'com.taobao.android:atlas_core:5.0.6-rc92@aar'
     //compile 'com.taobao.android:atlasupdate:1.1.4.10@aar'
 
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"    //1.3MB [EventBus]
