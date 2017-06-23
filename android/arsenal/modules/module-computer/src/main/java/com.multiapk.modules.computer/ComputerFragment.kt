@@ -10,7 +10,7 @@ import org.smartrobot.base.DefaultBaseFragment
 class ComputerFragment : DefaultBaseFragment() {
     @SuppressLint("InflateParams")
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val contentView = inflater!!.inflate(R.layout.fragment_computer, null)
+        val contentView = inflater!!.inflate(R.layout.computer_fragment_computer, null)
         /*RxView.clicks(contentView).subscribe {
             context?.toast("电脑模块" + Thread.currentThread().name)
         }*/

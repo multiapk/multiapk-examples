@@ -1,7 +1,10 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.taobao.atlas'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.taobao.atlas'
+
+group = 'org.smartrobot'
+version = '1.0.0'
 
 atlas {
     bundleConfig{
@@ -9,13 +12,10 @@ atlas {
     }
     /*buildTypes {
         debug {
-            baseApFile project.rootProject.file('app/build/outputs/apk/app-debug.ap')
+            baseApFile rootProject.file('arsenal/apps/app-beautylife/build/outputs/apk/app-beautylife-debug.ap')
         }
     }*/
 }
-
-group = 'org.smartrobot'
-version = '1.0.1'
 
 android {
     compileSdkVersion project.compileSdkVersion

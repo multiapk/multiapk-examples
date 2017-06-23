@@ -1,20 +1,3 @@
-group = 'org.smartrobot'
-version = getEnvValue("versionName", "1.0.0");
-def apVersion = getEnvValue("apVersion", "");
-
-static String getEnvValue(key, defValue) {
-    def val = System.getProperty(key);
-    if (null != val) {
-        return val;
-    }
-    val = System.getenv(key);
-    if (null != val) {
-        return val;
-    }
-    return defValue;
-}
-
-
 apply plugin: 'com.android.application'
 apply plugin: 'com.taobao.atlas'
 apply plugin: 'walle'
@@ -197,6 +180,10 @@ android {
     }*/
 }
 
+group = 'org.smartrobot'
+version = getEnvValue("versionName", "1.0.0")
+def apVersion = getEnvValue("apVersion", "");
+
 atlas {
 
     atlasEnabled true
@@ -217,6 +204,16 @@ atlas {
     patchConfigs {
         debug {
             createTPatch true
+        }
+    }
+
+
+    buildTypes {
+        debug {
+            if (apVersion) {
+                baseApDependency "org.smartrobot:app-beautylife:${apVersion}@ap"
+                patchConfig patchConfigs.debug
+            }
         }
     }
 }
@@ -321,7 +318,6 @@ dependencies {
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 
-
 publishing {
     repositories {
         mavenLocal()
@@ -332,7 +328,17 @@ publishing {
     publications {
         maven(MavenPublication) {
             artifact "${project.buildDir}/outputs/apk/${project.name}-debug.ap"
-            artifactId "AP-debug"
+            artifactId project.name
         }
     }
+}
+
+static String getEnvValue(key, defValue) {
+    def val = System.getProperty(key)
+    if (null != val)
+        return val
+    val = System.getenv(key)
+    if (null != val)
+        return val
+    return defValue
 }
