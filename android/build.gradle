@@ -7,12 +7,9 @@ buildscript {
     ext.atlaspluginVersion = '2.3.3.beta1'
 
     repositories {
-        maven { url "http://mvnrepo.alibaba-inc.com/mvn/repository" }
         mavenLocal()
         jcenter()
         mavenCentral()
-        //maven { url "https://maven.google.com" }
-        //maven { url "$rootDir/../node_modules/react-native/android" }
     }
 
     configurations.all {
@@ -31,10 +28,9 @@ buildscript {
 
 subprojects {
     repositories {
-        maven {
-            url "http://mvnrepo.alibaba-inc.com/mvn/repository"
-        }
+        mavenLocal()
         jcenter()
+        mavenCentral()
     }
     gradle.projectsEvaluated {
         tasks.withType(JavaCompile) {

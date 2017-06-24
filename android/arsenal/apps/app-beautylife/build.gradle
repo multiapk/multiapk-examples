@@ -14,8 +14,8 @@ android {
         applicationId "com.multiapk"
         minSdkVersion 18
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "12"
+        versionCode 1
+        versionName "1.0.0"
 
         //Gradle Plugin 2.0以上,AppCompat23.2以上,Android 5.0之前使用Vector
         vectorDrawables.useSupportLibrary = true
@@ -32,23 +32,23 @@ android {
         }
     }
 
-     signingConfigs {
-         debug {
-             storeFile file("debug.keystore")
-             storePassword "android"
-             keyAlias "androiddebugkey"
-             keyPassword "android"
-             v2SigningEnabled true
-         }
+    signingConfigs {
+        debug {
+            storeFile file("debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+            v2SigningEnabled true
+        }
 
-         release {
-             storeFile file("debug.keystore")
-             storePassword "android"
-             keyAlias "androiddebugkey"
-             keyPassword "android"
-             v2SigningEnabled true
-         }
-     }
+        release {
+            storeFile file("debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+            v2SigningEnabled true
+        }
+    }
 
     buildTypes {
 
@@ -72,7 +72,7 @@ android {
             testProguardFiles "${rootDir}/gradle/multiapk/global_proguard.pro", "proguardTest-rules.pro"
 
             ndk {
-                abiFilters "x86","armeabi"
+                abiFilters "x86", "armeabi"
             }
         }
         release {
@@ -120,12 +120,6 @@ android {
         preDexLibraries = false
     }
 
-    lintOptions {
-        textReport true
-        textOutput 'stdout'
-        fatal 'UnusedResources'
-        warning 'ResourceType'
-    }
     lintOptions {
         checkReleaseBuilds false
         abortOnError false
@@ -181,7 +175,7 @@ android {
 }
 
 group = 'org.smartrobot'
-version = getEnvValue("versionName", "1.0.0")
+version = getEnvValue("versionName", android.defaultConfig.versionName)
 def apVersion = getEnvValue("apVersion", "");
 
 atlas {
@@ -211,7 +205,7 @@ atlas {
     buildTypes {
         debug {
             if (apVersion) {
-                baseApDependency "org.smartrobot:app-beautylife:${apVersion}@ap"
+                baseApDependency "org.smartrobot:base-app-beautylife:${apVersion}@ap"
                 patchConfig patchConfigs.debug
             }
         }
@@ -263,7 +257,7 @@ dependencies {
     //annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
     //provided "com.google.auto.value:auto-value:1.4.1"
     // compile time end   ----------------------------------------------------------------------
-    
+
     bundleCompile project(":module-computer")
     bundleCompile project(":module-mobile")
 //    bundleCompile project(":module-mobile-android")
@@ -328,7 +322,7 @@ publishing {
     publications {
         maven(MavenPublication) {
             artifact "${project.buildDir}/outputs/apk/${project.name}-debug.ap"
-            artifactId project.name
+            artifactId "base-app-beautylife"
         }
     }
 }

@@ -6,6 +6,7 @@ import android.Manifest
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.SearchView
@@ -40,6 +41,21 @@ class HomeActivity : DefaultBaseActivity() {
 
         findViewById(R.id.button).setOnClickListener {
             startActivity(Intent().setClassName(HomeActivity@this, "com.multiapk.modules.computer.ComputerActivity"))
+        }
+        findViewById(R.id.button).setOnLongClickListener {
+            object : AsyncTask<Void, Void, Void>() {
+                override fun doInBackground(vararg voids: Void): Void? {
+                    Log.w("krmao","start---------------")
+                    Updater.dexPatchUpdate(baseContext)
+                    Log.w("krmao","end---------------")
+                    return null
+                }
+
+                override fun onPostExecute(aVoid: Void) {
+                    android.os.Process.killProcess(android.os.Process.myPid())
+                }
+            }.execute()
+            true
         }
 
         val searchItem = toolbar.menu.findItem(R.id.action_search)
