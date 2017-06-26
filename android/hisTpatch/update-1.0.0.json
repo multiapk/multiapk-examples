@@ -1,0 +1,21 @@
+{
+	"baseVersion":"1.0.0",
+	"updateBundles":[
+		{
+			"isMainDex":true,
+			"name":"com.taobao.maindex",
+			"srcUnitTag":"ada9e617e2c040b8d9a5dfcdad593a7a",
+			"unitTag":"ada9e617e2c040b8d9a5dfcdad593a7a",
+			"version":"1.0.0@1.0.2"
+		},
+		{
+			"dependency":[],
+			"isMainDex":false,
+			"name":"com.multiapk.modules.computer",
+			"srcUnitTag":"d6f8a1a35c32f3285f1dd3606f013bba",
+			"unitTag":"d6f8a1a35c32f3285f1dd3606f013bba",
+			"version":"1.0.0@1.0.1"
+		}
+	],
+	"updateVersion":"1.0.2"
+}

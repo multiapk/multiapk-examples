@@ -15,7 +15,7 @@ atlas {
 }
 
 group = 'com.atlas.demo'
-version = '1.0.0'
+version = '1.0.1'
 
 android {
     compileSdkVersion project.compileSdkVersion
@@ -23,12 +23,16 @@ android {
     defaultConfig {
         minSdkVersion 18
         targetSdkVersion project.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
     }
 
     resourcePrefix 'computer_'
 
-    lintOptions {
-        abortOnError false
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
     }
 }
 

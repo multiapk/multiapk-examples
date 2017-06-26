@@ -12,7 +12,7 @@ class ComputerFragment : DefaultBaseFragment() {
     @SuppressLint("InflateParams")
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val contentView = inflater!!.inflate(R.layout.computer_fragment_computer, null)
-        context?.toast("cici is nice")
+        context?.toast("1.0.2222")
         /*RxView.clicks(contentView).subscribe {
             context?.toast("电脑模块" + Thread.currentThread().name)
         }*/
