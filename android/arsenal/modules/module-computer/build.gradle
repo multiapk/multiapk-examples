@@ -3,19 +3,18 @@ apply plugin: 'com.taobao.atlas'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-group = 'org.smartrobot'
-version = '1.0.0'
-
 atlas {
     bundleConfig{
         awbBundle true
     }
-    /*buildTypes {
+    buildTypes {
         debug {
-            baseApFile rootProject.file('arsenal/apps/app-beautylife/build/outputs/apk/app-beautylife-debug.ap')
+            baseApFile project.rootProject.file('arsenal/apps/app-beautylife/build/outputs/apk/app-beautylife-debug.ap')
         }
-    }*/
+    }
 }
+group = 'com.atlas.demo'
+version = '1.0.0'
 
 android {
     compileSdkVersion project.compileSdkVersion

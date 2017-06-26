@@ -6,7 +6,6 @@ import android.Manifest
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.SearchView
@@ -15,7 +14,10 @@ import android.util.Log
 import com.jude.swipbackhelper.SwipeBackHelper
 import com.multiapk.R
 import com.tbruyelle.rxpermissions2.RxPermissions
+import io.reactivex.Flowable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_home.*
 import org.smartrobot.base.DefaultActivity
 import org.smartrobot.base.DefaultBaseActivity
@@ -43,18 +45,13 @@ class HomeActivity : DefaultBaseActivity() {
             startActivity(Intent().setClassName(HomeActivity@this, "com.multiapk.modules.computer.ComputerActivity"))
         }
         findViewById(R.id.button).setOnLongClickListener {
-            object : AsyncTask<Void, Void, Void>() {
-                override fun doInBackground(vararg voids: Void): Void? {
-                    Log.w("krmao","start---------------")
-                    Updater.dexPatchUpdate(baseContext)
-                    Log.w("krmao","end---------------")
-                    return null
-                }
-
-                override fun onPostExecute(aVoid: Void) {
-                    android.os.Process.killProcess(android.os.Process.myPid())
-                }
-            }.execute()
+            Flowable.fromCallable {
+                Log.w("krmao","start---------------")
+                Updater.update(baseContext)
+                Log.w("krmao","end---------------")
+            }.observeOn(AndroidSchedulers.mainThread()).subscribeOn(Schedulers.computation()).subscribe{
+                android.os.Process.killProcess(android.os.Process.myPid())
+            }
             true
         }
 

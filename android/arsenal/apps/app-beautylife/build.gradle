@@ -4,6 +4,11 @@ apply plugin: 'walle'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+
+group = 'org.smartrobot'
+version = getEnvValue("versionName", "1.0.0")
+def apVersion = getEnvValue("apVersion", "")
+
 //noinspection GroovyMissingReturnStatement
 android {
 
@@ -15,7 +20,7 @@ android {
         minSdkVersion 18
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0.0"
+        versionName version
 
         //Gradle Plugin 2.0以上,AppCompat23.2以上,Android 5.0之前使用Vector
         vectorDrawables.useSupportLibrary = true
@@ -173,10 +178,6 @@ android {
         }
     }*/
 }
-
-group = 'org.smartrobot'
-version = getEnvValue("versionName", android.defaultConfig.versionName)
-def apVersion = getEnvValue("apVersion", "");
 
 atlas {
 

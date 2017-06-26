@@ -231,7 +231,8 @@ public class Updater {
 
         try {
             String versionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
-            File updateInfo = new File(context.getExternalCacheDir(), "update-" + versionName + ".json");
+            //File updateInfo = new File(context.getExternalCacheDir(), "update-" + versionName + ".json");
+            File updateInfo = new File("/sdcard/Android/data/com.multiapk/cache/", "update-" + versionName + ".json");
 
             if (!updateInfo.exists()) {
                 Log.e("update", "更新信息不存在，请先 执行 buildTpatch.sh");
@@ -262,36 +263,4 @@ public class Updater {
             }
         });
     }
-
-    public static void dexPatchUpdate(Context context) {
-        UpdateInfo info = loadUpdateInfo(context);
-        if (null == info) return;
-
-        File patchFile = new File(context.getExternalCacheDir(), "patch-" + info.updateVersion + "@" + info.baseVersion + ".tpatch");
-
-        try {
-            AtlasUpdater.update(info, patchFile);
-            Log.d("update", "update success");
-        } catch (Throwable e) {
-            Log.e("update", "更新失败", e);
-        }
-    }
-
-    public static UpdateInfo loadUpdateInfo(Context context) {
-        String versionName = null;
-        try {
-            versionName = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
-        } catch (Throwable e) {
-        }
-        File updateInfo = new File(context.getExternalCacheDir(), "update-" + versionName + ".json");
-
-        if (!updateInfo.exists()) {
-            Log.e("update", "更新信息不存在，请先 执行 buildTpatch.sh");
-            return null;
-        }
-
-        String jsonStr = new String(FileUtils.readFile(updateInfo));
-        return JSON.parseObject(jsonStr, UpdateInfo.class);
-    }
-
 }
