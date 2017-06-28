@@ -8,6 +8,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import com.squareup.leakcanary.LeakCanary
+import com.tencent.bugly.crashreport.CrashReport
 import org.osgi.framework.BundleException
 import org.smartrobot.base.DefaultBaseApplication
 import java.io.File
@@ -20,6 +21,11 @@ class BeautyApplication : DefaultBaseApplication() {
         Log.w("krmao","BeautyApplication:onCreate:"+SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.getDefault()).format(System.currentTimeMillis()))
 
         LeakCanary.install(this)
+
+        val strategy = CrashReport.UserStrategy(this)
+        //strategy.setAppChannel(channel)
+        //strategy.setAppVersion(getAppVersion())
+        CrashReport.initCrashReport(this, "3364cda7a3", false, strategy)
 
         Atlas.getInstance().setClassNotFoundInterceptorCallback(ClassNotFoundInterceptorCallback { intent ->
             val className = intent.component.className

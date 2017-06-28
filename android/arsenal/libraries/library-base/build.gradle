@@ -41,6 +41,8 @@ dependencies {
     compile "io.reactivex.rxjava2:rxkotlin:$rootProject.ext.rxkotlinVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion" //8KB
 
+    compile 'com.tencent.bugly:crashreport:2.6.5'
+
     /******* 其它常用库 ****************************************************************************/
     compile 'com.jude:swipebackhelper:3.1.2'
 

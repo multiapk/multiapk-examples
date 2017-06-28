@@ -8,6 +8,12 @@ apply plugin: 'com.taobao.atlas'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'bugly'
+bugly {
+    appId = '3364cda7a3'
+    appKey = '3d2fea0f-134d-4083-8725-045e2367743d'
+}
+
 //noinspection GroovyMissingReturnStatement
 android {
     compileSdkVersion = rootProject.ext.compileSdkVersion
